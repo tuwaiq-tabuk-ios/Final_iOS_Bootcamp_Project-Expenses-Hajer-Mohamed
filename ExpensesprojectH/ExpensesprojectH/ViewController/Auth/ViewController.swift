@@ -80,7 +80,7 @@ class ViewController: UIViewController,UICollectionViewDelegate
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "homecell", for: indexPath) as! CollectionVC
         cell.imgProductPhoto.image = arrProductPhotos[indexPath.row]
-         return cell
+        return cell
     }
     
     

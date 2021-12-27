@@ -7,8 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0718F2292778986200DB67A3 /* addNewWalletVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0718F2282778986200DB67A3 /* addNewWalletVC.swift */; };
+		0718F2342778F1F700DB67A3 /* PurchaseTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0718F2332778F1F700DB67A3 /* PurchaseTVC.swift */; };
+		0718F2362778F34700DB67A3 /* PurchaseAmount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0718F2352778F34700DB67A3 /* PurchaseAmount.swift */; };
 		073157262774644C002627B7 /* addNewPurchaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073157252774644C002627B7 /* addNewPurchaseVC.swift */; };
 		0731573B27763C00002627B7 /* CollectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0731573A27763C00002627B7 /* CollectionVC.swift */; };
+		0731574327788088002627B7 /* WalletVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0731574227788088002627B7 /* WalletVC.swift */; };
 		076CAB602770656F008FEFD2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 076CAB5F2770656F008FEFD2 /* GoogleService-Info.plist */; };
 		07AD24BA277060510015076B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07AD24B9277060510015076B /* AppDelegate.swift */; };
 		07AD24BC277060510015076B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07AD24BB277060510015076B /* SceneDelegate.swift */; };
@@ -25,8 +29,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0718F2282778986200DB67A3 /* addNewWalletVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addNewWalletVC.swift; sourceTree = "<group>"; };
+		0718F2332778F1F700DB67A3 /* PurchaseTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseTVC.swift; sourceTree = "<group>"; };
+		0718F2352778F34700DB67A3 /* PurchaseAmount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseAmount.swift; sourceTree = "<group>"; };
 		073157252774644C002627B7 /* addNewPurchaseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addNewPurchaseVC.swift; sourceTree = "<group>"; };
 		0731573A27763C00002627B7 /* CollectionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionVC.swift; sourceTree = "<group>"; };
+		0731574227788088002627B7 /* WalletVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletVC.swift; sourceTree = "<group>"; };
 		076CAB5F2770656F008FEFD2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		07AD24B6277060510015076B /* ExpensesprojectH.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExpensesprojectH.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		07AD24B9277060510015076B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -58,6 +66,39 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0718F2272778980F00DB67A3 /* Wallet */ = {
+			isa = PBXGroup;
+			children = (
+				0731574227788088002627B7 /* WalletVC.swift */,
+				0718F2282778986200DB67A3 /* addNewWalletVC.swift */,
+			);
+			path = Wallet;
+			sourceTree = "<group>";
+		};
+		0718F2372778F3D700DB67A3 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				0718F2332778F1F700DB67A3 /* PurchaseTVC.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		0718F2382778F40000DB67A3 /* AddNewPurchase */ = {
+			isa = PBXGroup;
+			children = (
+				073157252774644C002627B7 /* addNewPurchaseVC.swift */,
+			);
+			path = AddNewPurchase;
+			sourceTree = "<group>";
+		};
+		0718F2392778F42C00DB67A3 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				0718F2352778F34700DB67A3 /* PurchaseAmount.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		0731573C2776582A002627B7 /* Support */ = {
 			isa = PBXGroup;
 			children = (
@@ -84,7 +125,9 @@
 			isa = PBXGroup;
 			children = (
 				07C6BD5F27708F4400E8BEFA /* HomeViewController.swift */,
-				073157252774644C002627B7 /* addNewPurchaseVC.swift */,
+				0718F2392778F42C00DB67A3 /* Model */,
+				0718F2382778F40000DB67A3 /* AddNewPurchase */,
+				0718F2372778F3D700DB67A3 /* Cell */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -133,6 +176,7 @@
 			children = (
 				0731573D277659E0002627B7 /* Auth */,
 				0731573E27765A4B002627B7 /* Home */,
+				0718F2272778980F00DB67A3 /* Wallet */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -279,7 +323,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0718F2342778F1F700DB67A3 /* PurchaseTVC.swift in Sources */,
 				07C6BD5C27708DB800E8BEFA /* LoginViewController.swift in Sources */,
+				0718F2362778F34700DB67A3 /* PurchaseAmount.swift in Sources */,
 				073157262774644C002627B7 /* addNewPurchaseVC.swift in Sources */,
 				07AD24BE277060510015076B /* ViewController.swift in Sources */,
 				07AD24BA277060510015076B /* AppDelegate.swift in Sources */,
@@ -287,8 +333,10 @@
 				07C6BD6027708F4400E8BEFA /* HomeViewController.swift in Sources */,
 				07C6BD5A27707C1F00E8BEFA /* SingUpViewController.swift in Sources */,
 				07C6BD5E27708EA000E8BEFA /* Constants.swift in Sources */,
+				0718F2292778986200DB67A3 /* addNewWalletVC.swift in Sources */,
 				07C6BD5827707A0F00E8BEFA /* Utilities.swift in Sources */,
 				07AD24BC277060510015076B /* SceneDelegate.swift in Sources */,
+				0731574327788088002627B7 /* WalletVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

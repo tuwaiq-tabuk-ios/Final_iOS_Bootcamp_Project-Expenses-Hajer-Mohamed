@@ -9,20 +9,52 @@ import UIKit
 
 class HomeViewController: UIViewController {
     
+    @IBOutlet weak var totalAmountTextField: UITextField!
+    @IBOutlet weak var tableView: UITableView!
     
-    @IBOutlet weak var addbutton: UIButton!
-    @IBOutlet weak var textFiledhome: UITextField!
+    
+    //    : [PurchaseAmount] = []
+    
+    var purchases = [ PurchaseAmount(amount: "150", description: "Test")]
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        ConfigureButton()
+        NotificationCenter.default.addObserver(self, selector: #selector(addPurchase), name: NSNotification.Name(rawValue: "addPurchase"), object: nil)
+        
+        tableView.dataSource = self
+        tableView.delegate = self
+        
     }
     
-    func ConfigureButton() {
+    @objc func addPurchase(notfication : Notification) {
+        if let NewPurchaseAmount = notfication.userInfo?["addNewPurchase"] as? PurchaseAmount {
+            purchases.append(NewPurchaseAmount)
+            tableView.reloadData()
+        }
+    }
+    
+    @IBAction func addNewPurchase(_ sender: UIButton) {
         
-        addbutton.layer.cornerRadius = 15
-        addbutton.layer.borderWidth = 0.5
-        textFiledhome.layer.cornerRadius = 20
-        textFiledhome.layer.borderWidth = 0.5
+        let viewController = self.storyboard?.instantiateViewController(identifier: Constants.Storyboard.addNewPurchase) as! addNewPurchaseVC
+        let VC = viewController
+        self.navigationController?.pushViewController(VC, animated: true)
     }
 }
+
+extension HomeViewController : UITableViewDataSource, UITableViewDelegate {
+        func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+         return purchases.count
+    }
+    
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let Cell = tableView.dequeueReusableCell(withIdentifier: "PurchaseTVC") as! PurchaseTVC
+        
+        Cell.configureCell(purchase: purchases[indexPath.row])
+        Cell.backgroundColor = UIColor.white
+        return Cell
+    }
+}
+
+
