@@ -15,6 +15,7 @@
 		0731573B27763C00002627B7 /* CollectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0731573A27763C00002627B7 /* CollectionVC.swift */; };
 		0731574327788088002627B7 /* WalletVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0731574227788088002627B7 /* WalletVC.swift */; };
 		076CAB602770656F008FEFD2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 076CAB5F2770656F008FEFD2 /* GoogleService-Info.plist */; };
+		07803F21277D874C001CAC3D /* commitmentsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07803F20277D874C001CAC3D /* commitmentsVC.swift */; };
 		07AD24BA277060510015076B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07AD24B9277060510015076B /* AppDelegate.swift */; };
 		07AD24BC277060510015076B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07AD24BB277060510015076B /* SceneDelegate.swift */; };
 		07AD24BE277060510015076B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07AD24BD277060510015076B /* ViewController.swift */; };
@@ -41,6 +42,7 @@
 		0731573A27763C00002627B7 /* CollectionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionVC.swift; sourceTree = "<group>"; };
 		0731574227788088002627B7 /* WalletVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletVC.swift; sourceTree = "<group>"; };
 		076CAB5F2770656F008FEFD2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		07803F20277D874C001CAC3D /* commitmentsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = commitmentsVC.swift; sourceTree = "<group>"; };
 		07AD24B6277060510015076B /* ExpensesprojectH.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExpensesprojectH.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		07AD24B9277060510015076B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		07AD24BB277060510015076B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -156,6 +158,14 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		07803F22277D8754001CAC3D /* commitments */ = {
+			isa = PBXGroup;
+			children = (
+				07803F20277D874C001CAC3D /* commitmentsVC.swift */,
+			);
+			path = commitments;
+			sourceTree = "<group>";
+		};
 		07AD24AD277060510015076B = {
 			isa = PBXGroup;
 			children = (
@@ -194,6 +204,7 @@
 				0731573D277659E0002627B7 /* Auth */,
 				0731573E27765A4B002627B7 /* Home */,
 				0718F2272778980F00DB67A3 /* Wallet */,
+				07803F22277D8754001CAC3D /* commitments */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -368,6 +379,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0718F22B2778D6C700DB67A3 /* UIHelper.swift in Sources */,
+				07803F21277D874C001CAC3D /* commitmentsVC.swift in Sources */,
 				07C6BD5C27708DB800E8BEFA /* LoginViewController.swift in Sources */,
 				073157262774644C002627B7 /* AddNewPurchaseVC.swift in Sources */,
 				07AD24BE277060510015076B /* ViewController.swift in Sources */,
