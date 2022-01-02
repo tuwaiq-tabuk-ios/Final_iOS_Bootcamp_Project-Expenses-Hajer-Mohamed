@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		070DA62C277FA18400BD2440 /* CommitmentsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 070DA62B277FA18400BD2440 /* CommitmentsTableViewCell.swift */; };
+		070DA62E277FA3DF00BD2440 /* MycommitmentsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 070DA62D277FA3DF00BD2440 /* MycommitmentsVC.swift */; };
+		070DA630277FA65400BD2440 /* CommitmentsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 070DA62F277FA65400BD2440 /* CommitmentsModel.swift */; };
 		0718F2292778986200DB67A3 /* CreateNewWalletVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0718F2282778986200DB67A3 /* CreateNewWalletVC.swift */; };
 		0718F22B2778D6C700DB67A3 /* UIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0718F22A2778D6C700DB67A3 /* UIHelper.swift */; };
 		0718F22D2778E53D00DB67A3 /* PurchaseTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0718F22C2778E53D00DB67A3 /* PurchaseTVC.swift */; };
@@ -16,6 +19,7 @@
 		0731574327788088002627B7 /* WalletVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0731574227788088002627B7 /* WalletVC.swift */; };
 		076CAB602770656F008FEFD2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 076CAB5F2770656F008FEFD2 /* GoogleService-Info.plist */; };
 		07803F21277D874C001CAC3D /* commitmentsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07803F20277D874C001CAC3D /* commitmentsVC.swift */; };
+		07803F26277F8749001CAC3D /* WalletCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07803F25277F8749001CAC3D /* WalletCollection.swift */; };
 		07AD24BA277060510015076B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07AD24B9277060510015076B /* AppDelegate.swift */; };
 		07AD24BC277060510015076B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07AD24BB277060510015076B /* SceneDelegate.swift */; };
 		07AD24BE277060510015076B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07AD24BD277060510015076B /* ViewController.swift */; };
@@ -34,6 +38,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		070DA62B277FA18400BD2440 /* CommitmentsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommitmentsTableViewCell.swift; sourceTree = "<group>"; };
+		070DA62D277FA3DF00BD2440 /* MycommitmentsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MycommitmentsVC.swift; sourceTree = "<group>"; };
+		070DA62F277FA65400BD2440 /* CommitmentsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommitmentsModel.swift; sourceTree = "<group>"; };
 		0718F2282778986200DB67A3 /* CreateNewWalletVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewWalletVC.swift; sourceTree = "<group>"; };
 		0718F22A2778D6C700DB67A3 /* UIHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIHelper.swift; sourceTree = "<group>"; };
 		0718F22C2778E53D00DB67A3 /* PurchaseTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseTVC.swift; sourceTree = "<group>"; };
@@ -43,6 +50,7 @@
 		0731574227788088002627B7 /* WalletVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletVC.swift; sourceTree = "<group>"; };
 		076CAB5F2770656F008FEFD2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		07803F20277D874C001CAC3D /* commitmentsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = commitmentsVC.swift; sourceTree = "<group>"; };
+		07803F25277F8749001CAC3D /* WalletCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletCollection.swift; sourceTree = "<group>"; };
 		07AD24B6277060510015076B /* ExpensesprojectH.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExpensesprojectH.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		07AD24B9277060510015076B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		07AD24BB277060510015076B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -161,7 +169,10 @@
 		07803F22277D8754001CAC3D /* commitments */ = {
 			isa = PBXGroup;
 			children = (
+				070DA62D277FA3DF00BD2440 /* MycommitmentsVC.swift */,
+				070DA62B277FA18400BD2440 /* CommitmentsTableViewCell.swift */,
 				07803F20277D874C001CAC3D /* commitmentsVC.swift */,
+				070DA62F277FA65400BD2440 /* CommitmentsModel.swift */,
 			);
 			path = commitments;
 			sourceTree = "<group>";
@@ -241,6 +252,7 @@
 				0731574227788088002627B7 /* WalletVC.swift */,
 				07CC76CB277B94DE004A6117 /* SelectCategoryVC.swift */,
 				0718F2282778986200DB67A3 /* CreateNewWalletVC.swift */,
+				07803F25277F8749001CAC3D /* WalletCollection.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -384,15 +396,19 @@
 				073157262774644C002627B7 /* AddNewPurchaseVC.swift in Sources */,
 				07AD24BE277060510015076B /* ViewController.swift in Sources */,
 				0718F22D2778E53D00DB67A3 /* PurchaseTVC.swift in Sources */,
+				07803F26277F8749001CAC3D /* WalletCollection.swift in Sources */,
 				07CC76C5277B005B004A6117 /* WalletsModelStruct.swift in Sources */,
+				070DA630277FA65400BD2440 /* CommitmentsModel.swift in Sources */,
 				07AD24BA277060510015076B /* AppDelegate.swift in Sources */,
 				0731573B27763C00002627B7 /* CollectionVC.swift in Sources */,
 				07CC76CC277B94DE004A6117 /* SelectCategoryVC.swift in Sources */,
 				07C6BD6027708F4400E8BEFA /* HomeVC.swift in Sources */,
 				07C6BD5A27707C1F00E8BEFA /* SingUpViewController.swift in Sources */,
+				070DA62E277FA3DF00BD2440 /* MycommitmentsVC.swift in Sources */,
 				07C6BD5E27708EA000E8BEFA /* Constants.swift in Sources */,
 				0718F2292778986200DB67A3 /* CreateNewWalletVC.swift in Sources */,
 				0718F22F2778E77800DB67A3 /* PurchaseAmount.swift in Sources */,
+				070DA62C277FA18400BD2440 /* CommitmentsTableViewCell.swift in Sources */,
 				07C6BD5827707A0F00E8BEFA /* Utilities.swift in Sources */,
 				07AD24BC277060510015076B /* SceneDelegate.swift in Sources */,
 				07CC76C8277B0276004A6117 /* WalletTVC.swift in Sources */,
