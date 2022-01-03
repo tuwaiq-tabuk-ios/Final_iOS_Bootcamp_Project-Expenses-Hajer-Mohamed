@@ -9,11 +9,11 @@ import UIKit
 import Firebase
 
 class MycommitmentsVC: UIViewController {
-    
+  
+  var commitments: [CommitmentsModel] = []
     
     @IBOutlet weak var tableView: UITableView!
     
-    var commitments: [CommitmentsModel] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,10 +25,10 @@ class MycommitmentsVC: UIViewController {
 }
 
 extension MycommitmentsVC: UITableViewDataSource, UITableViewDelegate {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return commitments.count
     }
-    
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -45,4 +45,8 @@ extension MycommitmentsVC: UITableViewDataSource, UITableViewDelegate {
         return UIView()
     }
     
+  
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100
+    }
 }

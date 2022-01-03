@@ -7,6 +7,7 @@
 import Foundation
 import UIKit
 
+
 class Utilities: UIViewController {
 
         static func styleTextField(_ textfield:UITextField) {
@@ -26,6 +27,7 @@ class Utilities: UIViewController {
         
     }
     
+  
     static func styleFilledButton(_ button:UIButton) {
         
         // Filled rounded corner style
@@ -34,6 +36,7 @@ class Utilities: UIViewController {
         button.tintColor = UIColor.white
     }
     
+  
     static func styleHollowButton(_ button:UIButton) {
         
         // Hollow rounded corner style
@@ -43,6 +46,7 @@ class Utilities: UIViewController {
         button.tintColor = UIColor.black
     }
     
+  
     static func isPasswordValid(_ password : String) -> Bool {
         
         let passwordTest = NSPredicate(format: "SELF MATCHES %@", "^(?=.*[a-z])(?=.*[$@$#!%*?&])[A-Za-z\\d$@$#!%*?&]{8,}")

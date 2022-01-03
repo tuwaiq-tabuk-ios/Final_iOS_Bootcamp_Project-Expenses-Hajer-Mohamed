@@ -9,6 +9,7 @@ import Foundation
 
 
 struct PurchaseAmount {
-    let amount: String
-    let description: String
+    let id : String?
+    let amount: String?
+    let description: String?
 }
