@@ -12,6 +12,7 @@ class CommitmentsVC: UIViewController {
   
   let datePicker = UIDatePicker()
   let db = Firestore.firestore()
+  
 //  var types = ["weekly", "monthly", "yearly"]
   
   
@@ -26,6 +27,7 @@ class CommitmentsVC: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     
+      
     
     func showAlert() {
       let alert = UIAlertController(title: "Success", message: "Commitment added successfully", preferredStyle: .alert)

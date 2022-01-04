@@ -9,6 +9,7 @@ import UIKit
 import Firebase
 
 
+
 class CreateNewWalletVC: UIViewController {
   
   let db = Firestore.firestore()
@@ -90,6 +91,7 @@ class CreateNewWalletVC: UIViewController {
     alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
       self.navigationController?.popToRootViewController(animated: false)
     }))
+    
     self.present(alert, animated: true, completion: nil)
   }
 }

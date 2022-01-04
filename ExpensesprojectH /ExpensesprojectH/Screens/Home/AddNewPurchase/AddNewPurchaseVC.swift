@@ -69,7 +69,6 @@ class AddNewPurchaseVC: UIViewController {
         self.updateTotalAmount(total: self.totalAmount - Int(amount)!)
       }
     }
-    
   }
   
   

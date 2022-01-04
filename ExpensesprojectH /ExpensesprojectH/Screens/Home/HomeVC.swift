@@ -77,6 +77,7 @@ class HomeVC: UIViewController {
             let purchase = PurchaseAmount(id: document["id"] as? String, amount:document["amount"] as? String ?? "", description: document["purchaseDescription"] as? String ?? "")
             self.purchases.append(purchase)
           }
+          
           self.refreshControl.endRefreshing()
           self.tableView.reloadData()
         }

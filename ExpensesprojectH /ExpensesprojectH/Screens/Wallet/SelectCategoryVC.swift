@@ -20,7 +20,6 @@ class SelectCategoryVC: UIViewController {
     
   }
   
-  
   @IBAction func didSelectCategory(_ sender: UIButton) {
     
     self.delegate?.didSelectCategory(categoryName: sender.currentTitle ?? "")
