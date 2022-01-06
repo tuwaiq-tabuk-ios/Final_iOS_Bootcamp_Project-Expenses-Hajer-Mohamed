@@ -9,4 +9,5 @@ target 'ExpensesprojectH' do
 pod 'Firebase/Auth'
 pod 'Firebase/Firestore'
 pod  'Toast-Swift', :inhibit_warnings => true
+pod 'Charts'
 end

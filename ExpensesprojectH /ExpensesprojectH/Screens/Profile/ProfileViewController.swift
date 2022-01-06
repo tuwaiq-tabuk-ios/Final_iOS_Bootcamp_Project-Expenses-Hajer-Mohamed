@@ -9,15 +9,14 @@ import UIKit
 import Firebase
 import MessageUI
 
-class ProfileViewController: UIViewController, MFMailComposeViewControllerDelegate  {
+class ProfileViewController: UIViewController,MFMailComposeViewControllerDelegate{
   
+  let db = Firestore.firestore().collection("users")
+
   @IBOutlet weak var nameLabel: UILabel!
   @IBOutlet weak var emailLabel: UILabel!
   
-    
-  let db = Firestore.firestore().collection("users")
-  
-  override func viewDidLoad() {
+    override func viewDidLoad() {
     super.viewDidLoad()
     
     nameLabel.transform = CGAffineTransform(scaleX: 0, y: 0)
@@ -45,7 +44,8 @@ class ProfileViewController: UIViewController, MFMailComposeViewControllerDelega
       }
     }
   }
-  
+  // MARK: - @IBAction
+
   @IBAction func signoutAction(_ sender: UIButton) {
     try? Auth.auth().signOut()
     
@@ -88,6 +88,7 @@ class ProfileViewController: UIViewController, MFMailComposeViewControllerDelega
     }
     else{
       // IMPORTANT:- email not working in simulator
+      
       print("Can't send email \n EMAIL COMPOSER NOT WORKING IN SIMULATOR")
     }
   }

@@ -8,8 +8,10 @@
 import Foundation
 
 struct CommitmentsModel {
-    let amount: String
-    let commitmentName: String
-    let Timeperiod: String
-    let repeatType: String
+  let commitmentID : String?
+  let amount: String?
+  let commitmentDate: String?
+  let commitmentName: String?
+  let period: Int?
+  let uid: String?
 }

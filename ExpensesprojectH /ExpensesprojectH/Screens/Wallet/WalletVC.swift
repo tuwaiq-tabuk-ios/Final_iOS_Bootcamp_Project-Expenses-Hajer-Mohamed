@@ -10,23 +10,26 @@ import Firebase
 
 class WalletVC: UIViewController {
   
-  @IBOutlet weak var tapleView: UITableView!
-  @IBOutlet weak var walletCollection: UICollectionView!
-  @IBOutlet weak var pageControl: UIPageControl!
-  
-  
   let db = Firestore.firestore()
   var wallets: [Wallet] = []
-  var arrWallets = [UIImage(named: "image99")!,
-                    UIImage(named: "image90")!]
+  var arrWallets = [UIImage(named: "Imagewallet-2")!,
+                    UIImage(named: "Imagewallet-1")!]
   var timer : Timer?
   var currentCellIndex = 0
   let refreshControl = UIRefreshControl()
   
+  
+  // MARK: - @IBOutlet
+  
+  @IBOutlet weak var tapleView: UITableView!
+  @IBOutlet weak var walletCollection: UICollectionView!
+  @IBOutlet weak var pageControl: UIPageControl!
+  
+  // MARK: - View lifecycle
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     
-
     tapleView.delegate = self
     tapleView.dataSource = self
     walletCollection.delegate = self
@@ -44,10 +47,10 @@ class WalletVC: UIViewController {
     self.getData()
   }
   
+  // MARK: - @IBAction
+  
   @IBAction func btnEdit(_ sender: UIButton) {
-    
     tapleView.isEditing = !tapleView.isEditing
-    
   }
   
   func startTimer() {
@@ -79,8 +82,8 @@ class WalletVC: UIViewController {
           self.wallets.removeAll()
           for document in snapshot.documents {
             let wallet = Wallet(id: document["id"] as?
-                                            String, walletName: document["walletName"] as?
-                                            String ?? "",balance: document["balance"] as? String ?? "", category: document["category"] as? String ?? "")
+                                String, walletName: document["walletName"] as?
+                                String ?? "",balance: document["balance"] as? String ?? "", category: document["category"] as? String ?? "")
             self.wallets.append(wallet)
           }
           self.refreshControl.endRefreshing()
@@ -90,7 +93,7 @@ class WalletVC: UIViewController {
     }
   }
 }
-
+// MARK: - extension UITableView
 
 extension WalletVC : UITableViewDelegate, UITableViewDataSource {
   
@@ -145,7 +148,7 @@ extension WalletVC : UITableViewDelegate, UITableViewDataSource {
 }
 
 
-
+// MARK: - extension UICollectionView
 
 extension WalletVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
   

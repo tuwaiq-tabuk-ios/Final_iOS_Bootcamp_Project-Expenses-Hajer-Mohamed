@@ -14,10 +14,13 @@ class HomeVC: UIViewController {
   var purchases: [PurchaseAmount] = []
   let refreshControl = UIRefreshControl()
   
+  // MARK: - @IBOutlet
   @IBOutlet weak var totalAmountTextField: UITextField!
   @IBOutlet weak var tableView: UITableView!
   
   
+  // MARK: - View lifecycle
+
   override func viewDidLoad() {
     super.viewDidLoad()
     
@@ -39,6 +42,7 @@ class HomeVC: UIViewController {
     getdata()
   }
   
+  // MARK: -  @IBAction
   
   @IBAction func ButtonEdit(_ sender: UIButton) {
     tableView.isEditing = !tableView.isEditing
@@ -46,14 +50,14 @@ class HomeVC: UIViewController {
   }
   
   @IBAction func addNewPurchase(_ sender: UIButton) {
-        
+    
     guard let amount = totalAmountTextField.text, !amount.isEmpty else {
-      UIHelper.makeToast(text: "Please enter total amount first")
+      UIHelper.makeToast(text: "Please enter total amount first".localize())
       return
     }
     
     guard let _ = Int(amount) else {
-      UIHelper.makeToast(text: "Please enter valid amount")
+      UIHelper.makeToast(text: "Please enter valid amount".localize())
       return
     }
     
@@ -102,7 +106,7 @@ class HomeVC: UIViewController {
     db.collection("totalAmount").document("totalAmounts").setData(["total":total])
   }
 }
-
+// MARK: -  extension UITableView
 
 extension HomeVC: UITableViewDataSource, UITableViewDelegate {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -128,7 +132,7 @@ extension HomeVC: UITableViewDataSource, UITableViewDelegate {
     purchases.swapAt(sourceIndexPath.row, destinationIndexPath.row)
     
   }
-    
+  
   func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
     return UIView()
     
@@ -141,6 +145,7 @@ extension HomeVC: UITableViewDataSource, UITableViewDelegate {
   
   
   func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+    
     if editingStyle == .delete {
       if let purchase = purchases[indexPath.row].id {
         db.collection("purchases").document(purchase).delete { error in
@@ -157,6 +162,7 @@ extension HomeVC: UITableViewDataSource, UITableViewDelegate {
     }
   }
 }
+// MARK: -  extension UITextFieldDelegate
 
 
 extension HomeVC: UITextFieldDelegate {

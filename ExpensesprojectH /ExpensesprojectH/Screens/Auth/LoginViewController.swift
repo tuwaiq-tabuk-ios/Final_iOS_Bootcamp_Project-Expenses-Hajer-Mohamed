@@ -23,15 +23,14 @@ class LoginViewController: UIViewController {
     
     
     func setUpElements() {
-        // Hide the error label
         errorLabel.alpha = 0
-        
-        // Style the elements
+
         Utilities.styleTextField(emailTextField)
         Utilities.styleTextField(passwordTextField)
         Utilities.styleFilledButton(loginButton)
     }
-    
+  // MARK: - @IBAction
+  
     @IBAction func loginTapped(_ sender: Any) {
         
         

@@ -16,7 +16,7 @@ class AddNewPurchaseVC: UIViewController {
   @IBOutlet weak var descriptionTextView: UITextView!
   @IBOutlet weak var amountTextField: UITextField!
   
-    
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     setupUI()
@@ -30,21 +30,22 @@ class AddNewPurchaseVC: UIViewController {
     descriptionTextView.clipsToBounds = true
     
     amountTextField.layer.borderWidth = 1
-    amountTextField.layer.borderColor = UIColor.gray.cgColor
+    amountTextField.layer.borderColor = UIColor.white.cgColor
     amountTextField.layer.cornerRadius = 8
     amountTextField.clipsToBounds = true
     
   }
+  // MARK: - @IBAction
   
   @IBAction func addNewPurchase(_ sender: UIButton) {
     
     guard let amount = amountTextField.text, !amount.isEmpty else {
-      UIHelper.makeToast(text: "Please Enter Purchase Amount")
+      UIHelper.makeToast(text: "Please Enter Purchase Amount".localize())
       return
     }
     
     guard let description = descriptionTextView.text, !description.isEmpty else {
-      UIHelper.makeToast(text: "Please Enter Purchase Description")
+      UIHelper.makeToast(text: "Please Enter Purchase Description".localize())
       return
     }
     
@@ -71,10 +72,11 @@ class AddNewPurchaseVC: UIViewController {
     }
   }
   
+  // MARK: -  showAlert
   
   func showAlert() {
-    let alert = UIAlertController(title: "Success", message: "Purchase added successfully", preferredStyle: .alert)
-    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+    let alert = UIAlertController(title: "Success".localize(), message: "Purchase added successfully".localize(), preferredStyle: .alert)
+    alert.addAction(UIAlertAction(title: "OK".localize(), style: .default, handler: { action in
       self.navigationController?.popToRootViewController(animated: true)
     }))
     

@@ -1,0 +1,60 @@
+/* 
+  Localization.strings
+  ExpensesprojectH
+
+  Created by hajer . on 03/06/1443 AH.
+  
+ 
+*/
+
+// SignUpViewController
+
+"Please fill in all fields." = "Please fill in all fields.";
+"Please make sure your password is at least 8 characters, contains a special character and a number." = "Please make sure your password is at least 8 characters, contains a special character and a number.";
+
+"Error creating user" = "Error creating user";
+"Error saving user data" = "Error saving user data";
+
+
+// HomeVC
+
+"Please enter total amount first" = "Please enter total amount first";
+"Please enter valid amount" = "Please enter valid amount";
+
+
+// AddNewPurchaseVC
+
+"Please Enter Purchase Amount" = "Please Enter Purchase Amount";
+"Please Enter Purchase Description" = "Please Enter Purchase Description";
+"Success" = "Success";
+"Purchase added successfully" = "Purchase added successfully";
+"OK" = "OK";
+
+
+// PurchaseTVC
+" SR" = " SR";
+
+
+// CreateNewWalletVC
+
+"Please enter wallet name" = "Please enter wallet name";
+"Please enter balance" = "Please enter balance";
+"Please select Category " = "Please select Category ";
+"Please write your Category " = "Please write your Category ";
+"Wallet added successfully" = "Wallet added successfully";
+"other" = "other";
+
+
+// CommitmentsTableViewCell
+
+"Months" = "Months";
+"Month" = "Month";
+
+
+// commitmentsVC
+
+"Commitment added successfully" = "Commitment added successfully";
+"Please enter commitment name" = "Please enter commitment name";
+"Please enter amounts" = "Please enter amounts";
+"Please Select repeat type" = "Please Select repeat type";
+

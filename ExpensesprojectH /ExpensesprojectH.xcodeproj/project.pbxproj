@@ -19,9 +19,13 @@
 		073157262774644C002627B7 /* AddNewPurchaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073157252774644C002627B7 /* AddNewPurchaseVC.swift */; };
 		0731573B27763C00002627B7 /* CollectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0731573A27763C00002627B7 /* CollectionVC.swift */; };
 		0731574327788088002627B7 /* WalletVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0731574227788088002627B7 /* WalletVC.swift */; };
+		075B1C332786315100F11583 /* PaymentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075B1C322786315100F11583 /* PaymentModel.swift */; };
+		075B1C3E27869BE100F11583 /* Localization.strings in Resources */ = {isa = PBXBuildFile; fileRef = 075B1C4027869BE100F11583 /* Localization.strings */; };
+		075B1C452786A94400F11583 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075B1C442786A94400F11583 /* Extensions.swift */; };
 		076CAB602770656F008FEFD2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 076CAB5F2770656F008FEFD2 /* GoogleService-Info.plist */; };
-		07803F21277D874C001CAC3D /* CommitmentsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07803F20277D874C001CAC3D /* CommitmentsVC.swift */; };
+		07803F21277D874C001CAC3D /* commitmentsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07803F20277D874C001CAC3D /* commitmentsVC.swift */; };
 		07803F26277F8749001CAC3D /* WalletCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07803F25277F8749001CAC3D /* WalletCollection.swift */; };
+		07A23B5F278584AF00E649F0 /* CommitmentDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A23B5E278584AF00E649F0 /* CommitmentDetailCell.swift */; };
 		07AD24BA277060510015076B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07AD24B9277060510015076B /* AppDelegate.swift */; };
 		07AD24BC277060510015076B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07AD24BB277060510015076B /* SceneDelegate.swift */; };
 		07AD24BE277060510015076B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07AD24BD277060510015076B /* ViewController.swift */; };
@@ -35,6 +39,8 @@
 		07C6BD6027708F4400E8BEFA /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C6BD5F27708F4400E8BEFA /* HomeVC.swift */; };
 		07CC76C5277B005B004A6117 /* Wallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CC76C4277B005B004A6117 /* Wallet.swift */; };
 		07CC76C8277B0276004A6117 /* WalletTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CC76C7277B0276004A6117 /* WalletTVC.swift */; };
+		07E2EAAD2784DD130066869B /* CheckUserLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E2EAAC2784DD130066869B /* CheckUserLoginViewController.swift */; };
+		07E2EAAF27856E550066869B /* CommitmentDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E2EAAE27856E550066869B /* CommitmentDetailVC.swift */; };
 		DCB61E69DF8D8AA505D42800 /* Pods_ExpensesprojectH.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DB91D1C592B2EDDD06049A0 /* Pods_ExpensesprojectH.framework */; };
 /* End PBXBuildFile section */
 
@@ -51,9 +57,16 @@
 		073157252774644C002627B7 /* AddNewPurchaseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewPurchaseVC.swift; sourceTree = "<group>"; };
 		0731573A27763C00002627B7 /* CollectionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionVC.swift; sourceTree = "<group>"; };
 		0731574227788088002627B7 /* WalletVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletVC.swift; sourceTree = "<group>"; };
+		075B1C322786315100F11583 /* PaymentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentModel.swift; sourceTree = "<group>"; };
+		075B1C3B27869B8500F11583 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Main.strings; sourceTree = "<group>"; };
+		075B1C3F27869BE100F11583 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localization.strings; sourceTree = "<group>"; };
+		075B1C4127869BE200F11583 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localization.strings; sourceTree = "<group>"; };
+		075B1C4327869C3F00F11583 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
+		075B1C442786A94400F11583 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		076CAB5F2770656F008FEFD2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		07803F20277D874C001CAC3D /* CommitmentsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommitmentsVC.swift; sourceTree = "<group>"; };
+		07803F20277D874C001CAC3D /* commitmentsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = commitmentsVC.swift; sourceTree = "<group>"; };
 		07803F25277F8749001CAC3D /* WalletCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletCollection.swift; sourceTree = "<group>"; };
+		07A23B5E278584AF00E649F0 /* CommitmentDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommitmentDetailCell.swift; sourceTree = "<group>"; };
 		07AD24B6277060510015076B /* ExpensesprojectH.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExpensesprojectH.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		07AD24B9277060510015076B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		07AD24BB277060510015076B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -69,6 +82,8 @@
 		07C6BD5F27708F4400E8BEFA /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
 		07CC76C4277B005B004A6117 /* Wallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wallet.swift; sourceTree = "<group>"; };
 		07CC76C7277B0276004A6117 /* WalletTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletTVC.swift; sourceTree = "<group>"; };
+		07E2EAAC2784DD130066869B /* CheckUserLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckUserLoginViewController.swift; sourceTree = "<group>"; };
+		07E2EAAE27856E550066869B /* CommitmentDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommitmentDetailVC.swift; sourceTree = "<group>"; };
 		470612B9D1C6242A21DE25BA /* Pods-ExpensesprojectH.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExpensesprojectH.debug.xcconfig"; path = "Target Support Files/Pods-ExpensesprojectH/Pods-ExpensesprojectH.debug.xcconfig"; sourceTree = "<group>"; };
 		5EE16EF8D9A6F2E1E9D178CB /* Pods-ExpensesprojectH.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExpensesprojectH.release.xcconfig"; path = "Target Support Files/Pods-ExpensesprojectH/Pods-ExpensesprojectH.release.xcconfig"; sourceTree = "<group>"; };
 		9DB91D1C592B2EDDD06049A0 /* Pods_ExpensesprojectH.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ExpensesprojectH.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -98,6 +113,7 @@
 			isa = PBXGroup;
 			children = (
 				070DA62F277FA65400BD2440 /* CommitmentsModel.swift */,
+				075B1C322786315100F11583 /* PaymentModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -142,6 +158,7 @@
 		0718F23C2779D22500DB67A3 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				075B1C442786A94400F11583 /* Extensions.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -160,6 +177,7 @@
 				07AD24B9277060510015076B /* AppDelegate.swift */,
 				07AD24BB277060510015076B /* SceneDelegate.swift */,
 				07AD24C2277060560015076B /* Assets.xcassets */,
+				075B1C4027869BE100F11583 /* Localization.strings */,
 				07AD24C4277060560015076B /* LaunchScreen.storyboard */,
 			);
 			path = Support;
@@ -171,6 +189,7 @@
 				07AD24BD277060510015076B /* ViewController.swift */,
 				07C6BD5927707C1F00E8BEFA /* SingUpViewController.swift */,
 				07C6BD5B27708DB800E8BEFA /* LoginViewController.swift */,
+				07E2EAAC2784DD130066869B /* CheckUserLoginViewController.swift */,
 				0731573A27763C00002627B7 /* CollectionVC.swift */,
 			);
 			path = Auth;
@@ -198,8 +217,10 @@
 		07803F22277D8754001CAC3D /* Commitments */ = {
 			isa = PBXGroup;
 			children = (
-				07803F20277D874C001CAC3D /* CommitmentsVC.swift */,
+				07803F20277D874C001CAC3D /* commitmentsVC.swift */,
 				070DA62D277FA3DF00BD2440 /* MycommitmentsVC.swift */,
+				07E2EAAE27856E550066869B /* CommitmentDetailVC.swift */,
+				07A23B5E278584AF00E649F0 /* CommitmentDetailCell.swift */,
 				070DA6312781819F00BD2440 /* Cell */,
 				070DA632278181B600BD2440 /* Model */,
 			);
@@ -337,6 +358,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ar,
 			);
 			mainGroup = 07AD24AD277060510015076B;
 			productRefGroup = 07AD24B7277060510015076B /* Products */;
@@ -355,6 +377,7 @@
 			files = (
 				07AD24C6277060560015076B /* LaunchScreen.storyboard in Resources */,
 				076CAB602770656F008FEFD2 /* GoogleService-Info.plist in Resources */,
+				075B1C3E27869BE100F11583 /* Localization.strings in Resources */,
 				07AD24C3277060560015076B /* Assets.xcassets in Resources */,
 				07AD24C1277060510015076B /* Main.storyboard in Resources */,
 			);
@@ -410,20 +433,25 @@
 			buildActionMask = 2147483647;
 			files = (
 				0718F22B2778D6C700DB67A3 /* UIHelper.swift in Sources */,
-				07803F21277D874C001CAC3D /* CommitmentsVC.swift in Sources */,
+				07803F21277D874C001CAC3D /* commitmentsVC.swift in Sources */,
 				07C6BD5C27708DB800E8BEFA /* LoginViewController.swift in Sources */,
 				073157262774644C002627B7 /* AddNewPurchaseVC.swift in Sources */,
+				075B1C332786315100F11583 /* PaymentModel.swift in Sources */,
 				07AD24BE277060510015076B /* ViewController.swift in Sources */,
 				0718F22D2778E53D00DB67A3 /* PurchaseTVC.swift in Sources */,
+				075B1C452786A94400F11583 /* Extensions.swift in Sources */,
 				0728E52F2782D4DC00AE117B /* ProfileViewController.swift in Sources */,
 				07803F26277F8749001CAC3D /* WalletCollection.swift in Sources */,
 				07CC76C5277B005B004A6117 /* Wallet.swift in Sources */,
 				070DA630277FA65400BD2440 /* CommitmentsModel.swift in Sources */,
 				07AD24BA277060510015076B /* AppDelegate.swift in Sources */,
 				0731573B27763C00002627B7 /* CollectionVC.swift in Sources */,
+				07E2EAAD2784DD130066869B /* CheckUserLoginViewController.swift in Sources */,
 				07C6BD6027708F4400E8BEFA /* HomeVC.swift in Sources */,
 				07C6BD5A27707C1F00E8BEFA /* SingUpViewController.swift in Sources */,
+				07A23B5F278584AF00E649F0 /* CommitmentDetailCell.swift in Sources */,
 				070DA62E277FA3DF00BD2440 /* MycommitmentsVC.swift in Sources */,
+				07E2EAAF27856E550066869B /* CommitmentDetailVC.swift in Sources */,
 				07C6BD5E27708EA000E8BEFA /* Constants.swift in Sources */,
 				0718F2292778986200DB67A3 /* CreateNewWalletVC.swift in Sources */,
 				0718F22F2778E77800DB67A3 /* PurchaseAmount.swift in Sources */,
@@ -439,10 +467,21 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		075B1C4027869BE100F11583 /* Localization.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				075B1C3F27869BE100F11583 /* en */,
+				075B1C4127869BE200F11583 /* ar */,
+			);
+			name = Localization.strings;
+			sourceTree = "<group>";
+		};
 		07AD24BF277060510015076B /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				07AD24C0277060510015076B /* Base */,
+				075B1C3B27869B8500F11583 /* ar */,
+				075B1C4327869C3F00F11583 /* en */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -462,6 +501,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -523,6 +563,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -585,6 +626,7 @@
 				DEVELOPMENT_TEAM = W4329JMP9J;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ExpensesprojectH/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Expenses;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -614,6 +656,7 @@
 				DEVELOPMENT_TEAM = W4329JMP9J;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ExpensesprojectH/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Expenses;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
