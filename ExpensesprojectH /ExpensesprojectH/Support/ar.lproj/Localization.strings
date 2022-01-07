@@ -1,0 +1,59 @@
+/* 
+  Localization.strings
+  ExpensesprojectH
+
+  Created by hajer . on 03/06/1443 AH.
+
+ 
+*/
+
+// SignUpViewController
+
+"Please fill in all fields." = "الرجاء تعبئة جميع الحقول";
+"Please make sure your password is at least 8 characters, contains a special character and a number." = "يجب أن لا تقل كلمة المرور عن ٨ خانات و أن تحتوي على رمز خاص و رقم .";
+
+"Error creating user" = "خطأ في انشاء مستخدم";
+"Error saving user data" = "خطأ في عملية الحفظ";
+
+
+// HomeVC
+
+"Please enter total amount first" = "الرجاء ادخال المبلغ الاجمالي اولا";
+"Please enter valid amount" = "الرجاء ادخال مبلغ صحيح";
+
+
+// AddNewPurchaseVC
+
+"Please Enter Purchase Amount" = "الرجاء ادخال مبلغ الشراء";
+"Please Enter Purchase Description" = "الرجاء ادخال وصف الشراء";
+"Success" = "نجاح";
+"Purchase added successfully" = "تمت اضافه مبلغ الشراء بنجاح";
+"OK" = "تم";
+
+
+// PurchaseTVC
+" SR" = " ريال";
+
+
+// CreateNewWalletVC
+
+"Please enter wallet name" = "الرجاء ادخال اسم المحفظة";
+"Please enter balance" = "الرجاء ادخال الرصيد";
+"Please select Category " = "الرجاء اختيار تصنيف";
+"Please write your Category " = "الرجاء كتابة تصنيف";
+"Wallet added successfully" = "تم اضافة المحفظة بنجاح";
+"other" = "أخرى";
+
+
+// CommitmentsTableViewCell
+
+"Months" = "أشهر";
+"Month" = "شهر";
+
+
+// commitmentsVC
+
+"Commitment added successfully" = "تم اضافة التزام بنجاح";
+"Please enter commitment name" = "الرجاء كتابة اسم الالتزام";
+"Please enter amounts" = "الرجاء ادخال المبلغ";
+"Please Select repeat type" = "الرجاء اختيار نوع التكرار";
