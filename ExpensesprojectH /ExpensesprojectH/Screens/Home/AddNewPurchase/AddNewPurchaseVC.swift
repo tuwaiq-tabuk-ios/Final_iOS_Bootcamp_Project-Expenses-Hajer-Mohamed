@@ -16,7 +16,6 @@ class AddNewPurchaseVC: UIViewController {
   @IBOutlet weak var descriptionTextView: UITextView!
   @IBOutlet weak var amountTextField: UITextField!
   
-  
   override func viewDidLoad() {
     super.viewDidLoad()
     setupUI()
@@ -72,8 +71,6 @@ class AddNewPurchaseVC: UIViewController {
     }
   }
   
-  // MARK: -  showAlert
-  
   func showAlert() {
     let alert = UIAlertController(title: "Success".localize(), message: "Purchase added successfully".localize(), preferredStyle: .alert)
     alert.addAction(UIAlertAction(title: "OK".localize(), style: .default, handler: { action in
@@ -84,11 +81,10 @@ class AddNewPurchaseVC: UIViewController {
   }
   
   func updateTotalAmount(total: Int) {
-    db.collection("totalAmount").document("totalAmounts").setData(["total":total])
+    guard let userID = Auth.auth().currentUser?.uid else {return}
+    db.collection("totalAmount").document(userID).setData(["total":total])
     
     self.showAlert()
     
   }
 }
-
-

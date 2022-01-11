@@ -59,12 +59,27 @@ extension MycommitmentsVC: UITableViewDataSource, UITableViewDelegate {
   }
   
   
-  func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-    return UIView()
-  }
-  
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     performSegue(withIdentifier: "commitmentDetails", sender: commitments[indexPath.row])
+  }
+  
+  
+  func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+    if editingStyle == .delete {
+      
+      if let commitment = commitments[indexPath.row].commitmentID {
+        db.collection("commitments").document(commitment).delete { error in
+          if error == nil {
+            self.commitments.remove(at: indexPath.row)
+            tableView.beginUpdates()
+            tableView.deleteRows(at: [indexPath], with: .top)
+            tableView.endUpdates()
+          } else {
+            print(error?.localizedDescription)
+          }
+        }
+      }
+    }
   }
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -73,6 +88,5 @@ extension MycommitmentsVC: UITableViewDataSource, UITableViewDelegate {
       vc.commitment = sender as! CommitmentsModel
     }
   }
-  
 }
 

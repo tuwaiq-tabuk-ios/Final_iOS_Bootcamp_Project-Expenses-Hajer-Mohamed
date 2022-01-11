@@ -20,7 +20,7 @@ class HomeVC: UIViewController {
   
   
   // MARK: - View lifecycle
-
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     
@@ -42,7 +42,7 @@ class HomeVC: UIViewController {
     getdata()
   }
   
-  // MARK: -  @IBAction
+  // MARK: - @IBAction
   
   @IBAction func ButtonEdit(_ sender: UIButton) {
     tableView.isEditing = !tableView.isEditing
@@ -73,7 +73,6 @@ class HomeVC: UIViewController {
     db.collection("purchases").order(by: "timestamp", descending: true).getDocuments { (snapshot, error) in
       if error != nil {
         print("Error")
-        
       } else {
         if let snapshot = snapshot {
           self.purchases.removeAll()
@@ -81,7 +80,6 @@ class HomeVC: UIViewController {
             let purchase = PurchaseAmount(id: document["id"] as? String, amount:document["amount"] as? String ?? "", description: document["purchaseDescription"] as? String ?? "")
             self.purchases.append(purchase)
           }
-          
           self.refreshControl.endRefreshing()
           self.tableView.reloadData()
         }
@@ -89,9 +87,13 @@ class HomeVC: UIViewController {
     }
   }
   
+  override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    view.endEditing(true)
+  }
   
   func getTotalAmounts() {
-    db.collection("totalAmount").document("totalAmounts").addSnapshotListener {
+    guard let userID = Auth.auth().currentUser?.uid else {return}
+    db.collection("totalAmount").document(userID).addSnapshotListener {
       (snapshot, error) in
       guard let data = snapshot?.data() else
       { return }
@@ -101,12 +103,12 @@ class HomeVC: UIViewController {
     }
   }
   
-  
   func updateTotalAmount(total: Int) {
-    db.collection("totalAmount").document("totalAmounts").setData(["total":total])
+    guard let userID = Auth.auth().currentUser?.uid else {return}
+    db.collection("totalAmount").document(userID).setData(["total":total])
   }
 }
-// MARK: -  extension UITableView
+
 
 extension HomeVC: UITableViewDataSource, UITableViewDelegate {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -119,7 +121,6 @@ extension HomeVC: UITableViewDataSource, UITableViewDelegate {
     let Cell = tableView.dequeueReusableCell(withIdentifier: "PurchaseTVC") as! PurchaseTVC
     
     Cell.configureCell(purchase: purchases[indexPath.row])
-    Cell.backgroundColor = UIColor.white
     return Cell
   }
   
@@ -133,19 +134,12 @@ extension HomeVC: UITableViewDataSource, UITableViewDelegate {
     
   }
   
-  func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-    return UIView()
-    
-  }
-  
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     print(purchases[indexPath.row])
   }
   
-  
   func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-    
     if editingStyle == .delete {
       if let purchase = purchases[indexPath.row].id {
         db.collection("purchases").document(purchase).delete { error in
@@ -162,18 +156,19 @@ extension HomeVC: UITableViewDataSource, UITableViewDelegate {
     }
   }
 }
-// MARK: -  extension UITextFieldDelegate
-
 
 extension HomeVC: UITextFieldDelegate {
   func textFieldDidEndEditing(_ textField: UITextField) {
-    guard let text = textField.text, !text.isEmpty else {
-      return
-    }
+    guard let text = textField.text, !text.isEmpty else {return}
     
     if let amount = Int(text) {
       updateTotalAmount(total: amount)
     }
   }
 }
+
+
+
+
+
 

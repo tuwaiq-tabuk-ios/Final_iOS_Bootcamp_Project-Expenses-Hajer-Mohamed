@@ -105,7 +105,6 @@ class SignUpViewController: UIViewController {
           }
           self.transitionToHome()
         }
-        
       }
     }
   }

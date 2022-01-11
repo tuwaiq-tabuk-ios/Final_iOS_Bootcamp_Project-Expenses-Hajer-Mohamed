@@ -13,7 +13,7 @@ protocol SelectCategoryViewControllerDelegate: AnyObject {
 
 class SelectCategoryVC: UIViewController {
   
-  weak var delegate: SelectCategoryViewControllerDelegate?
+   var delegate: SelectCategoryViewControllerDelegate?
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -23,8 +23,9 @@ class SelectCategoryVC: UIViewController {
   @IBAction func didSelectCategory(_ sender: UIButton) {
     
     self.delegate?.didSelectCategory(categoryName: sender.currentTitle ?? "")
-    self.navigationController?.popViewController(animated: false)
+    self.navigationController?.popViewController(animated: true)
   }
   
 }
+
 

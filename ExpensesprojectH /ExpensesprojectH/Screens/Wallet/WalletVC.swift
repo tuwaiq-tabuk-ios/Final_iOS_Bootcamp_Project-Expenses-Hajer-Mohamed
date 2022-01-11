@@ -25,6 +25,7 @@ class WalletVC: UIViewController {
   @IBOutlet weak var walletCollection: UICollectionView!
   @IBOutlet weak var pageControl: UIPageControl!
   
+  
   // MARK: - View lifecycle
   
   override func viewDidLoad() {
@@ -95,6 +96,7 @@ class WalletVC: UIViewController {
 }
 // MARK: - extension UITableView
 
+
 extension WalletVC : UITableViewDelegate, UITableViewDataSource {
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -110,28 +112,14 @@ extension WalletVC : UITableViewDelegate, UITableViewDataSource {
     
   }
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-    90
+   return 90
   }
   
-  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    print(wallets[indexPath.row])
-  }
-  
-  
-  func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-    return true
-  }
-  
-  
-  func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-    arrWallets.swapAt(sourceIndexPath.row, destinationIndexPath.row)
-    
-  }
   
   func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
     if editingStyle == .delete {
-      if let purchase = wallets[indexPath.row].id {
-        db.collection("wallets").document(purchase).delete { error in
+      if let walletID = wallets[indexPath.row].id {
+        db.collection("wallets").document(walletID).delete { error in
           if error == nil {
             self.wallets.remove(at: indexPath.row)
             tableView.beginUpdates()
@@ -144,7 +132,6 @@ extension WalletVC : UITableViewDelegate, UITableViewDataSource {
       }
     }
   }
-  
 }
 
 
@@ -169,7 +156,7 @@ extension WalletVC: UICollectionViewDelegate, UICollectionViewDataSource, UIColl
   }
   
   
-  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
     return 0
   }
 }

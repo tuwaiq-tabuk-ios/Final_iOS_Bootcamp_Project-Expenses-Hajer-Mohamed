@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 struct PurchaseAmount {
   let id : String?
   let amount: String?
