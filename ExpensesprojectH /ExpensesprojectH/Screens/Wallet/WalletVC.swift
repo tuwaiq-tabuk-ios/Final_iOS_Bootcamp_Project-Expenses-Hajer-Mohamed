@@ -17,6 +17,7 @@ class WalletVC: UIViewController {
   var timer : Timer?
   var currentCellIndex = 0
   let refreshControl = UIRefreshControl()
+ 
   
   
   // MARK: - @IBOutlet
@@ -40,7 +41,10 @@ class WalletVC: UIViewController {
     
     refreshControl.tintColor = .gray
     refreshControl.addTarget(self, action: #selector(getData), for: .valueChanged)
+    
     tapleView.addSubview(refreshControl)
+    let nip = UINib(nibName: "WalletTVC", bundle: nil)
+    tapleView.register(nip, forCellReuseIdentifier: "WalletTVC")
   }
   
   override func viewWillAppear(_ animated: Bool) {
@@ -55,27 +59,30 @@ class WalletVC: UIViewController {
   }
   
   func startTimer() {
-    timer = Timer.scheduledTimer(timeInterval: 2.5, target: self, selector: #selector (moveToNextIndex), userInfo: nil, repeats: true)
+    timer = Timer.scheduledTimer(timeInterval: 2.5,
+                                 target: self,
+                                 selector: #selector (moveToNextIndex),
+                                 userInfo: nil, repeats: true)
   }
   
   
   @objc func moveToNextIndex(){
-    
     if currentCellIndex < arrWallets.count - 1{
       currentCellIndex += 1
-      
     }else {
       currentCellIndex = 0
     }
-    
-    walletCollection.scrollToItem(at: IndexPath(item: currentCellIndex, section: 0), at: .centeredHorizontally, animated: true)
+    walletCollection.scrollToItem(at: IndexPath(item: currentCellIndex,
+                                                section: 0),
+                                  at: .centeredHorizontally, animated: true)
     
     pageControl.currentPage = currentCellIndex
   }
   
   
   @objc func getData() {
-    db.collection("wallets").order(by: "timestamp", descending: true).getDocuments { ( snapshot, error) in
+    db.collection("wallets").order(by: "timestamp",
+                                   descending: true).getDocuments { ( snapshot, error) in
       if error != nil {
         print("Error")
       } else {
@@ -94,6 +101,7 @@ class WalletVC: UIViewController {
     }
   }
 }
+
 // MARK: - extension UITableView
 
 
@@ -102,15 +110,19 @@ extension WalletVC : UITableViewDelegate, UITableViewDataSource {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return wallets.count
   }
+  
+  
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) ->
   UITableViewCell {
     
-    let Cell = tableView.dequeueReusableCell(withIdentifier: "WalletTVC") as! WalletTVC
+   let Cell = tableView.dequeueReusableCell(withIdentifier: "WalletTVC" , for: indexPath) as! WalletTVC
+    
     
     Cell.configureCell(wallet: wallets [indexPath.row])
     return Cell
-    
   }
+  
+  
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
    return 90
   }
@@ -137,7 +149,10 @@ extension WalletVC : UITableViewDelegate, UITableViewDataSource {
 
 // MARK: - extension UICollectionView
 
-extension WalletVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension WalletVC: UICollectionViewDelegate,
+                    UICollectionViewDataSource,
+                    UICollectionViewDelegateFlowLayout {
+  
   
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
     return arrWallets.count
@@ -145,7 +160,8 @@ extension WalletVC: UICollectionViewDelegate, UICollectionViewDataSource, UIColl
   
   
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "WalletCell", for: indexPath) as! WalletCollection
+    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "WalletCell",
+                                                  for: indexPath) as! WalletCollection
     cell.imgCollection.image = arrWallets[indexPath.row]
     return cell
   }

@@ -8,7 +8,7 @@
 import UIKit
 import Firebase
 
-class commitmentsVC: UIViewController {
+class CommitmentsVC: UIViewController {
   
   let db = Firestore.firestore()
   var types = [1, 3, 6, 12]
@@ -85,36 +85,53 @@ class commitmentsVC: UIViewController {
   
   
   func showAlert() {
-    let alert = UIAlertController(title: "Success".localize(), message: "Commitment added successfully".localize(), preferredStyle: .alert)
-    alert.addAction(UIAlertAction(title: "OK".localize(), style: .default, handler: { action in
+    let alert = UIAlertController(title: "Success".localize(),
+                                  message: "Commitment added successfully".localize(),
+                                  preferredStyle: .alert)
+    
+    alert.addAction(UIAlertAction(title: "OK".localize(),
+                                  style: .default,
+                                  handler: { action in
       self.navigationController?.popToRootViewController(animated: true)
     }))
     self.present(alert, animated: true, completion: nil)
   }
 }
+
 // MARK: - UIPickerView
 
-extension commitmentsVC: UIPickerViewDataSource, UIPickerViewDelegate {
+extension CommitmentsVC: UIPickerViewDataSource,
+                         UIPickerViewDelegate {
+  
   func numberOfComponents(in pickerView: UIPickerView) -> Int {
     return 1
   }
   
-  func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+  
+  func pickerView(_ pickerView: UIPickerView,
+                  numberOfRowsInComponent component: Int) -> Int {
     return types.count
   }
   
-  func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+  
+  func pickerView(_ pickerView: UIPickerView,
+                  titleForRow row: Int,
+                  forComponent component: Int) -> String? {
     return "\(types[row])" + " Months".localize()
   }
   
-  func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+  
+  func pickerView(_ pickerView: UIPickerView,
+                  didSelectRow row: Int,
+                  inComponent component: Int) {
     timePreiod = types[row]
     timePeriodTextField.text = "\(types[row])" + " Months".localize()
     self.typePickerView.isHidden = true
   }
 }
 
-extension commitmentsVC: UITextFieldDelegate {
+// MARK: -  UITextFieldDelegate
+extension CommitmentsVC: UITextFieldDelegate {
   func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
     if textField == timePeriodTextField {
       view.endEditing(true)
@@ -122,6 +139,9 @@ extension commitmentsVC: UITextFieldDelegate {
     }
     return false
     
+  }
+  override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    view.endEditing(true)
   }
 }
 

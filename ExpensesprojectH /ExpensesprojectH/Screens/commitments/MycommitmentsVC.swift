@@ -18,6 +18,8 @@ class MycommitmentsVC: UIViewController {
   // MARK: - View lifecycle
   override func viewDidLoad() {
     super.viewDidLoad()
+    let nib = UINib(nibName: "commitmentsTVC", bundle: nil)
+    tableView.register(nib, forCellReuseIdentifier: "commitmentsTVC")
     
     tableView.dataSource = self
     tableView.delegate = self
@@ -52,7 +54,7 @@ extension MycommitmentsVC: UITableViewDataSource, UITableViewDelegate {
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     
-    let Cell = tableView.dequeueReusableCell(withIdentifier: "commitmentsTVC") as! CommitmentsTableViewCell
+    let Cell = tableView.dequeueReusableCell(withIdentifier: "commitmentsTVC" , for: indexPath) as! CommitmentsTVC
     Cell.configureCell(commitments: commitments[indexPath.row])
     Cell.backgroundColor = UIColor.white
     return Cell

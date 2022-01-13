@@ -7,14 +7,12 @@
 
 import UIKit
 import Firebase
-import Charts
-
 
 class CreateNewWalletVC: UIViewController {
   
   let db = Firestore.firestore()
   
-  
+  // MARK: - @IBOutlet
   
   @IBOutlet weak var categoryTextField: UITextField!
   @IBOutlet weak var walletNameTextField: UITextField!
@@ -34,10 +32,9 @@ class CreateNewWalletVC: UIViewController {
   
   @objc func openCategories(sender: UITapGestureRecognizer) {
     let viewController = self.storyboard?.instantiateViewController(identifier: "SelectCategoryViewController") as! SelectCategoryVC
- viewController.delegate = self
+    viewController.delegate = self
     self.navigationController?.pushViewController(viewController, animated: true)
   }
-  
   
   var categoryCheck = false
   
@@ -83,14 +80,25 @@ class CreateNewWalletVC: UIViewController {
     }
   }
   
+  // MARK: - showAlert
   func showAlert() {
-    let alert = UIAlertController(title: "Success".localize(), message: "Wallet added successfully".localize(), preferredStyle: .alert)
-    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+    let alert = UIAlertController(title: "Success".localize(),
+                                  message: "Wallet added successfully".localize(),
+                                  preferredStyle: .alert)
+    
+    alert.addAction(UIAlertAction(title: "OK",
+                                  style: .default,
+                                  handler: { action in
       self.navigationController?.popToRootViewController(animated: true)
     }))
     self.present(alert, animated: true, completion: nil)
   }
+  
+  override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    view.endEditing(true)
+  }
 }
+
 
 // MARK: - extension CreateNewWalletVC
 
@@ -102,5 +110,6 @@ extension CreateNewWalletVC: SelectCategoryViewControllerDelegate {
     } else {
       otherCategoryTextField.isHidden = true
     }
+    
   }
 }

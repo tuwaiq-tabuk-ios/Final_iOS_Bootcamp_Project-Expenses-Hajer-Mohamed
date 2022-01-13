@@ -9,12 +9,14 @@ import UIKit
 
 class ViewController: UIViewController{
   
-  var ProductPhotos = [UIImage(named: "ImageColl3")!,
-                          UIImage(named: "ImageColl2")!,
-                          UIImage(named: "ImageColl1")!]
-  
   var timer : Timer?
   var currentCellIndex = 0
+  var Photos = [UIImage(named: "Photo1")!,
+                UIImage(named: "Photo2")!,
+                UIImage(named: "Photo3")!]
+  
+  
+  // MARK: - @IBOutlet
   
   @IBOutlet weak var signUpButton: UIButton!
   @IBOutlet weak var loginButton: UIButton!
@@ -22,7 +24,7 @@ class ViewController: UIViewController{
   @IBOutlet weak var pageControl: UIPageControl!
   
   // MARK: - View lifecycle
-
+  
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     navigationController?.setNavigationBarHidden(true, animated: animated)
@@ -34,6 +36,7 @@ class ViewController: UIViewController{
     navigationController?.setNavigationBarHidden(false, animated: animated)
   }
   
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     setUpElements()
@@ -41,7 +44,7 @@ class ViewController: UIViewController{
     
     collectionView.delegate = self
     collectionView.dataSource = self
-    pageControl.numberOfPages = ProductPhotos.count
+    pageControl.numberOfPages = Photos.count
   }
   
   
@@ -54,22 +57,23 @@ class ViewController: UIViewController{
   }
   
   @objc func moveToNextIndex() {
-    if currentCellIndex < ProductPhotos.count - 1{
+    if currentCellIndex < Photos.count - 1{
       currentCellIndex += 1
     } else {
       currentCellIndex = 0
     }
     
-    collectionView.scrollToItem(at: IndexPath(item: currentCellIndex, section: 0), at: .centeredHorizontally, animated: true)
+    collectionView.scrollToItem (at: IndexPath(item: currentCellIndex, section: 0), at: .centeredHorizontally, animated: true)
     pageControl.currentPage = currentCellIndex
   }
   
-    func setUpElements() {
-    
+  
+  func setUpElements() {
     Utilities.styleFilledButton(signUpButton)
     Utilities.styleFilledButton(loginButton)
   }
 }
+
 // MARK: - extension UICollection
 
 extension ViewController: UICollectionViewDelegate,
@@ -78,13 +82,13 @@ extension ViewController: UICollectionViewDelegate,
   
   
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    
-    return ProductPhotos.count
+    return Photos.count
   }
+  
   
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "homecell", for: indexPath) as! CollectionVC
-    cell.imgProductPhoto.image = ProductPhotos[indexPath.row]
+    cell.imgProduct.image = Photos[indexPath.row]
     return cell
   }
   

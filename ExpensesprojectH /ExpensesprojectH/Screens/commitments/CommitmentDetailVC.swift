@@ -61,6 +61,7 @@ class CommitmentDetailVC: UIViewController {
     chartView.xAxis.setLabelCount(dataPoints.count, force: true)
   }
   
+  // MARK: - View lifecycle
   override func viewDidLoad() {
     super.viewDidLoad()
     
@@ -123,7 +124,7 @@ extension CommitmentDetailVC:UITableViewDelegate, UITableViewDataSource {
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! CommitmentDetailCell
     cell.delegate = self
-    cell.monthLabel.text = "Month".localize() + " #\(indexPath.row + 1)"
+    cell.monthLabel.text = "Month".localize() + "\(indexPath.row + 1)"
     cell.paymentButton.tag = indexPath.row
     
     if payments[indexPath.row].status == "pinding" {
@@ -134,25 +135,33 @@ extension CommitmentDetailVC:UITableViewDelegate, UITableViewDataSource {
     return cell
   }
   
+  
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     print(payments[indexPath.row])
   }
 }
 
+// MARK: - CommitmentDetailCellDelegate
+
 extension CommitmentDetailVC : CommitmentDetailCellDelegate {
   func paymentButtonTapped(index: Int) {
     
-    let alert = UIAlertController(title: "Alert", message: "Do you want to deduct the amount from your total amount ?", preferredStyle: .alert)
+    let alert = UIAlertController(title: "Alert",
+                                  message: "Do you want to deduct the amount from your total amount ?",
+                                  preferredStyle: .alert)
     
-    alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { action in
-      print("yes")
+    alert.addAction(UIAlertAction(title: "Yes",
+                                  style: .default,
+                                  handler: { action in print("yes")
+      
       self.updateTotalAmounts()
     }))
     
-    alert.addAction(UIAlertAction(title: "No", style: .destructive, handler: { action in }))
+    alert.addAction(UIAlertAction(title: "No",
+                                  style: .destructive,
+                                  handler: { action in }))
     
     self.present(alert, animated: true, completion: nil)
-    
     
     Firestore.firestore().collection("Payments").document((commitment?.commitmentID)!).collection("months").document(payments[index].monnthID!).updateData(["status" : "paid"]) { [self] error in
       if error == nil {

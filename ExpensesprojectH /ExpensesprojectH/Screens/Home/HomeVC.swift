@@ -28,14 +28,17 @@ class HomeVC: UIViewController {
     tableView.delegate = self
     refreshControl.tintColor = .gray
     tableView.addSubview(refreshControl)
+    let nib = UINib(nibName: "PurchaseTVC", bundle: nil)
+    tableView.register(nib, forCellReuseIdentifier: "PurchaseTVC")
     
     totalAmountTextField.delegate = self
     getTotalAmounts()
     
-    refreshControl.addTarget(self, action: #selector(getdata), for: .valueChanged)
-    
-    
+    refreshControl.addTarget(self,
+                             action: #selector(getdata),
+                             for: .valueChanged)
   }
+  
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     getTotalAmounts()
@@ -46,7 +49,6 @@ class HomeVC: UIViewController {
   
   @IBAction func ButtonEdit(_ sender: UIButton) {
     tableView.isEditing = !tableView.isEditing
-    
   }
   
   @IBAction func addNewPurchase(_ sender: UIButton) {
@@ -61,7 +63,7 @@ class HomeVC: UIViewController {
       return
     }
     
-    let viewController = self.storyboard?.instantiateViewController(identifier: Constants.Storyboard.addNewPurchase) as! AddNewPurchaseVC
+    let viewController = self.storyboard?.instantiateViewController(identifier: K.Storyboard.addNewPurchase) as! AddNewPurchaseVC
     
     viewController.totalAmount = Int(amount)!
     
@@ -70,21 +72,24 @@ class HomeVC: UIViewController {
   
   
   @objc func getdata() {
-    db.collection("purchases").order(by: "timestamp", descending: true).getDocuments { (snapshot, error) in
-      if error != nil {
-        print("Error")
-      } else {
-        if let snapshot = snapshot {
-          self.purchases.removeAll()
-          for document in snapshot.documents {
-            let purchase = PurchaseAmount(id: document["id"] as? String, amount:document["amount"] as? String ?? "", description: document["purchaseDescription"] as? String ?? "")
-            self.purchases.append(purchase)
+    db.collection("purchases").order(by: "timestamp",
+                                     descending: true)
+      .getDocuments { (snapshot, error) in
+        if error != nil {
+          print("Error")
+        }
+        else {
+          if let snapshot = snapshot {
+            self.purchases.removeAll()
+            for document in snapshot.documents {
+              let purchase = PurchaseAmount(id: document["id"] as? String, amount:document["amount"] as? String ?? "", description: document["purchaseDescription"] as? String ?? "")
+              self.purchases.append(purchase)
+            }
+            self.refreshControl.endRefreshing()
+            self.tableView.reloadData()
           }
-          self.refreshControl.endRefreshing()
-          self.tableView.reloadData()
         }
       }
-    }
   }
   
   override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -118,7 +123,7 @@ extension HomeVC: UITableViewDataSource, UITableViewDelegate {
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     
-    let Cell = tableView.dequeueReusableCell(withIdentifier: "PurchaseTVC") as! PurchaseTVC
+    let Cell = tableView.dequeueReusableCell(withIdentifier: "PurchaseTVC" , for: indexPath) as! PurchaseTVC
     
     Cell.configureCell(purchase: purchases[indexPath.row])
     return Cell
@@ -166,9 +171,5 @@ extension HomeVC: UITextFieldDelegate {
     }
   }
 }
-
-
-
-
 
 

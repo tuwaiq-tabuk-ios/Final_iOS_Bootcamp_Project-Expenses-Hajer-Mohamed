@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CommitmentsTableViewCell: UITableViewCell {
+class CommitmentsTVC: UITableViewCell {
   
   
   @IBOutlet weak var containerView: UIView!
@@ -23,6 +23,7 @@ class CommitmentsTableViewCell: UITableViewCell {
     containerView.layer.cornerRadius = 8
     containerView.clipsToBounds = true
   }
+  
   
   func configureCell(commitments:CommitmentsModel) {
     nameLabel.text = commitments.commitmentName

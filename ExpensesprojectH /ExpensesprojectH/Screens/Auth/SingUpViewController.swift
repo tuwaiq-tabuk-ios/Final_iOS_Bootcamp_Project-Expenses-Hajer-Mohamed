@@ -12,7 +12,7 @@ import Firebase
 class SignUpViewController: UIViewController {
   
   // MARK: - @IBOutlet
-
+  
   
   @IBOutlet weak var firstNameTextField: UITextField!
   @IBOutlet weak var lastNameTextField: UITextField!
@@ -21,19 +21,19 @@ class SignUpViewController: UIViewController {
   @IBOutlet weak var signUpButton: UIButton!
   @IBOutlet weak var errorLabel: UILabel!
   
+  // MARK: View lifecycle
   override func viewDidLoad() {
     super.viewDidLoad()
-    
     setUpElements()
   }
   
-  func setUpElements() {
     
+  func setUpElements() {
     errorLabel.alpha = 0
     
     
     // MARK: - Style the elements
-
+    
     Utilities.styleTextField(firstNameTextField)
     Utilities.styleTextField(lastNameTextField)
     Utilities.styleTextField(emailTextField)
@@ -52,12 +52,8 @@ class SignUpViewController: UIViewController {
       return "Please fill in all fields.".localize()
     }
     
-    
-    // Check if the password is secure
-    let cleanedPassword = passwordTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-    
+        let cleanedPassword = passwordTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
     if Utilities.isPasswordValid(cleanedPassword) == false {
-      // Password isn't secure enough
       return "Please make sure your password is at least 8 characters, contains a special character and a number.".localize()
     }
     
@@ -65,39 +61,45 @@ class SignUpViewController: UIViewController {
   }
   
   // MARK: - @IBAction
+  
+  
+  var passworsIsAppear = false
+  @IBAction func showSecurePassword(_ sender: UIButton) {
+      if passworsIsAppear == false {
+          passwordTextField.isSecureTextEntry = false
+      } else {
+          passwordTextField.isSecureTextEntry = true
+      }
+      
+      passworsIsAppear.toggle()
+  }
 
-  @IBAction func signUpTapped(_ sender: Any) {
+  
+  @IBAction func signUpPressed(_ sender: Any) {
     
-    // Validate the fields
     let error = validateFields()
-    
     if error != nil {
       
-      // There's something wrong with the fields, show error message
       showError(error!)
     }
     else {
       
-      // Create cleaned versions of the data
       let firstName = firstNameTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
       let lastName = lastNameTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
       let email = emailTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
       let password = passwordTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
       
-      // Create the user
-      Auth.auth().createUser(withEmail: email, password: password) { (result, err) in
+      Auth.auth().createUser(withEmail: email, password: password) { (AuthDataResult, error) in
         
-        // Check for errors
-        if err != nil {
+        if error != nil {
           
-          // There was an error creating the user
           self.showError("Error creating user".localize())
         }
         else {
-          // User was created successfully, now store the first name and last name
           let db = Firestore.firestore()
-          
-          db.collection("users").addDocument(data: ["firstname":firstName, "lastname":lastName, "uid": result!.user.uid ]) { (error) in
+          db.collection("users").addDocument(data: ["firstname":firstName,
+                                                    "lastname":lastName,
+                                                    "uid": AuthDataResult!.user.uid ]) { (error) in
             
             if error != nil {
               self.showError("Error saving user data".localize())
@@ -117,11 +119,15 @@ class SignUpViewController: UIViewController {
   
   
   func transitionToHome() {
-    
-    let homeViewController = storyboard?.instantiateViewController(identifier: Constants.Storyboard.homeViewController)
+    let homeViewController = storyboard?.instantiateViewController(identifier: K.Storyboard.homeViewController)
     
     view.window?.rootViewController = homeViewController
     view.window?.makeKeyAndVisible()
     
   }
+  
+  override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    view.endEditing(true)
+  }
 }
+
