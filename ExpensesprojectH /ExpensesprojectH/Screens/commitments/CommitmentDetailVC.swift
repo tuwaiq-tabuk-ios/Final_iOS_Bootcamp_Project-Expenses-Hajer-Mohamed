@@ -24,7 +24,6 @@ class CommitmentDetailVC: UIViewController {
   @IBOutlet weak var chartView: LineChartView!
   
   
-  
   func setChart(dataPoints: [String], values: [Int]) {
     var dataEntries: [ChartDataEntry] = []
     
@@ -62,6 +61,7 @@ class CommitmentDetailVC: UIViewController {
     chartView.xAxis.setLabelCount(dataPoints.count, force: true)
   }
   
+  // MARK: - View lifecycle
   override func viewDidLoad() {
     super.viewDidLoad()
     
@@ -120,10 +120,11 @@ extension CommitmentDetailVC:UITableViewDelegate, UITableViewDataSource {
     return payments.count
   }
   
+  
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! CommitmentDetailCell
     cell.delegate = self
-    cell.monthLabel.text = "Month".localize() + " #\(indexPath.row + 1)"
+    cell.monthLabel.text = "Month".localize() + "\(indexPath.row + 1)"
     cell.paymentButton.tag = indexPath.row
     
     if payments[indexPath.row].status == "pinding" {
@@ -131,21 +132,65 @@ extension CommitmentDetailVC:UITableViewDelegate, UITableViewDataSource {
     } else if payments[indexPath.row].status == "paid" {
       cell.paymentButton.backgroundColor = #colorLiteral(red: 0.2448829114, green: 0.5568040609, blue: 0.4974938631, alpha: 1)
     }
-    
     return cell
   }
+  
+  
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     print(payments[indexPath.row])
   }
 }
 
+// MARK: - CommitmentDetailCellDelegate
+
 extension CommitmentDetailVC : CommitmentDetailCellDelegate {
   func paymentButtonTapped(index: Int) {
+    
+    let alert = UIAlertController(title: "Alert",
+                                  message: "Do you want to deduct the amount from your total amount ?",
+                                  preferredStyle: .alert)
+    
+    alert.addAction(UIAlertAction(title: "Yes",
+                                  style: .default,
+                                  handler: { action in print("yes")
+      
+      self.updateTotalAmounts()
+    }))
+    
+    alert.addAction(UIAlertAction(title: "No",
+                                  style: .destructive,
+                                  handler: { action in }))
+    
+    self.present(alert, animated: true, completion: nil)
+    
     Firestore.firestore().collection("Payments").document((commitment?.commitmentID)!).collection("months").document(payments[index].monnthID!).updateData(["status" : "paid"]) { [self] error in
       if error == nil {
         getAllPayments(id: (commitment?.commitmentID)!)
       }
     }
   }
+  
+  
+  func updateTotalAmounts() {
+    guard let userID = Auth.auth().currentUser?.uid else {return}
+    Firestore.firestore().collection("totalAmount").document(userID).getDocument {
+      (snapshot, error) in
+      guard let data = snapshot?.data() else
+      { return }
+      if let totalAmount = data["total"] as? Int {
+        if let amount = Int((self.commitment?.amount)!) {
+          let newTotal = totalAmount - amount
+          guard let userID = Auth.auth().currentUser?.uid else {return}
+          Firestore.firestore().collection("totalAmount").document(userID).setData(["total":newTotal]) { error in
+            if error == nil {
+              
+              let alert = UIAlertController(title: "Alert", message: "payment done successfully form your balance. \n your new balance is".localize() + " : \(newTotal)", preferredStyle: .alert)
+              alert.addAction(UIAlertAction(title: "Ok".localize(), style: .destructive, handler: { action in }))
+              self.present(alert, animated: true, completion: nil)
+            }
+          }
+        }
+      }
+    }
+  }
 }
-

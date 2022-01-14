@@ -12,11 +12,11 @@ import MessageUI
 class ProfileViewController: UIViewController,MFMailComposeViewControllerDelegate{
   
   let db = Firestore.firestore().collection("users")
-
+  
   @IBOutlet weak var nameLabel: UILabel!
   @IBOutlet weak var emailLabel: UILabel!
   
-    override func viewDidLoad() {
+  override func viewDidLoad() {
     super.viewDidLoad()
     
     nameLabel.transform = CGAffineTransform(scaleX: 0, y: 0)
@@ -45,7 +45,7 @@ class ProfileViewController: UIViewController,MFMailComposeViewControllerDelegat
     }
   }
   // MARK: - @IBAction
-
+  
   @IBAction func signoutAction(_ sender: UIButton) {
     try? Auth.auth().signOut()
     
@@ -55,7 +55,6 @@ class ProfileViewController: UIViewController,MFMailComposeViewControllerDelegat
     self.present(vc!, animated: true, completion: nil)
     
   }
-  
   
   @IBAction func twitterButtonAction(_ sender: UIButton) {
     let twitterUsername = "expenHh"
@@ -103,5 +102,4 @@ class ProfileViewController: UIViewController,MFMailComposeViewControllerDelegat
   func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
     controller.dismiss(animated: true)
   }
-  
 }

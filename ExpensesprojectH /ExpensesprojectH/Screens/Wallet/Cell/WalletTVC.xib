@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="WalletTVC" rowHeight="145" id="1hL-Z2-dT2" customClass="WalletTVC" customModule="ExpensesprojectH" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="145"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="1hL-Z2-dT2" id="b0U-3v-wp9">
+                <rect key="frame" x="0.0" y="0.0" width="414" height="145"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imagewallet" translatesAutoresizingMaskIntoConstraints="NO" id="hzZ-9V-QRo">
+                        <rect key="frame" x="20" y="42.5" width="60" height="60"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="60" id="ttk-D0-ZpV"/>
+                            <constraint firstAttribute="width" secondItem="hzZ-9V-QRo" secondAttribute="height" id="zLH-b6-zmB"/>
+                        </constraints>
+                    </imageView>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="tGc-9l-1om">
+                        <rect key="frame" x="90" y="5" width="294" height="135"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4yf-2p-R3d">
+                                <rect key="frame" x="0.0" y="0.0" width="294" height="100"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <color key="textColor" red="0.32941177490000001" green="0.54901963470000004" blue="0.49803921579999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="s4n-mO-c2P">
+                                <rect key="frame" x="0.0" y="100" width="294" height="35"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZOe-wi-kL5">
+                                        <rect key="frame" x="0.0" y="0.0" width="147" height="35"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <color key="textColor" systemColor="systemGrayColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B76-ZA-5aZ">
+                                        <rect key="frame" x="147" y="0.0" width="147" height="35"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="OqO-WH-zdm"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                    </stackView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="tGc-9l-1om" firstAttribute="leading" secondItem="hzZ-9V-QRo" secondAttribute="trailing" constant="10" id="361-iF-vea"/>
+                    <constraint firstAttribute="trailing" secondItem="tGc-9l-1om" secondAttribute="trailing" constant="30" id="FO7-sf-zj9"/>
+                    <constraint firstItem="hzZ-9V-QRo" firstAttribute="centerY" secondItem="b0U-3v-wp9" secondAttribute="centerY" id="Fiu-VT-cas"/>
+                    <constraint firstItem="tGc-9l-1om" firstAttribute="centerY" secondItem="hzZ-9V-QRo" secondAttribute="centerY" id="RRU-mP-fwr"/>
+                    <constraint firstItem="tGc-9l-1om" firstAttribute="top" secondItem="b0U-3v-wp9" secondAttribute="top" constant="5" id="RYX-9S-FV1"/>
+                    <constraint firstItem="hzZ-9V-QRo" firstAttribute="leading" secondItem="b0U-3v-wp9" secondAttribute="leadingMargin" id="kRM-1G-eCS"/>
+                    <constraint firstAttribute="bottom" secondItem="tGc-9l-1om" secondAttribute="bottom" constant="5" id="ryw-db-qwg"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" name="Colorbackgraound"/>
+            <connections>
+                <outlet property="ImageWallet" destination="hzZ-9V-QRo" id="toe-zg-7np"/>
+                <outlet property="balanceLabel" destination="B76-ZA-5aZ" id="p7M-zJ-3em"/>
+                <outlet property="categoryLabel" destination="ZOe-wi-kL5" id="FT4-w0-UZ4"/>
+                <outlet property="walletNameLabel" destination="4yf-2p-R3d" id="EcD-0I-mwc"/>
+            </connections>
+            <point key="canvasLocation" x="-128" y="-23"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="imagewallet" width="500" height="500"/>
+        <namedColor name="Colorbackgraound">
+            <color red="0.92199999094009399" green="0.92199999094009399" blue="0.92199999094009399" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemGrayColor">
+            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

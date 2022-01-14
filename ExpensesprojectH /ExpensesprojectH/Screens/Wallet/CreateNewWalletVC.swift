@@ -8,12 +8,11 @@
 import UIKit
 import Firebase
 
-
 class CreateNewWalletVC: UIViewController {
   
   let db = Firestore.firestore()
   
-  
+  // MARK: - @IBOutlet
   
   @IBOutlet weak var categoryTextField: UITextField!
   @IBOutlet weak var walletNameTextField: UITextField!
@@ -22,24 +21,20 @@ class CreateNewWalletVC: UIViewController {
   @IBOutlet weak var otherCategoryTextField: UITextField!
   
   
-  
   override func viewDidLoad() {
     super.viewDidLoad()
     
     
-    
     let tapGuesture = UITapGestureRecognizer(target: self, action: #selector(self.openCategories(sender:)))
     selectCategoryButton.addGestureRecognizer(tapGuesture)
-    
     otherCategoryTextField.isHidden = true
   }
   
   @objc func openCategories(sender: UITapGestureRecognizer) {
     let viewController = self.storyboard?.instantiateViewController(identifier: "SelectCategoryViewController") as! SelectCategoryVC
     viewController.delegate = self
-    self.navigationController?.pushViewController(viewController, animated: false)
+    self.navigationController?.pushViewController(viewController, animated: true)
   }
-  
   
   var categoryCheck = false
   
@@ -63,9 +58,9 @@ class CreateNewWalletVC: UIViewController {
     else { UIHelper.makeToast(text: "Please select Category ".localize())
       return
     }
-        categoryName = Category
+    categoryName = Category
     
-    if categoryTextField.text == "other" {
+    if categoryTextField.text == "other".localize() {
       guard let userNewCategory = otherCategoryTextField.text, !userNewCategory.isEmpty else {
         UIHelper.makeToast(text: "Please write your Category ".localize())
         return
@@ -73,8 +68,8 @@ class CreateNewWalletVC: UIViewController {
       categoryName = userNewCategory
     }
     
-    let walledID = UUID().uuidString
-    db.collection("wallets").document(walledID).setData( ["id" : walledID, "walletName":walletName, "balance":balance, "category":categoryName, "timestamp" : Date().timeIntervalSince1970]) { (error) in
+    let walletID = UUID().uuidString
+    db.collection("wallets").document(walletID).setData( ["id" : walletID, "walletName":walletName, "balance":balance, "category":categoryName, "timestamp" : Date().timeIntervalSince1970]) { (error) in
       
       if error != nil {
         // Show error message
@@ -85,14 +80,25 @@ class CreateNewWalletVC: UIViewController {
     }
   }
   
+  // MARK: - showAlert
   func showAlert() {
-    let alert = UIAlertController(title: "Success", message: "Wallet added successfully", preferredStyle: .alert)
-    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
-      self.navigationController?.popToRootViewController(animated: false)
+    let alert = UIAlertController(title: "Success".localize(),
+                                  message: "Wallet added successfully".localize(),
+                                  preferredStyle: .alert)
+    
+    alert.addAction(UIAlertAction(title: "OK",
+                                  style: .default,
+                                  handler: { action in
+      self.navigationController?.popToRootViewController(animated: true)
     }))
     self.present(alert, animated: true, completion: nil)
   }
+  
+  override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    view.endEditing(true)
+  }
 }
+
 
 // MARK: - extension CreateNewWalletVC
 
@@ -104,5 +110,6 @@ extension CreateNewWalletVC: SelectCategoryViewControllerDelegate {
     } else {
       otherCategoryTextField.isHidden = true
     }
+    
   }
 }

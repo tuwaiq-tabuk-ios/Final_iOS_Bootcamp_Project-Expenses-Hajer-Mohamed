@@ -15,11 +15,11 @@ class CommitmentDetailCell: UITableViewCell {
   
   var delegate : CommitmentDetailCellDelegate!
   
- 
+  
   @IBOutlet weak var paymentButton: UIButton!
   @IBOutlet weak var monthLabel: UILabel!
   
-    override func awakeFromNib() {
+  override func awakeFromNib() {
     super.awakeFromNib()
     paymentButton.layer.cornerRadius = 15
   }
@@ -29,3 +29,4 @@ class CommitmentDetailCell: UITableViewCell {
     delegate.paymentButtonTapped(index: sender.tag)
   }
 }
+

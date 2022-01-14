@@ -8,21 +8,18 @@
 import UIKit
 import Firebase
 
-class commitmentsVC: UIViewController {
+class CommitmentsVC: UIViewController {
   
-  let datePicker = UIDatePicker()
   let db = Firestore.firestore()
   var types = [1, 3, 6, 12]
   var timePreiod = 0
   
   // MARK: - @IBOutlet
   
-  @IBOutlet weak var monthPaymentDayTextField: UITextField!
   @IBOutlet weak var timePeriodTextField: UITextField!
   @IBOutlet weak var amountOfMoneyTextField: UITextField!
   @IBOutlet weak var nameTextField: UITextField!
   @IBOutlet weak var typePickerView: UIPickerView!
-  
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -32,30 +29,11 @@ class commitmentsVC: UIViewController {
     timePeriodTextField.delegate = self
     
   }
-  func showDatePicker(sender: UITextField){
-    //Formate Date
-    datePicker.datePickerMode = .date
-    datePicker.minimumDate = Date()
-    if #available(iOS 13.4, *) {
-      datePicker.preferredDatePickerStyle = .wheels
-    } else {
-      // Fallback on earlier versions
-    }
-  }
-  
-  
-  func showAlert() {
-    let alert = UIAlertController(title: "Success".localize(), message: "Commitment added successfully".localize(), preferredStyle: .alert)
-    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
-      self.navigationController?.popToRootViewController(animated: false)
-    }))
-    self.present(alert, animated: true, completion: nil)
-  }
   
   // MARK: - @IBAction
   
   @IBAction func createNewCommitment(_ sender: Any) {
-      view.endEditing(true)
+    view.endEditing(true)
     
     guard let commitmentName = nameTextField.text , !commitmentName.isEmpty else {
       UIHelper.makeToast(text: "Please enter commitment name".localize())
@@ -76,7 +54,6 @@ class commitmentsVC: UIViewController {
     formatter.dateFormat = "dd/MM/YYYY"
     let commitmentDate = formatter.string(from: Date())
     
-    
     if let user = Auth.auth().currentUser {
       let commitmentID = UUID().uuidString
       db.collection("commitments").document(commitmentID).setData(["uid" : user.uid, "commitmentName":commitmentName, "amount":amount, "period":timePreiod, "timestamp": Date().timeIntervalSince1970, "commitmentDate" : commitmentDate, "commitmentID" : commitmentID]) { (error) in
@@ -85,9 +62,9 @@ class commitmentsVC: UIViewController {
           // Show error message
           print(error?.localizedDescription ?? "")
         } else {
-          var payment : [String : String] = [:]
+          
+          
           for i in 1...self.timePreiod {
-            payment[String(i)] = "pinding"
             
             Firestore.firestore().collection("Payments").document(commitmentID).collection("months").document(UUID().uuidString).setData([
               "status" : "pinding",
@@ -105,37 +82,66 @@ class commitmentsVC: UIViewController {
       }
     }
   }
+  
+  
+  func showAlert() {
+    let alert = UIAlertController(title: "Success".localize(),
+                                  message: "Commitment added successfully".localize(),
+                                  preferredStyle: .alert)
+    
+    alert.addAction(UIAlertAction(title: "OK".localize(),
+                                  style: .default,
+                                  handler: { action in
+      self.navigationController?.popToRootViewController(animated: true)
+    }))
+    self.present(alert, animated: true, completion: nil)
+  }
 }
 
-// MARK: - extension UIPickerView
+// MARK: - UIPickerView
 
-extension commitmentsVC: UIPickerViewDataSource, UIPickerViewDelegate {
+extension CommitmentsVC: UIPickerViewDataSource,
+                         UIPickerViewDelegate {
+  
   func numberOfComponents(in pickerView: UIPickerView) -> Int {
     return 1
   }
   
-  func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+  
+  func pickerView(_ pickerView: UIPickerView,
+                  numberOfRowsInComponent component: Int) -> Int {
     return types.count
   }
   
-  func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-    return "\(types[row]) Months"
+  
+  func pickerView(_ pickerView: UIPickerView,
+                  titleForRow row: Int,
+                  forComponent component: Int) -> String? {
+    return "\(types[row])" + " Months".localize()
   }
   
-  func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+  
+  func pickerView(_ pickerView: UIPickerView,
+                  didSelectRow row: Int,
+                  inComponent component: Int) {
     timePreiod = types[row]
-    timePeriodTextField.text = "\(types[row]) Months"
+    timePeriodTextField.text = "\(types[row])" + " Months".localize()
     self.typePickerView.isHidden = true
   }
 }
 
-extension commitmentsVC: UITextFieldDelegate {
+// MARK: -  UITextFieldDelegate
+extension CommitmentsVC: UITextFieldDelegate {
   func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-    if textField == timePeriodTextField || textField == monthPaymentDayTextField {
+    if textField == timePeriodTextField {
       view.endEditing(true)
       self.typePickerView.isHidden = false
     }
     return false
+    
   }
-  
+  override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    view.endEditing(true)
+  }
 }
+

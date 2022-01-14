@@ -13,9 +13,10 @@ class AddNewPurchaseVC: UIViewController {
   let db = Firestore.firestore()
   var totalAmount = 0
   
+  // MARK: - @IBOutlet
+  
   @IBOutlet weak var descriptionTextView: UITextView!
   @IBOutlet weak var amountTextField: UITextField!
-  
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -48,9 +49,7 @@ class AddNewPurchaseVC: UIViewController {
       UIHelper.makeToast(text: "Please Enter Purchase Description".localize())
       return
     }
-    
     self.addNewItem(amount: amount, purchaseDescription: description)
-    
   }
   
   
@@ -61,7 +60,8 @@ class AddNewPurchaseVC: UIViewController {
       "purchaseDescription":purchaseDescription,
       "timestamp" : Date().timeIntervalSince1970,
       "id" : purchaseID
-    ]) { error in
+    ])
+    { error in
       if error != nil {
         // Show error message
         print(error?.localizedDescription ?? "")
@@ -72,7 +72,6 @@ class AddNewPurchaseVC: UIViewController {
     }
   }
   
-  // MARK: -  showAlert
   
   func showAlert() {
     let alert = UIAlertController(title: "Success".localize(), message: "Purchase added successfully".localize(), preferredStyle: .alert)
@@ -83,12 +82,14 @@ class AddNewPurchaseVC: UIViewController {
     self.present(alert, animated: true, completion: nil)
   }
   
+  
   func updateTotalAmount(total: Int) {
-    db.collection("totalAmount").document("totalAmounts").setData(["total":total])
-    
+    guard let userID = Auth.auth().currentUser?.uid else {return}
+    db.collection("totalAmount").document(userID).setData(["total":total])
     self.showAlert()
     
   }
+  override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    view.endEditing(true)
+  }
 }
-
-
