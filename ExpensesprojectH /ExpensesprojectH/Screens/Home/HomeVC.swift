@@ -17,12 +17,16 @@ class HomeVC: UIViewController {
   // MARK: - @IBOutlet
   @IBOutlet weak var totalAmountTextField: UITextField!
   @IBOutlet weak var tableView: UITableView!
+  @IBOutlet weak var addPurchaseButton: UIButton!
+
   
   
   // MARK: - View lifecycle
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    Utilities.styleFilledButton(addPurchaseButton)
+
     
     tableView.dataSource = self
     tableView.delegate = self
@@ -128,27 +132,21 @@ extension HomeVC: UITableViewDataSource, UITableViewDelegate {
     Cell.configureCell(purchase: purchases[indexPath.row])
     return Cell
   }
-  
-  func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-    return true
-  }
-  
-  
-  func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-    purchases.swapAt(sourceIndexPath.row, destinationIndexPath.row)
-    
-  }
-  
-  
+
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     print(purchases[indexPath.row])
   }
   
   func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
     if editingStyle == .delete {
-      if let purchase = purchases[indexPath.row].id {
-        db.collection("purchases").document(purchase).delete { error in
+      
+//      if let purchase = purchases[indexPath.row].id {
+        
+        guard let userID = Auth.auth().currentUser?.uid else {return}
+        
+        db.collection("purchases").document(userID).delete { error in
           if error == nil {
+//            self.purchases.removeAll()
             self.purchases.remove(at: indexPath.row)
             tableView.beginUpdates()
             tableView.deleteRows(at: [indexPath], with: .top)
@@ -160,7 +158,7 @@ extension HomeVC: UITableViewDataSource, UITableViewDelegate {
       }
     }
   }
-}
+
 
 extension HomeVC: UITextFieldDelegate {
   func textFieldDidEndEditing(_ textField: UITextField) {

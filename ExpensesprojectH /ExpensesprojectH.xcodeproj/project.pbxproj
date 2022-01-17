@@ -21,7 +21,7 @@
 		0731574327788088002627B7 /* WalletVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0731574227788088002627B7 /* WalletVC.swift */; };
 		075B1C332786315100F11583 /* PaymentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075B1C322786315100F11583 /* PaymentModel.swift */; };
 		075B1C3E27869BE100F11583 /* Localization.strings in Resources */ = {isa = PBXBuildFile; fileRef = 075B1C4027869BE100F11583 /* Localization.strings */; };
-		075B1C452786A94400F11583 /* localizeExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075B1C442786A94400F11583 /* localizeExtensions.swift */; };
+		075B1C452786A94400F11583 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075B1C442786A94400F11583 /* Extensions.swift */; };
 		076CAB602770656F008FEFD2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 076CAB5F2770656F008FEFD2 /* GoogleService-Info.plist */; };
 		077C8E3227905AED006A0E5F /* commitmentsTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 077C8E3127905AED006A0E5F /* commitmentsTVC.xib */; };
 		07803F21277D874C001CAC3D /* CommitmentsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07803F20277D874C001CAC3D /* CommitmentsVC.swift */; };
@@ -65,7 +65,7 @@
 		075B1C3F27869BE100F11583 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localization.strings; sourceTree = "<group>"; };
 		075B1C4127869BE200F11583 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localization.strings; sourceTree = "<group>"; };
 		075B1C4327869C3F00F11583 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
-		075B1C442786A94400F11583 /* localizeExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = localizeExtensions.swift; sourceTree = "<group>"; };
+		075B1C442786A94400F11583 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		076CAB5F2770656F008FEFD2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		077C8E3127905AED006A0E5F /* commitmentsTVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = commitmentsTVC.xib; sourceTree = "<group>"; };
 		07803F20277D874C001CAC3D /* CommitmentsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommitmentsVC.swift; sourceTree = "<group>"; };
@@ -166,7 +166,7 @@
 		0718F23C2779D22500DB67A3 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				075B1C442786A94400F11583 /* localizeExtensions.swift */,
+				075B1C442786A94400F11583 /* Extensions.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -451,7 +451,7 @@
 				075B1C332786315100F11583 /* PaymentModel.swift in Sources */,
 				07AD24BE277060510015076B /* ViewController.swift in Sources */,
 				0718F22D2778E53D00DB67A3 /* PurchaseTVC.swift in Sources */,
-				075B1C452786A94400F11583 /* localizeExtensions.swift in Sources */,
+				075B1C452786A94400F11583 /* Extensions.swift in Sources */,
 				0728E52F2782D4DC00AE117B /* ProfileViewController.swift in Sources */,
 				07803F26277F8749001CAC3D /* WalletCollection.swift in Sources */,
 				07CC76C5277B005B004A6117 /* Wallet.swift in Sources */,

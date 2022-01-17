@@ -9,21 +9,37 @@ import UIKit
 import Firebase
 import MessageUI
 
-class ProfileViewController: UIViewController,MFMailComposeViewControllerDelegate{
+class ProfileViewController: UIViewController,
+                             MFMailComposeViewControllerDelegate {
   
   let db = Firestore.firestore().collection("users")
   
+  // MARK: -  @IBOutlet
+  
   @IBOutlet weak var nameLabel: UILabel!
   @IBOutlet weak var emailLabel: UILabel!
+  @IBOutlet weak var signoutButton: UIButton!
+  
+  // MARK: -  viewDidLoad
   
   override func viewDidLoad() {
     super.viewDidLoad()
     
     nameLabel.transform = CGAffineTransform(scaleX: 0, y: 0)
     emailLabel.transform = CGAffineTransform(scaleX: 0, y: 0)
+    
+    Utilities.styleFilledButton(signoutButton)
+    signoutButton.backgroundColor = #colorLiteral(red: 0.2466930747, green: 0.5560029149, blue: 0.4963359237, alpha: 1)
+    
+    nameLabel.layer.cornerRadius = 25
+    emailLabel.layer.cornerRadius = 25
+    nameLabel.layer.masksToBounds = true
+    emailLabel.layer.masksToBounds = true
+    
     getUserProfile()
   }
   
+  // MARK: -  getUserProfile
   func getUserProfile() {
     guard let userID = Auth.auth().currentUser?.uid else {return}
     
@@ -87,10 +103,10 @@ class ProfileViewController: UIViewController,MFMailComposeViewControllerDelegat
     }
     else{
       // IMPORTANT:- email not working in simulator
-      
       print("Can't send email \n EMAIL COMPOSER NOT WORKING IN SIMULATOR")
     }
   }
+  
   
   func configureMailComposer() -> MFMailComposeViewController{
     let mailComposeVC = MFMailComposeViewController()
@@ -98,6 +114,7 @@ class ProfileViewController: UIViewController,MFMailComposeViewControllerDelegat
     mailComposeVC.setToRecipients(["expenses.exe@gmail.com"])
     return mailComposeVC
   }
+  
   
   func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
     controller.dismiss(animated: true)

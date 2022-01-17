@@ -14,4 +14,6 @@ struct CommitmentsModel {
   let commitmentName: String?
   let period: Int?
   let uid: String?
+ 
+
 }

@@ -20,9 +20,17 @@ class CommitmentsVC: UIViewController {
   @IBOutlet weak var amountOfMoneyTextField: UITextField!
   @IBOutlet weak var nameTextField: UITextField!
   @IBOutlet weak var typePickerView: UIPickerView!
+  @IBOutlet weak var totalAmountLabel: UILabel!
+  @IBOutlet weak var createCommitmentButton: UIButton!
+  @IBOutlet weak var showCommimentsButton: UIButton!
   
+  
+  // MARK: - viewDidLoad
   override func viewDidLoad() {
     super.viewDidLoad()
+    
+    Utilities.styleFilledButton(createCommitmentButton)
+    Utilities.styleFilledButton(showCommimentsButton)
     
     typePickerView.dataSource = self
     typePickerView.delegate = self
@@ -33,6 +41,7 @@ class CommitmentsVC: UIViewController {
   // MARK: - @IBAction
   
   @IBAction func createNewCommitment(_ sender: Any) {
+    
     view.endEditing(true)
     
     guard let commitmentName = nameTextField.text , !commitmentName.isEmpty else {
@@ -54,8 +63,10 @@ class CommitmentsVC: UIViewController {
     formatter.dateFormat = "dd/MM/YYYY"
     let commitmentDate = formatter.string(from: Date())
     
+    
     if let user = Auth.auth().currentUser {
       let commitmentID = UUID().uuidString
+      
       db.collection("commitments").document(commitmentID).setData(["uid" : user.uid, "commitmentName":commitmentName, "amount":amount, "period":timePreiod, "timestamp": Date().timeIntervalSince1970, "commitmentDate" : commitmentDate, "commitmentID" : commitmentID]) { (error) in
         
         if error != nil {
@@ -74,7 +85,7 @@ class CommitmentsVC: UIViewController {
               
             ]) { err in
               if err == nil {
-                self.showAlert()
+                self.showAlert123(alertTitle: "Success", message: "Commitment added successfully", buttonTitle: "OK")
               }
             }
           }
@@ -82,55 +93,35 @@ class CommitmentsVC: UIViewController {
       }
     }
   }
-  
-  
-  func showAlert() {
-    let alert = UIAlertController(title: "Success".localize(),
-                                  message: "Commitment added successfully".localize(),
-                                  preferredStyle: .alert)
-    
-    alert.addAction(UIAlertAction(title: "OK".localize(),
-                                  style: .default,
-                                  handler: { action in
-      self.navigationController?.popToRootViewController(animated: true)
-    }))
-    self.present(alert, animated: true, completion: nil)
-  }
 }
-
 // MARK: - UIPickerView
 
-extension CommitmentsVC: UIPickerViewDataSource,
-                         UIPickerViewDelegate {
-  
+extension CommitmentsVC: UIPickerViewDataSource, UIPickerViewDelegate {
   func numberOfComponents(in pickerView: UIPickerView) -> Int {
     return 1
   }
   
-  
-  func pickerView(_ pickerView: UIPickerView,
-                  numberOfRowsInComponent component: Int) -> Int {
+  func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
     return types.count
   }
   
-  
-  func pickerView(_ pickerView: UIPickerView,
-                  titleForRow row: Int,
-                  forComponent component: Int) -> String? {
+  func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
     return "\(types[row])" + " Months".localize()
   }
   
-  
-  func pickerView(_ pickerView: UIPickerView,
-                  didSelectRow row: Int,
-                  inComponent component: Int) {
+  func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
     timePreiod = types[row]
     timePeriodTextField.text = "\(types[row])" + " Months".localize()
     self.typePickerView.isHidden = true
+    
+    if let amount = amountOfMoneyTextField.text, amount.isEmpty == false {
+      totalAmountLabel.text = "your total amount = \(Int(amount)! * timePreiod)"
+    }
   }
 }
 
-// MARK: -  UITextFieldDelegate
+
+// MARK: - UITextFieldDelegate
 extension CommitmentsVC: UITextFieldDelegate {
   func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
     if textField == timePeriodTextField {
@@ -138,10 +129,11 @@ extension CommitmentsVC: UITextFieldDelegate {
       self.typePickerView.isHidden = false
     }
     return false
-    
   }
-  override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-    view.endEditing(true)
+  
+  func textFieldDidEndEditing(_ textField: UITextField) {
+    if let amount = amountOfMoneyTextField.text, amount.isEmpty == false, let period = timePeriodTextField.text, period.isEmpty == false {
+      totalAmountLabel.text = "your total amount = \(Int(amount)! * timePreiod)"
+    }
   }
 }
-

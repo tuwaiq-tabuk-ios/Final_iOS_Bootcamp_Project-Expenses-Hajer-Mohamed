@@ -15,7 +15,7 @@ class CommitmentDetailCell: UITableViewCell {
   
   var delegate : CommitmentDetailCellDelegate!
   
-  
+  // MARK: - @IBOutlet
   @IBOutlet weak var paymentButton: UIButton!
   @IBOutlet weak var monthLabel: UILabel!
   
@@ -24,7 +24,7 @@ class CommitmentDetailCell: UITableViewCell {
     paymentButton.layer.cornerRadius = 15
   }
   
-  
+  // MARK: - @IBAction 
   @IBAction func paymentButtonAction(_ sender: UIButton) {
     delegate.paymentButtonTapped(index: sender.tag)
   }

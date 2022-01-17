@@ -19,7 +19,8 @@ class SelectCategoryVC: UIViewController {
     super.viewDidLoad()
     
   }
-  
+  // MARK: - didSelectCategory
+
   @IBAction func didSelectCategory(_ sender: UIButton) {
     self.delegate?.didSelectCategory(categoryName: sender.currentTitle ?? "")
     self.navigationController?.popViewController(animated: true)

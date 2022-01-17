@@ -17,7 +17,7 @@ class WalletVC: UIViewController {
   var timer : Timer?
   var currentCellIndex = 0
   let refreshControl = UIRefreshControl()
- 
+  
   
   
   // MARK: - @IBOutlet
@@ -25,12 +25,14 @@ class WalletVC: UIViewController {
   @IBOutlet weak var tapleView: UITableView!
   @IBOutlet weak var walletCollection: UICollectionView!
   @IBOutlet weak var pageControl: UIPageControl!
+  @IBOutlet weak var createWalletButton: UIButton!
   
   
   // MARK: - View lifecycle
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    Utilities.styleFilledButton(createWalletButton)
     
     tapleView.delegate = self
     tapleView.dataSource = self
@@ -115,7 +117,7 @@ extension WalletVC : UITableViewDelegate, UITableViewDataSource {
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) ->
   UITableViewCell {
     
-   let Cell = tableView.dequeueReusableCell(withIdentifier: "WalletTVC" , for: indexPath) as! WalletTVC
+    let Cell = tableView.dequeueReusableCell(withIdentifier: "WalletTVC" , for: indexPath) as! WalletTVC
     
     
     Cell.configureCell(wallet: wallets [indexPath.row])
@@ -124,13 +126,15 @@ extension WalletVC : UITableViewDelegate, UITableViewDataSource {
   
   
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-   return 90
+    return 90
   }
   
   
   func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
     if editingStyle == .delete {
+      
       if let walletID = wallets[indexPath.row].id {
+        
         db.collection("wallets").document(walletID).delete { error in
           if error == nil {
             self.wallets.remove(at: indexPath.row)
@@ -172,7 +176,7 @@ extension WalletVC: UICollectionViewDelegate,
   }
   
   
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
     return 0
   }
 }
