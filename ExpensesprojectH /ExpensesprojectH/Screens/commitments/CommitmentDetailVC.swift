@@ -75,6 +75,7 @@ class CommitmentDetailVC: UIViewController {
     }
     
   }
+  // MARK: - getAllPayments
   
   func getAllPayments(id : String) {
     Firestore.firestore().collection("Payments").document(id).collection("months").order(by: "timestamp", descending: false).getDocuments { snapshot, err in
@@ -91,7 +92,6 @@ class CommitmentDetailVC: UIViewController {
             let status = data["status"] as? String
             let payment = Payment(monnthID : i.documentID, paymentID: paymentID, monthNumber: monthNumber, status: status)
             self.payments.append(payment)
-            
             if let month = monthNumber {
               self.months.append("#\(month)")
             }
@@ -105,13 +105,14 @@ class CommitmentDetailVC: UIViewController {
             }
             
           }
+          self.setChart(dataPoints: self.months, values: self.paymentStatus)
+          self.tableView.reloadData()
         }
-        self.setChart(dataPoints: self.months, values: self.paymentStatus)
-        self.tableView.reloadData()
       }
     }
   }
 }
+
 // MARK: - extensionUITableView
 
 extension CommitmentDetailVC:UITableViewDelegate, UITableViewDataSource {
@@ -131,6 +132,8 @@ extension CommitmentDetailVC:UITableViewDelegate, UITableViewDataSource {
       cell.paymentButton.backgroundColor = .lightGray
     } else if payments[indexPath.row].status == "paid" {
       cell.paymentButton.backgroundColor = #colorLiteral(red: 0.2448829114, green: 0.5568040609, blue: 0.4974938631, alpha: 1)
+      cell.paymentButton.isEnabled = false
+      
     }
     return cell
   }
@@ -141,35 +144,29 @@ extension CommitmentDetailVC:UITableViewDelegate, UITableViewDataSource {
   }
 }
 
+
 // MARK: - CommitmentDetailCellDelegate
 
 extension CommitmentDetailVC : CommitmentDetailCellDelegate {
   func paymentButtonTapped(index: Int) {
     
-    let alert = UIAlertController(title: "Alert",
-                                  message: "Do you want to deduct the amount from your total amount ?",
-                                  preferredStyle: .alert)
-    
-    alert.addAction(UIAlertAction(title: "Yes",
-                                  style: .default,
-                                  handler: { action in print("yes")
-      
+    let alert = UIAlertController(title: "Alert", message: "Do you want to deduct the amount from your total amount ?", preferredStyle: .alert)
+    alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { action in
       self.updateTotalAmounts()
     }))
-    
-    alert.addAction(UIAlertAction(title: "No",
-                                  style: .destructive,
-                                  handler: { action in }))
-    
+    alert.addAction(UIAlertAction(title: "No", style: .default, handler: { action in }))
     self.present(alert, animated: true, completion: nil)
+    
     
     Firestore.firestore().collection("Payments").document((commitment?.commitmentID)!).collection("months").document(payments[index].monnthID!).updateData(["status" : "paid"]) { [self] error in
       if error == nil {
         getAllPayments(id: (commitment?.commitmentID)!)
       }
     }
+    
   }
   
+  // MARK: - updateTotalAmounts
   
   func updateTotalAmounts() {
     guard let userID = Auth.auth().currentUser?.uid else {return}
@@ -184,9 +181,7 @@ extension CommitmentDetailVC : CommitmentDetailCellDelegate {
           Firestore.firestore().collection("totalAmount").document(userID).setData(["total":newTotal]) { error in
             if error == nil {
               
-              let alert = UIAlertController(title: "Alert", message: "payment done successfully form your balance. \n your new balance is".localize() + " : \(newTotal)", preferredStyle: .alert)
-              alert.addAction(UIAlertAction(title: "Ok".localize(), style: .destructive, handler: { action in }))
-              self.present(alert, animated: true, completion: nil)
+              self.showAlert123(alertTitle: "Alert", message: "payment done successfully form your balance. \n your new balance is".localize() + " : \(newTotal)", buttonTitle: "Ok", goBackAction: false)
             }
           }
         }

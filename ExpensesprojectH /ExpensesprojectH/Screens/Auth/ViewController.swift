@@ -47,9 +47,9 @@ class ViewController: UIViewController{
     pageControl.numberOfPages = Photos.count
   }
   
-  
+  // MARK: -  startTimer
   func startTimer() {
-    timer = Timer.scheduledTimer(timeInterval: 3,
+    timer = Timer.scheduledTimer(timeInterval: 2.5,
                                  target: self,
                                  selector: #selector (moveToNextIndex),
                                  userInfo: nil,
@@ -63,7 +63,9 @@ class ViewController: UIViewController{
       currentCellIndex = 0
     }
     
-    collectionView.scrollToItem (at: IndexPath(item: currentCellIndex, section: 0), at: .centeredHorizontally, animated: true)
+    collectionView.scrollToItem (at: IndexPath(item: currentCellIndex, section: 0),
+                                 at: .centeredHorizontally,
+                                 animated: true)
     pageControl.currentPage = currentCellIndex
   }
   

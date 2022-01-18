@@ -15,7 +15,6 @@ struct K {
     static let homeViewController = "HomeVC"
     static let addNewPurchase = "addNewPurchase"
     static let addNewWallet = "addNewWallet"
-    
   }
   
   static let screenHeight = UIScreen.main.bounds.height

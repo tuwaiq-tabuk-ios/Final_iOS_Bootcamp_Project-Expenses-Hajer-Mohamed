@@ -17,13 +17,17 @@ class AddNewPurchaseVC: UIViewController {
   
   @IBOutlet weak var descriptionTextView: UITextView!
   @IBOutlet weak var amountTextField: UITextField!
+  @IBOutlet weak var addNewPurchaseButton: UIButton!
   
+  // MARK: - View lifecycle
+
   override func viewDidLoad() {
     super.viewDidLoad()
     setupUI()
   }
   
-  
+  // MARK: - setupUI
+
   func setupUI() {
     descriptionTextView.layer.borderWidth = 1
     descriptionTextView.layer.borderColor = UIColor.gray.cgColor
@@ -34,6 +38,9 @@ class AddNewPurchaseVC: UIViewController {
     amountTextField.layer.borderColor = UIColor.white.cgColor
     amountTextField.layer.cornerRadius = 8
     amountTextField.clipsToBounds = true
+    
+    Utilities.styleFilledButton(addNewPurchaseButton)
+    
     
   }
   // MARK: - @IBAction
@@ -63,7 +70,6 @@ class AddNewPurchaseVC: UIViewController {
     ])
     { error in
       if error != nil {
-        // Show error message
         print(error?.localizedDescription ?? "")
       } else {
         
@@ -72,22 +78,14 @@ class AddNewPurchaseVC: UIViewController {
     }
   }
   
-  
-  func showAlert() {
-    let alert = UIAlertController(title: "Success".localize(), message: "Purchase added successfully".localize(), preferredStyle: .alert)
-    alert.addAction(UIAlertAction(title: "OK".localize(), style: .default, handler: { action in
-      self.navigationController?.popToRootViewController(animated: true)
-    }))
-    
-    self.present(alert, animated: true, completion: nil)
-  }
-  
+  // MARK: - updateTotalAmount
+
   
   func updateTotalAmount(total: Int) {
     guard let userID = Auth.auth().currentUser?.uid else {return}
     db.collection("totalAmount").document(userID).setData(["total":total])
-    self.showAlert()
     
+    showAlert123(alertTitle: "Success", message: "Purchase added successfully", buttonTitle: "OK", goBackAction: true)
   }
   override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
     view.endEditing(true)

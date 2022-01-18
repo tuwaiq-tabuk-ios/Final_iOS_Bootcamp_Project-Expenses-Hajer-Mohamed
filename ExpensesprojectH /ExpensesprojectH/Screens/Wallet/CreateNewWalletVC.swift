@@ -19,10 +19,13 @@ class CreateNewWalletVC: UIViewController {
   @IBOutlet weak var balanceTextField: UITextField!
   @IBOutlet weak var selectCategoryButton: UIStackView!
   @IBOutlet weak var otherCategoryTextField: UITextField!
+  @IBOutlet weak var createWalletButton: UIButton!
   
+  // MARK: - View lifecycle
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    Utilities.styleFilledButton(createWalletButton)
     
     
     let tapGuesture = UITapGestureRecognizer(target: self, action: #selector(self.openCategories(sender:)))
@@ -72,26 +75,10 @@ class CreateNewWalletVC: UIViewController {
     db.collection("wallets").document(walletID).setData( ["id" : walletID, "walletName":walletName, "balance":balance, "category":categoryName, "timestamp" : Date().timeIntervalSince1970]) { (error) in
       
       if error != nil {
-        // Show error message
         print(error?.localizedDescription ?? "")
       } else {
-        self.showAlert()
-      }
+        self.showAlert123(alertTitle: "Success", message: "Wallet added successfully", buttonTitle: "OK", goBackAction: true)      }
     }
-  }
-  
-  // MARK: - showAlert
-  func showAlert() {
-    let alert = UIAlertController(title: "Success".localize(),
-                                  message: "Wallet added successfully".localize(),
-                                  preferredStyle: .alert)
-    
-    alert.addAction(UIAlertAction(title: "OK",
-                                  style: .default,
-                                  handler: { action in
-      self.navigationController?.popToRootViewController(animated: true)
-    }))
-    self.present(alert, animated: true, completion: nil)
   }
   
   override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

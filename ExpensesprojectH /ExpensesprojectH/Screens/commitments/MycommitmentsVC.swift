@@ -12,12 +12,14 @@ class MycommitmentsVC: UIViewController {
   let db = Firestore.firestore()
   var commitments: [CommitmentsModel] = []
   
+  
+  // MARK: - @IBOutlet
   @IBOutlet weak var tableView: UITableView!
   
   
-  // MARK: - View lifecycle
   override func viewDidLoad() {
     super.viewDidLoad()
+    
     let nib = UINib(nibName: "commitmentsTVC", bundle: nil)
     tableView.register(nib, forCellReuseIdentifier: "commitmentsTVC")
     
@@ -45,7 +47,8 @@ class MycommitmentsVC: UIViewController {
     }
   }
 }
-// MARK: - extension UITableView
+
+// MARK: - UITableView
 
 extension MycommitmentsVC: UITableViewDataSource, UITableViewDelegate {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -55,8 +58,8 @@ extension MycommitmentsVC: UITableViewDataSource, UITableViewDelegate {
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     
     let Cell = tableView.dequeueReusableCell(withIdentifier: "commitmentsTVC" , for: indexPath) as! CommitmentsTVC
+    
     Cell.configureCell(commitments: commitments[indexPath.row])
-    Cell.backgroundColor = UIColor.white
     return Cell
   }
   
@@ -68,8 +71,7 @@ extension MycommitmentsVC: UITableViewDataSource, UITableViewDelegate {
   
   func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
     if editingStyle == .delete {
-      
-      if let commitment = commitments[indexPath.row].commitmentID {
+      if let commitment = commitments[indexPath.row].commitmentID{
         db.collection("commitments").document(commitment).delete { error in
           if error == nil {
             self.commitments.remove(at: indexPath.row)
@@ -84,11 +86,13 @@ extension MycommitmentsVC: UITableViewDataSource, UITableViewDelegate {
     }
   }
   
+  // MARK: - prepare
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == "commitmentDetails" {
       let vc = segue.destination as! CommitmentDetailVC
-      vc.commitment = sender as! CommitmentsModel
+      vc.commitment = sender as? CommitmentsModel
     }
   }
+  
 }
 
