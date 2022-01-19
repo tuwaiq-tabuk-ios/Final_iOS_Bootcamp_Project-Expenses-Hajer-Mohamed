@@ -12,10 +12,12 @@ import Charts
 
 class CommitmentDetailVC: UIViewController {
   
+  //  MARK: -Properties
+
   var commitment : CommitmentsModel?
   var payments = [Payment]()
-  var months = [String]()
-  var paymentStatus = [Int]()
+  var chartMonths = [String]()
+  var chartPaymentStatus = [Int]()
   
   // MARK: - @IBOutlet
   
@@ -34,6 +36,8 @@ class CommitmentDetailVC: UIViewController {
       
       dataEntries.append(dataEntry)
     }
+    
+    
     // MARK: - chartDataSet
     
     let chartDataSet = LineChartDataSet(entries: dataEntries, label: nil)
@@ -75,14 +79,15 @@ class CommitmentDetailVC: UIViewController {
     }
     
   }
+  
   // MARK: - getAllPayments
   
   func getAllPayments(id : String) {
     Firestore.firestore().collection("Payments").document(id).collection("months").order(by: "timestamp", descending: false).getDocuments { snapshot, err in
       if err == nil {
         self.payments.removeAll()
-        self.months.removeAll()
-        self.paymentStatus.removeAll()
+        self.chartMonths.removeAll()
+        self.chartPaymentStatus.removeAll()
         if let value = snapshot?.documents {
           for i in value {
             
@@ -93,19 +98,19 @@ class CommitmentDetailVC: UIViewController {
             let payment = Payment(monnthID : i.documentID, paymentID: paymentID, monthNumber: monthNumber, status: status)
             self.payments.append(payment)
             if let month = monthNumber {
-              self.months.append("#\(month)")
+              self.chartMonths.append("#\(month)")
             }
             
-            if status == "late" {
-              self.paymentStatus.append(1)
-            } else if status == "pinding" {
-              self.paymentStatus.append(2)
+            
+            if status == "pinding" {
+              self.chartPaymentStatus.append(1)
             } else {
-              self.paymentStatus.append(3)
+              self.chartPaymentStatus.append(2)
             }
             
           }
-          self.setChart(dataPoints: self.months, values: self.paymentStatus)
+          self.setChart(dataPoints: self.chartMonths,
+                        values: self.chartPaymentStatus)
           self.tableView.reloadData()
         }
       }
@@ -123,26 +128,24 @@ extension CommitmentDetailVC:UITableViewDelegate, UITableViewDataSource {
   
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! CommitmentDetailCell
-    cell.delegate = self
-    cell.monthLabel.text = "Month".localize() + "\(indexPath.row + 1)"
-    cell.paymentButton.tag = indexPath.row
-    
-    if payments[indexPath.row].status == "pinding" {
-      cell.paymentButton.backgroundColor = .lightGray
-    } else if payments[indexPath.row].status == "paid" {
-      cell.paymentButton.backgroundColor = #colorLiteral(red: 0.2448829114, green: 0.5568040609, blue: 0.4974938631, alpha: 1)
-      cell.paymentButton.isEnabled = false
+      let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! CommitmentDetailCell
+      cell.delegate = self
+      cell.paymentButton.tag = indexPath.row
       
-    }
-    return cell
+      cell.monthLabel.text = "Month".localize() + " #\(indexPath.row + 1)"
+      
+      if payments[indexPath.row].status == "pinding" {
+          cell.paymentButton.backgroundColor = .lightGray
+      } else {
+          cell.paymentButton.backgroundColor = #colorLiteral(red: 0.2448829114, green: 0.5568040609, blue: 0.4974938631, alpha: 1)
+          cell.paymentButton.isEnabled = false
+      }
+      
+      return cell
   }
-  
-  
-  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    print(payments[indexPath.row])
-  }
+
 }
+
 
 
 // MARK: - CommitmentDetailCellDelegate
@@ -165,6 +168,7 @@ extension CommitmentDetailVC : CommitmentDetailCellDelegate {
     }
     
   }
+  
   
   // MARK: - updateTotalAmounts
   

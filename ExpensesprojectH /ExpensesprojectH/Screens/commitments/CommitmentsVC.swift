@@ -9,9 +9,10 @@ import UIKit
 import Firebase
 
 class CommitmentsVC: UIViewController {
-  
+  //  MARK: -Properties
+
   let db = Firestore.firestore()
-  var types = [1, 3, 6, 12]
+  var months = [1, 3, 6, 12]
   var timePreiod = 0
   
   // MARK: - @IBOutlet
@@ -25,7 +26,8 @@ class CommitmentsVC: UIViewController {
   @IBOutlet weak var showCommimentsButton: UIButton!
   
   
-  // MARK: - viewDidLoad
+  // MARK: - View lifecycle
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     
@@ -37,6 +39,7 @@ class CommitmentsVC: UIViewController {
     timePeriodTextField.delegate = self
     
   }
+  
   
   // MARK: - @IBAction
   
@@ -58,7 +61,8 @@ class CommitmentsVC: UIViewController {
       UIHelper.makeToast(text: "Please Select repeat type".localize())
       return
     }
-    
+    // MARK: - DateFormatter()
+
     let formatter = DateFormatter()
     formatter.dateFormat = "dd/MM/YYYY"
     let commitmentDate = formatter.string(from: Date())
@@ -94,24 +98,27 @@ class CommitmentsVC: UIViewController {
     }
   }
 }
+
 // MARK: - UIPickerView
 
-extension CommitmentsVC: UIPickerViewDataSource, UIPickerViewDelegate {
+extension CommitmentsVC: UIPickerViewDataSource,
+                         UIPickerViewDelegate {
+  
   func numberOfComponents(in pickerView: UIPickerView) -> Int {
     return 1
   }
   
   func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-    return types.count
+    return months.count
   }
   
   func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-    return "\(types[row])" + " Months".localize()
+    return "\(months[row])" + " Months".localize()
   }
   
   func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-    timePreiod = types[row]
-    timePeriodTextField.text = "\(types[row])" + " Months".localize()
+    timePreiod = months[row]
+    timePeriodTextField.text = "\(months[row])" + " Months".localize()
     self.typePickerView.isHidden = true
     
     if let amount = amountOfMoneyTextField.text, amount.isEmpty == false {
@@ -130,6 +137,7 @@ extension CommitmentsVC: UITextFieldDelegate {
     }
     return false
   }
+  
   
   func textFieldDidEndEditing(_ textField: UITextField) {
     if let amount = amountOfMoneyTextField.text, amount.isEmpty == false, let period = timePeriodTextField.text, period.isEmpty == false {

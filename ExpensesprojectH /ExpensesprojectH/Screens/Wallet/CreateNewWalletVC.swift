@@ -32,7 +32,8 @@ class CreateNewWalletVC: UIViewController {
     selectCategoryButton.addGestureRecognizer(tapGuesture)
     otherCategoryTextField.isHidden = true
   }
-  
+  // MARK: - UITapGestureRecognizer
+
   @objc func openCategories(sender: UITapGestureRecognizer) {
     let viewController = self.storyboard?.instantiateViewController(identifier: "SelectCategoryViewController") as! SelectCategoryVC
     viewController.delegate = self
@@ -71,15 +72,21 @@ class CreateNewWalletVC: UIViewController {
       categoryName = userNewCategory
     }
     
-    let walletID = UUID().uuidString
-    db.collection("wallets").document(walletID).setData( ["id" : walletID, "walletName":walletName, "balance":balance, "category":categoryName, "timestamp" : Date().timeIntervalSince1970]) { (error) in
+    
+    let walledID = UUID().uuidString
+    db.collection("wallets").document(walledID).setData( ["id" : walledID, "walletName":walletName, "balance":balance, "category":categoryName, "timestamp" : Date().timeIntervalSince1970, "userID" : Auth.auth().currentUser?.uid]) { (error) in
       
       if error != nil {
+        // Show error message
         print(error?.localizedDescription ?? "")
       } else {
-        self.showAlert123(alertTitle: "Success", message: "Wallet added successfully", buttonTitle: "OK", goBackAction: true)      }
+        
+        self.showAlert123(alertTitle: "Success", message: "Wallet added successfully", buttonTitle: "OK", goBackAction: true)
+      }
     }
   }
+  
+  
   
   override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
     view.endEditing(true)

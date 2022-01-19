@@ -8,7 +8,9 @@
 import UIKit
 import Firebase
 
-class MycommitmentsVC: UIViewController {
+class CommitmentsTableVC: UIViewController {
+  //  MARK: -Properties
+  
   let db = Firestore.firestore()
   var commitments: [CommitmentsModel] = []
   
@@ -16,6 +18,8 @@ class MycommitmentsVC: UIViewController {
   // MARK: - @IBOutlet
   @IBOutlet weak var tableView: UITableView!
   
+  
+  // MARK: - View lifecycle
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -29,6 +33,8 @@ class MycommitmentsVC: UIViewController {
     
   }
   
+  // MARK: - Method getData()
+  
   func getData() {
     db.collection("commitments").order(by: "timestamp", descending: true).addSnapshotListener { (snapshot, error) in
       if error != nil {
@@ -39,25 +45,33 @@ class MycommitmentsVC: UIViewController {
           for document in snapshot.documents {
             let commitment = CommitmentsModel(commitmentID: document["commitmentID"] as? String, amount: document["amount"] as? String, commitmentDate: document["commitmentDate"] as? String, commitmentName: document["commitmentName"] as? String, period: document["period"] as? Int, uid: document["uid"] as? String)
             
-            self.commitments.append(commitment)
+            if commitment.uid == Auth.auth().currentUser?.uid {
+              self.commitments.append(commitment)
+            }
+            
           }
           self.tableView.reloadData()
         }
       }
     }
   }
+  
 }
+
 
 // MARK: - UITableView
 
-extension MycommitmentsVC: UITableViewDataSource, UITableViewDelegate {
+extension CommitmentsTableVC: UITableViewDataSource,
+                              UITableViewDelegate {
+  
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return commitments.count
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     
-    let Cell = tableView.dequeueReusableCell(withIdentifier: "commitmentsTVC" , for: indexPath) as! CommitmentsTVC
+    let Cell = tableView.dequeueReusableCell(withIdentifier: "commitmentsTVC",
+                                             for: indexPath) as! CommitmentsTVC
     
     Cell.configureCell(commitments: commitments[indexPath.row])
     return Cell
@@ -71,28 +85,19 @@ extension MycommitmentsVC: UITableViewDataSource, UITableViewDelegate {
   
   func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
     if editingStyle == .delete {
-      if let commitment = commitments[indexPath.row].commitmentID{
-        db.collection("commitments").document(commitment).delete { error in
-          if error == nil {
-            self.commitments.remove(at: indexPath.row)
-            tableView.beginUpdates()
-            tableView.deleteRows(at: [indexPath], with: .top)
-            tableView.endUpdates()
-          } else {
-            print(error?.localizedDescription)
-          }
-        }
+      if let commitmentID = commitments[indexPath.row].commitmentID {
+        db.collection("commitments").document(commitmentID).delete()
       }
     }
   }
   
-  // MARK: - prepare
+    
+  // MARK: - Method prepare
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == "commitmentDetails" {
       let vc = segue.destination as! CommitmentDetailVC
       vc.commitment = sender as? CommitmentsModel
     }
   }
-  
 }
 

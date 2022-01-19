@@ -12,5 +12,6 @@ struct Wallet {
     let walletName: String?
     let balance: String?
     let category:String?
+  let userID : String?
     
 }

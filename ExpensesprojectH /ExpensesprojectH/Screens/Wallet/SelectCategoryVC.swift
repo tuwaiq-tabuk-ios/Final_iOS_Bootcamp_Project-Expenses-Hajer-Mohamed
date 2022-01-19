@@ -13,6 +13,8 @@ protocol SelectCategoryViewControllerDelegate: AnyObject {
 
 class SelectCategoryVC: UIViewController {
   
+  // MARK: - SelectCategoryViewControllerDelegate
+
   var delegate: SelectCategoryViewControllerDelegate?
   
   override func viewDidLoad() {

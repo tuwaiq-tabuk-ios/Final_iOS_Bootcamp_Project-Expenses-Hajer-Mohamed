@@ -9,7 +9,7 @@ import UIKit
 
 
 class Utilities: UIViewController {
-  //  MARK: - styleTextField
+  //  MARK: - Method styleTextField
   
   static func styleTextField(_ textfield:UITextField) {
     let bottomLine = CALayer()
@@ -22,7 +22,7 @@ class Utilities: UIViewController {
     textfield.layer.addSublayer(bottomLine)
     
   }
-//  MARK: - styleButton
+//  MARK: - Method styleButton
   
   
   static func styleFilledButton(_ button:UIButton) {
