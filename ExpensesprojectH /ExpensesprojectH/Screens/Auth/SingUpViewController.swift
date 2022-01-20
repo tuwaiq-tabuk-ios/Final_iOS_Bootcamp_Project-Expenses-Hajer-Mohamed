@@ -11,7 +11,7 @@ import Firebase
 
 class SignUpViewController: UIViewController {
   
-//  MARK: -Properties
+  //  MARK: -Properties
   
   var firstNameCheck = false
   var lastNameCheck = false
@@ -40,6 +40,7 @@ class SignUpViewController: UIViewController {
     setUpElements()
   }
   
+  
   // MARK: -  setUpElements
   func setUpElements() {
     
@@ -63,16 +64,7 @@ class SignUpViewController: UIViewController {
       
       return "Please fill in all fields.".localize()
     }
-    
-    
-    let cleanedPassword = passwordTextField
-      .text!
-      .trimmingCharacters(in: .whitespacesAndNewlines)
-    
-    if Utilities.isPasswordValid(cleanedPassword) == false {
-      return "Please make sure your password is at least 8 characters, contains a special character and a number.".localize()
-    }
-    
+        
     return nil
   }
   
@@ -161,17 +153,19 @@ class SignUpViewController: UIViewController {
        repeatPasswordCheck == true {
       if passwordTextField.text != repeatPasswordTextField.text {
         errorLabel.alpha = 1
-        errorLabel.text = "not exact password, try again!!"
+        
+        
+        errorLabel.text = "not exact password, try again!!".localize()
         return
       }
       
       
       // Create the user
       FSUserManager.shared.signUpUserWith(firstName: firstNameTextField.text!,
-                                      lastName: lastNameTextField.text!,
-                                      email: emailTextField.text!,
-                                      password: passwordTextField.text!,
-                                      messageLabel: errorLabel) {
+                                          lastName: lastNameTextField.text!,
+                                          email: emailTextField.text!,
+                                          password: passwordTextField.text!,
+                                          messageLabel: errorLabel) {
         // Transition to the home screen
         self.transitionToHome()
       }
@@ -182,44 +176,42 @@ class SignUpViewController: UIViewController {
   // MARK: - Method
   
   func transitionToHome() {
-      
-      let homeViewController = storyboard?.instantiateViewController(identifier: K.Storyboard.homeViewController)
-      
-      view.window?.rootViewController = homeViewController
-      view.window?.makeKeyAndVisible()
-      
+    
+    let homeViewController = storyboard?.instantiateViewController(identifier: K.Storyboard.homeViewController)
+    
+    view.window?.rootViewController = homeViewController
+    view.window?.makeKeyAndVisible()
+    
   }
 }
 
 
-
-
 // MARK: - extension settingUpKeyboardNotifications
-  extension SignUpViewController {
-      
-      func settingUpKeyboardNotifications() {
-          NotificationCenter.default.addObserver(self,
-                                                 selector: #selector(keyboardWillShow),
-                                                 name: UIResponder.keyboardWillShowNotification,
-                                                 object: nil)
-          NotificationCenter.default.addObserver(self,
-                                                 selector: #selector(keyboardWillHide),
-                                                 name: UIResponder.keyboardWillHideNotification,
-                                                 object: nil)
 
-      }
-      
-      override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-          self.view.endEditing(true)
-      }
-      
-      @objc func keyboardWillShow(notification: NSNotification) {
-          self.view.frame.origin.y = -80
-      }
-      
-      @objc func keyboardWillHide(notification: NSNotification) {
-          self.view.frame.origin.y = 0
-      }
+extension SignUpViewController {
+  
+  func settingUpKeyboardNotifications() {
+    NotificationCenter.default.addObserver(self,
+                                           selector: #selector(keyboardWillShow),
+                                           name: UIResponder.keyboardWillShowNotification,
+                                           object: nil)
+    NotificationCenter.default.addObserver(self,
+                                           selector: #selector(keyboardWillHide),
+                                           name: UIResponder.keyboardWillHideNotification,
+                                           object: nil)
   }
+  
+  override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    self.view.endEditing(true)
+  }
+  
+  @objc func keyboardWillShow(notification: NSNotification) {
+    self.view.frame.origin.y = -80
+  }
+  
+  @objc func keyboardWillHide(notification: NSNotification) {
+    self.view.frame.origin.y = 0
+  }
+}
 
 

@@ -10,11 +10,14 @@ import Firebase
 
 class HomeVC: UIViewController {
   
+  //  MARK: -Properties
+  
   let db = Firestore.firestore()
   var purchases: [PurchaseAmount] = []
   let refreshControl = UIRefreshControl()
   
   // MARK: - @IBOutlet
+  
   @IBOutlet weak var totalAmountTextField: UITextField!
   @IBOutlet weak var tableView: UITableView!
   @IBOutlet weak var addPurchaseButton: UIButton!
@@ -32,6 +35,7 @@ class HomeVC: UIViewController {
     tableView.delegate = self
     refreshControl.tintColor = .gray
     tableView.addSubview(refreshControl)
+    
     let nib = UINib(nibName: "PurchaseTVC", bundle: nil)
     tableView.register(nib, forCellReuseIdentifier: "PurchaseTVC")
     
@@ -75,9 +79,11 @@ class HomeVC: UIViewController {
     self.navigationController?.pushViewController(viewController, animated: true)
   }
   
+  
   // MARK: - Method getdata()
+  
   @objc func getdata() {
-    db.collection("purchases").order(by: "timestamp", descending: true).getDocuments { (snapshot, error) in
+    db.collection(FSCollectionReference.purchases.rawValue).order(by: "timestamp", descending: true).getDocuments { (snapshot, error) in
       if error != nil {
         print("Error")
       } else {
@@ -98,6 +104,7 @@ class HomeVC: UIViewController {
     }
   }
   
+  
   override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
     view.endEditing(true)
   }
@@ -106,7 +113,9 @@ class HomeVC: UIViewController {
   
   func getTotalAmounts() {
     guard let userID = Auth.auth().currentUser?.uid else {return}
-    db.collection("totalAmount").document(userID).addSnapshotListener {
+    
+    db.collection(FSCollectionReference.totalAmount.rawValue).document(userID).addSnapshotListener {
+      
       (snapshot, error) in
       guard let data = snapshot?.data() else
       { return }
@@ -120,8 +129,9 @@ class HomeVC: UIViewController {
   // MARK: - Method updateTotalAmount()
   
   func updateTotalAmount(total: Int) {
+    
     guard let userID = Auth.auth().currentUser?.uid else {return}
-    db.collection("totalAmount").document(userID).setData(["total":total])
+    db.collection(FSCollectionReference.totalAmount.rawValue).document(userID).setData(["total":total])
   }
 }
 
@@ -142,6 +152,7 @@ extension HomeVC: UITableViewDataSource, UITableViewDelegate {
     return Cell
   }
   
+  
   func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
     return true
   }
@@ -157,11 +168,15 @@ extension HomeVC: UITableViewDataSource, UITableViewDelegate {
     print(purchases[indexPath.row])
   }
   
+  
   func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
     if editingStyle == .delete {
+      
       if let purchase = purchases[indexPath.row].id {
-        db.collection("purchases").document(purchase).delete { error in
+        
+        db.collection(FSCollectionReference.purchases.rawValue).document(purchase).delete { error in
           if error == nil {
+            
             self.purchases.remove(at: indexPath.row)
             tableView.beginUpdates()
             tableView.deleteRows(at: [indexPath], with: .top)
@@ -173,8 +188,8 @@ extension HomeVC: UITableViewDataSource, UITableViewDelegate {
       }
     }
   }
-  
 }
+
 
 // MARK: - extension UITextFieldDelegate
 

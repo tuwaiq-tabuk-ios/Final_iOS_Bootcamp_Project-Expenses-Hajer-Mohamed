@@ -28,13 +28,15 @@ class CreateNewWalletVC: UIViewController {
     Utilities.styleFilledButton(createWalletButton)
     
     
-    let tapGuesture = UITapGestureRecognizer(target: self, action: #selector(self.openCategories(sender:)))
+    let tapGuesture = UITapGestureRecognizer(target: self,
+                                             action: #selector(self.openCategories(sender:)))
     selectCategoryButton.addGestureRecognizer(tapGuesture)
     otherCategoryTextField.isHidden = true
   }
   // MARK: - UITapGestureRecognizer
-
+  
   @objc func openCategories(sender: UITapGestureRecognizer) {
+    
     let viewController = self.storyboard?.instantiateViewController(identifier: "SelectCategoryViewController") as! SelectCategoryVC
     viewController.delegate = self
     self.navigationController?.pushViewController(viewController, animated: true)
@@ -72,16 +74,17 @@ class CreateNewWalletVC: UIViewController {
       categoryName = userNewCategory
     }
     
-    
+  
+
     let walledID = UUID().uuidString
-    db.collection("wallets").document(walledID).setData( ["id" : walledID, "walletName":walletName, "balance":balance, "category":categoryName, "timestamp" : Date().timeIntervalSince1970, "userID" : Auth.auth().currentUser?.uid]) { (error) in
+    db.collection(FSCollectionReference.wallets.rawValue).document(walledID).setData( ["id" : walledID, "walletName":walletName, "balance":balance, "category":categoryName, "timestamp" : Date().timeIntervalSince1970, "userID" : Auth.auth().currentUser?.uid]) { (error) in
       
       if error != nil {
         // Show error message
         print(error?.localizedDescription ?? "")
       } else {
         
-        self.showAlert123(alertTitle: "Success", message: "Wallet added successfully", buttonTitle: "OK", goBackAction: true)
+        self.showAlert(alertTitle: "Success", message: "Wallet added successfully", buttonTitle: "OK", goBackAction: true)
       }
     }
   }

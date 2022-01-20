@@ -21,7 +21,7 @@
 "6Py-tL-OeZ.normalTitle" = "Create new wallet";
 
 /* Class = "UILabel"; text = "Amount"; ObjectID = "6wq-Ap-Oru"; */
-"6wq-Ap-Oru.text" = "Amount";
+"TdZ-Fa-21e.text" = "Amount";
 
 /* Class = "UIButton"; normalTitle = "Travel"; ObjectID = "7n9-EI-Ihl"; */
 "7n9-EI-Ihl.normalTitle" = "Travel";
@@ -72,7 +72,7 @@
 "JRw-uQ-S8g.title" = "  ";
 
 /* Class = "UIButton"; normalTitle = "Create new commitment"; ObjectID = "K8N-TX-UAt"; */
-"K8N-TX-UAt.normalTitle" = "Create new commitment";
+"PzE-ci-X3d.normalTitle" = "Create new commitment";
 
 /* Class = "UIButton"; normalTitle = "Button"; ObjectID = "KqK-oB-rOh"; */
 "KqK-oB-rOh.normalTitle" = "Button";
@@ -120,7 +120,7 @@
 "VvY-VH-gLM.text" = "Label";
 
 /* Class = "UILabel"; text = "Create a new commitments"; ObjectID = "W40-5X-XwC"; */
-"W40-5X-XwC.text" = "Create a new commitments";
+"eK5-tS-VNh.text" = "Create a new commitments";
 
 /* Class = "UILabel"; text = "Select Category"; ObjectID = "Wdz-yM-WxF"; */
 "Wdz-yM-WxF.text" = "Select Category";
@@ -132,22 +132,22 @@
 "Ye7-sO-XmY.text" = "Beauty";
 
 /* Class = "UITextField"; placeholder = "Name"; ObjectID = "Yja-bE-CyY"; */
-"Yja-bE-CyY.placeholder" = "Name";
+"5hV-ja-lSb.placeholder" = "Name";
 
-/* Class = "UILabel"; text = "Payment Will done at 1st Day Of Month"; ObjectID = "Z3s-CO-kTI"; */
-"Z3s-CO-kTI.text" = "Payment Will done at 1st Day Of Month";
-
+///* Class = "UILabel"; text = "Payment Will done at 1st Day Of Month"; ObjectID = "Z3s-CO-kTI"; */
+//"1HD-VV-gq5.text" = "your total amount";
+//
 /* Class = "UITextField"; placeholder = "Amount of money"; ObjectID = "aaU-cp-fsx"; */
-"aaU-cp-fsx.placeholder" = "Amount of money";
+"2xe-87-3OQ.placeholder" = "Amount of money";
 
 /* Class = "UITextField"; placeholder = "First Name"; ObjectID = "ads-vC-zGn"; */
 "ads-vC-zGn.placeholder" = "First Name";
 
 /* Class = "UIButton"; normalTitle = "Add Amount"; ObjectID = "agk-Wd-Zbu"; */
-"agk-Wd-Zbu.normalTitle" = "Add Amount";
+"fZP-11-gGp.normalTitle" = "Add Amount";
 
 /* Class = "UILabel"; text = "note"; ObjectID = "bNu-zU-Mq2"; */
-"bNu-zU-Mq2.text" = "note";
+"6Se-ql-nCz.text" = "note";
 
 /* Class = "UITextField"; placeholder = "Password"; ObjectID = "ba6-nz-baP"; */
 "ba6-nz-baP.placeholder" = "Password";
@@ -171,7 +171,7 @@
 "gwf-Dw-U7Q.text" = "Label";
 
 /* Class = "UIButton"; normalTitle = "Login"; ObjectID = "h4i-qn-zrW"; */
-"h4i-qn-zrW.normalTitle" = "Login";
+"P7C-m6-4cx.normalTitle" = "Get Started";
 
 /* Class = "UILabel"; text = "amount"; ObjectID = "hBf-Gq-dMk"; */
 "hBf-Gq-dMk.text" = "amount";
@@ -183,7 +183,7 @@
 "iOt-on-NvN.text" = "Label";
 
 /* Class = "UITextField"; placeholder = "enter"; ObjectID = "iWR-7K-wyb"; */
-"iWR-7K-wyb.placeholder" = "enter";
+"5mO-Nd-bJE.placeholder" = "enter";
 
 /* Class = "UILabel"; text = "Total Amount of money"; ObjectID = "iYa-Lb-xxG"; */
 "iYa-Lb-xxG.text" = "Total Amount of money";
@@ -225,7 +225,7 @@
 "wD0-HW-y4H.text" = "Error";
 
 /* Class = "UITextField"; placeholder = "Time Period"; ObjectID = "wE1-4E-aET"; */
-"wE1-4E-aET.placeholder" = "Time Period";
+"uFt-Q8-5sc.placeholder" = "Time Period";
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "wQb-Yb-68b"; */
 "wQb-Yb-68b.text" = "Label";
@@ -244,3 +244,14 @@
 
 /* Class = "UITextField"; placeholder = "Category"; ObjectID = "zga-xP-Qd1"; */
 "zga-xP-Qd1.placeholder" = "Category";
+
+"zv3-xw-VDZ.title" = " ";
+
+"rzd-tD-Cft.placeholder" = "Repeat Password";
+
+"Irf-of-oLg.text" = "Sign Up";
+"v3w-p6-1LH.text" = "Sign In";
+
+"mCU-lK-ftT.normalTitle" = "don't have an account ? Sign Up";
+
+"TtG-hQ-n68.normalTitle" = "Show All Commitments";

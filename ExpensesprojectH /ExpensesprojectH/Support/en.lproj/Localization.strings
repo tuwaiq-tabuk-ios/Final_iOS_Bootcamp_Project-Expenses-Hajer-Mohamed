@@ -1,11 +1,11 @@
 /* 
-  Localization.strings
-  ExpensesprojectH
-
-  Created by hajer . on 03/06/1443 AH.
-  
+ Localization.strings
+ ExpensesprojectH
  
-*/
+ Created by hajer . on 03/06/1443 AH.
+ 
+ 
+ */
 
 // SignUpViewController
 
@@ -14,6 +14,8 @@
 
 "Error creating user" = "Error creating user";
 "Error saving user data" = "Error saving user data";
+
+"not exact password, try again!!" = "not exact password, try again!!";
 
 
 // HomeVC
@@ -58,3 +60,12 @@
 "Please enter amounts" = "Please enter amounts";
 "Please Select repeat type" = "Please Select repeat type";
 
+"payment done successfully form your balance. \n your new balance is" = "payment done successfully form your balance. \n your new balance is";
+
+"your total amount" = "your total amount";
+
+"Yes" = "Yes";
+"No" = "No";
+
+"Alert" = "Alert";
+"Do you want to deduct the amount from your total amount ?" = "Do you want to deduct the amount from your total amount ?";

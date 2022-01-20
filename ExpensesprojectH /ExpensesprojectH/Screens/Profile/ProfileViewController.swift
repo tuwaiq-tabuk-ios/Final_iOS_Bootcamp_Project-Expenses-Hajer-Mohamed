@@ -12,7 +12,7 @@ import MessageUI
 class ProfileViewController: UIViewController,
                              MFMailComposeViewControllerDelegate {
   
-  let db = Firestore.firestore().collection("users")
+  let db = Firestore.firestore().collection(FSCollectionReference.users.rawValue)
   
   // MARK: -  @IBOutlet
   
@@ -106,6 +106,7 @@ class ProfileViewController: UIViewController,
       self.present(mailComposeViewController, animated: true, completion: nil)
     }
     else{
+      
       // IMPORTANT:- email not working in simulator
       print("Can't send email \n EMAIL COMPOSER NOT WORKING IN SIMULATOR")
     }
@@ -124,5 +125,6 @@ class ProfileViewController: UIViewController,
   
   func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
     controller.dismiss(animated: true)
+    
   }
 }

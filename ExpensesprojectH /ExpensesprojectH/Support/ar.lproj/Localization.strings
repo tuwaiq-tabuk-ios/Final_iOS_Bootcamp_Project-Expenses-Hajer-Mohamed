@@ -15,6 +15,8 @@
 "Error creating user" = "خطأ في انشاء مستخدم";
 "Error saving user data" = "خطأ في عملية الحفظ";
 
+"not exact password, try again!!" = " !! كلمة المرور غير متطابقة حاول مجداا ";
+
 
 // HomeVC
 
@@ -24,10 +26,10 @@
 
 // AddNewPurchaseVC
 
-"Please Enter Purchase Amount" = "الرجاء ادخال مبلغ الشراء";
-"Please Enter Purchase Description" = "الرجاء ادخال وصف الشراء";
+"Please Enter Purchase Amount" = "الرجاء ادخال مبلغ السداد";
+"Please Enter Purchase Description" = "الرجاء ادخال وصف السداد";
 "Success" = "نجاح";
-"Purchase added successfully" = "تمت اضافه مبلغ الشراء بنجاح";
+"Purchase added successfully" = "تم السداد بنجاح";
 "OK" = "تم";
 
 
@@ -45,10 +47,12 @@
 "other" = "أخرى";
 
 
-// CommitmentsTableViewCell
+// CommitmentsTVC
 
-"Months" = "أشهر";
+
+"Months" = "اشهر";
 "Month" = "شهر";
+
 
 
 // commitmentsVC
@@ -57,3 +61,10 @@
 "Please enter commitment name" = "الرجاء كتابة اسم الالتزام";
 "Please enter amounts" = "الرجاء ادخال المبلغ";
 "Please Select repeat type" = "الرجاء اختيار نوع التكرار";
+
+"payment done successfully form your balance. \n your new balance is" = "تم الخصم بنجاح ، رصيدك الحالي هو";
+"Yes" = "نعم";
+"No" = "لا";
+"Alert" = "تنبية";
+"your total amount" = "سيصبح مبلغك الاجمالي";
+"Do you want to deduct the amount from your total amount ?" = "هل تريد خصم المبلغ من اجمالي المبلغ لديك ?";

@@ -36,7 +36,7 @@ class CommitmentsTableVC: UIViewController {
   // MARK: - Method getData()
   
   func getData() {
-    db.collection("commitments").order(by: "timestamp", descending: true).addSnapshotListener { (snapshot, error) in
+    db.collection(FSCollectionReference.commitments.rawValue).order(by: "timestamp", descending: true).addSnapshotListener { (snapshot, error) in
       if error != nil {
         print("Error")
       } else {
@@ -55,7 +55,6 @@ class CommitmentsTableVC: UIViewController {
       }
     }
   }
-  
 }
 
 
@@ -86,13 +85,14 @@ extension CommitmentsTableVC: UITableViewDataSource,
   func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
     if editingStyle == .delete {
       if let commitmentID = commitments[indexPath.row].commitmentID {
-        db.collection("commitments").document(commitmentID).delete()
+        db.collection(FSCollectionReference.commitments.rawValue).document(commitmentID).delete()
       }
     }
   }
   
-    
+  
   // MARK: - Method prepare
+  
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == "commitmentDetails" {
       let vc = segue.destination as! CommitmentDetailVC

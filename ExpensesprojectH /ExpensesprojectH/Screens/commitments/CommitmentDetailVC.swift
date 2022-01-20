@@ -66,6 +66,7 @@ class CommitmentDetailVC: UIViewController {
   }
   
   // MARK: - View lifecycle
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     
@@ -83,7 +84,7 @@ class CommitmentDetailVC: UIViewController {
   // MARK: - getAllPayments
   
   func getAllPayments(id : String) {
-    Firestore.firestore().collection("Payments").document(id).collection("months").order(by: "timestamp", descending: false).getDocuments { snapshot, err in
+    Firestore.firestore().collection(FSCollectionReference.Payments.rawValue).document(id).collection(FSCollectionReference.months.rawValue).order(by: "timestamp", descending: false).getDocuments { snapshot, err in
       if err == nil {
         self.payments.removeAll()
         self.chartMonths.removeAll()
@@ -132,7 +133,7 @@ extension CommitmentDetailVC:UITableViewDelegate, UITableViewDataSource {
       cell.delegate = self
       cell.paymentButton.tag = indexPath.row
       
-      cell.monthLabel.text = "Month".localize() + " #\(indexPath.row + 1)"
+      cell.monthLabel.text = "Month".localize() + " \(indexPath.row + 1)"
       
       if payments[indexPath.row].status == "pinding" {
           cell.paymentButton.backgroundColor = .lightGray
@@ -153,15 +154,17 @@ extension CommitmentDetailVC:UITableViewDelegate, UITableViewDataSource {
 extension CommitmentDetailVC : CommitmentDetailCellDelegate {
   func paymentButtonTapped(index: Int) {
     
-    let alert = UIAlertController(title: "Alert", message: "Do you want to deduct the amount from your total amount ?", preferredStyle: .alert)
-    alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { action in
+    let alert = UIAlertController(title: "Alert".localize(), message: "Do you want to deduct the amount from your total amount ?".localize(), preferredStyle: .alert)
+    
+    alert.addAction(UIAlertAction(title: "Yes".localize(), style: .default, handler: { action in
       self.updateTotalAmounts()
     }))
-    alert.addAction(UIAlertAction(title: "No", style: .default, handler: { action in }))
+    
+    alert.addAction(UIAlertAction(title: "No".localize(), style: .default, handler: { action in }))
     self.present(alert, animated: true, completion: nil)
     
     
-    Firestore.firestore().collection("Payments").document((commitment?.commitmentID)!).collection("months").document(payments[index].monnthID!).updateData(["status" : "paid"]) { [self] error in
+    Firestore.firestore().collection(FSCollectionReference.Payments.rawValue).document((commitment?.commitmentID)!).collection(FSCollectionReference.months.rawValue).document(payments[index].monnthID!).updateData(["status" : "paid"]) { [self] error in
       if error == nil {
         getAllPayments(id: (commitment?.commitmentID)!)
       }
@@ -174,7 +177,7 @@ extension CommitmentDetailVC : CommitmentDetailCellDelegate {
   
   func updateTotalAmounts() {
     guard let userID = Auth.auth().currentUser?.uid else {return}
-    Firestore.firestore().collection("totalAmount").document(userID).getDocument {
+    Firestore.firestore().collection(FSCollectionReference.totalAmount.rawValue).document(userID).getDocument {
       (snapshot, error) in
       guard let data = snapshot?.data() else
       { return }
@@ -182,10 +185,10 @@ extension CommitmentDetailVC : CommitmentDetailCellDelegate {
         if let amount = Int((self.commitment?.amount)!) {
           let newTotal = totalAmount - amount
           guard let userID = Auth.auth().currentUser?.uid else {return}
-          Firestore.firestore().collection("totalAmount").document(userID).setData(["total":newTotal]) { error in
+          Firestore.firestore().collection(FSCollectionReference.totalAmount.rawValue).document(userID).setData(["total":newTotal]) { error in
             if error == nil {
               
-              self.showAlert123(alertTitle: "Alert", message: "payment done successfully form your balance. \n your new balance is".localize() + " : \(newTotal)", buttonTitle: "Ok", goBackAction: false)
+              self.showAlert(alertTitle: "Alert".localize(), message: "payment done successfully form your balance. \n your new balance is".localize() + " : \(newTotal)", buttonTitle: "Ok".localize(), goBackAction: false)
             }
           }
         }

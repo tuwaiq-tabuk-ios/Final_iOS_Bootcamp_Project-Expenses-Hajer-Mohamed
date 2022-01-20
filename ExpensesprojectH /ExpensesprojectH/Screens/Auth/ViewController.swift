@@ -8,6 +8,7 @@
 import UIKit
 
 class ViewController: UIViewController{
+  
   //  MARK: -Properties
 
   var timer : Timer?
@@ -23,6 +24,7 @@ class ViewController: UIViewController{
   @IBOutlet weak var registrationButton: UIButton!
   @IBOutlet weak var collectionView: UICollectionView!
   @IBOutlet weak var pageControl: UIPageControl!
+  
   
   // MARK: - View lifecycle
   
@@ -50,7 +52,7 @@ class ViewController: UIViewController{
   
   // MARK: -  startTimer
   func startTimer() {
-    timer = Timer.scheduledTimer(timeInterval: 2.5,
+    timer = Timer.scheduledTimer(timeInterval: 3,
                                  target: self,
                                  selector: #selector (moveToNextIndex),
                                  userInfo: nil,
@@ -84,19 +86,28 @@ extension ViewController: UICollectionViewDelegate,
                           UICollectionViewDelegateFlowLayout{
   
   
-  func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+  func collectionView(_ collectionView: UICollectionView,
+                      numberOfItemsInSection section: Int) -> Int {
+    
     return Photos.count
   }
   
   
-  func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "homecell", for: indexPath) as! CollectionVC
+  func collectionView(_ collectionView: UICollectionView,
+                      cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    
+    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "homecell",
+                                                  for: indexPath) as! CollectionVC
+    
     cell.imgProduct.image = Photos[indexPath.row]
     return cell
   }
   
   
-  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+  func collectionView(_ collectionView: UICollectionView,
+                      layout collectionViewLayout: UICollectionViewLayout,
+                      sizeForItemAt indexPath: IndexPath) -> CGSize {
+    
     return CGSize(width: collectionView.frame.width, height: collectionView.frame.height)
   }
   

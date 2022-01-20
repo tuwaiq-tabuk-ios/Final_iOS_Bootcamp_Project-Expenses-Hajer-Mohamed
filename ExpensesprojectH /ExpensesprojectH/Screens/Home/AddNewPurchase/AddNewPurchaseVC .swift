@@ -41,8 +41,8 @@ class AddNewPurchaseVC: UIViewController {
     
     Utilities.styleFilledButton(addNewPurchaseButton)
     
-    
   }
+  
   // MARK: - @IBAction
   
   @IBAction func addNewPurchase(_ sender: UIButton) {
@@ -65,13 +65,14 @@ class AddNewPurchaseVC: UIViewController {
     
   func addNewItem(amount: String, purchaseDescription: String) {
     let purchaseID = UUID().uuidString
-    db.collection("purchases").document(purchaseID).setData([
+    db.collection(FSCollectionReference.purchases.rawValue).document(purchaseID).setData([
       "amount":amount,
       "purchaseDescription":purchaseDescription,
       "timestamp" : Date().timeIntervalSince1970,
       "id" : purchaseID,
       "userID" : Auth.auth().currentUser?.uid
-    ]) { error in
+    ])
+    { error in
       if error != nil {
         // Show error message
         print(error?.localizedDescription ?? "")
@@ -88,10 +89,11 @@ class AddNewPurchaseVC: UIViewController {
   
   func updateTotalAmount(total: Int) {
     guard let userID = Auth.auth().currentUser?.uid else {return}
-    db.collection("totalAmount").document(userID).setData(["total":total])
+    db.collection(FSCollectionReference.totalAmount.rawValue).document(userID).setData(["total":total])
     
-    showAlert123(alertTitle: "Success", message: "Purchase added successfully", buttonTitle: "OK", goBackAction: true)
+    showAlert(alertTitle: "Success", message: "Purchase added successfully", buttonTitle: "OK", goBackAction: true)
   }
+  
   override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
     view.endEditing(true)
   }

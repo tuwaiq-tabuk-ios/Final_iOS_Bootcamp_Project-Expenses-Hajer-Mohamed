@@ -9,6 +9,7 @@ import UIKit
 
 
 class Utilities: UIViewController {
+  
   //  MARK: - Method styleTextField
   
   static func styleTextField(_ textfield:UITextField) {
@@ -24,13 +25,13 @@ class Utilities: UIViewController {
   }
 //  MARK: - Method styleButton
   
-  
-  static func styleFilledButton(_ button:UIButton) {
+    static func styleFilledButton(_ button:UIButton) {
       
       button.backgroundColor =  #colorLiteral(red: 0.2091423273, green: 0.4873036742, blue: 0.4300398827, alpha: 1)
       button.layer.cornerRadius = 25
       button.tintColor = UIColor.white
   }
+  
   
   static func styleHollowButton(_ button:UIButton) {
       
@@ -39,11 +40,4 @@ class Utilities: UIViewController {
       button.layer.cornerRadius = 25.0
       button.tintColor = UIColor.black
   }
-  
-  static func isPasswordValid(_ password : String) -> Bool {
-      
-      let passwordTest = NSPredicate(format: "SELF MATCHES %@", "^(?=.*[a-z])(?=.*[$@$#!%*?&])[A-Za-z\\d$@$#!%*?&]{8,}")
-      return passwordTest.evaluate(with: password)
-  }
-  
 }

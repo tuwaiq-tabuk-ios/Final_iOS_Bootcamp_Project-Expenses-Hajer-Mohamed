@@ -8,15 +8,11 @@
 import UIKit
 import Firebase
 
-enum FSCollectionReference : String {
-  case users
-}
-
 class FSUserManager {
   
   static var shared = FSUserManager()
   
-  //  MARK: -Register
+  // MARK: - Register
   
   func signUpUserWith(firstName: String,
                       lastName: String,
@@ -27,29 +23,28 @@ class FSUserManager {
     
     Auth.auth().createUser(withEmail: email, password: password) { (result, err) in
       
+      
       if err != nil {
-        
-        self.showError("Error creating user".localize(),
+        self.showError("Error creating user , try again!".localize(),
                        messageLabel: messageLabel)
       }
       else {
+        
         let db = Firestore.firestore()
         
-        db.collection(FSCollectionReference.users.rawValue).addDocument(data: ["firstname": firstName,
-                                                                               "lastname": lastName,
-                                                                               "uid": result!.user.uid,
-                                                                               "email" : email]) { (error) in
+        db.collection(FSCollectionReference.users.rawValue).addDocument(data: ["firstname": firstName, "lastname": lastName, "uid": result!.user.uid, "email" : email]) { (error) in
           
           if error != nil {
-            // Show error message
-            self.showError("Error saving user data".localize(),
-                           messageLabel: messageLabel)
+            
+            self.showError("Error saving user data , try again!".localize(), messageLabel: messageLabel)
           }
         }
         completion()
       }
     }
   }
+  
+  // MARK: - method signInUser
   
   func signInUser(email: String,
                   password: String,
@@ -69,8 +64,11 @@ class FSUserManager {
   }
   
   
+  // MARK: - method showError
+  
   func showError(_ message:String, messageLabel : UILabel) {
     messageLabel.text = message
     messageLabel.alpha = 1
   }
+  
 }
