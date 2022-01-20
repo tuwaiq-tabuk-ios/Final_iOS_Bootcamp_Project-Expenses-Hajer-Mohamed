@@ -10,6 +10,8 @@ import Firebase
 
 class WalletVC: UIViewController {
   
+  //  MARK: -Properties
+
   let db = Firestore.firestore()
   var wallets: [Wallet] = []
   var arrWallets = [UIImage(named: "Imagewallet-2")!,
@@ -45,7 +47,9 @@ class WalletVC: UIViewController {
     refreshControl.addTarget(self, action: #selector(getData), for: .valueChanged)
     
     tapleView.addSubview(refreshControl)
-    let nip = UINib(nibName: "WalletTVC", bundle: nil)
+    let nip = UINib(nibName: "WalletTVC",
+                    bundle: nil)
+    
     tapleView.register(nip, forCellReuseIdentifier: "WalletTVC")
   }
   
@@ -67,7 +71,8 @@ class WalletVC: UIViewController {
                                  userInfo: nil, repeats: true)
   }
   
-  
+  // MARK: -Method moveToNextIndex
+
   @objc func moveToNextIndex(){
     if currentCellIndex < arrWallets.count - 1{
       currentCellIndex += 1
@@ -81,10 +86,10 @@ class WalletVC: UIViewController {
     pageControl.currentPage = currentCellIndex
   }
   
-  
-  @objc func getData() {
-    db.collection("wallets").order(by: "timestamp",
-                                   descending: true).getDocuments { ( snapshot, error) in
+  // MARK: -  Method getData
+
+    @objc func getData() {
+    db.collection("wallets").order(by: "timestamp", descending: true).getDocuments { ( snapshot, error) in
       if error != nil {
         print("Error")
       } else {
@@ -93,16 +98,20 @@ class WalletVC: UIViewController {
           for document in snapshot.documents {
             let wallet = Wallet(id: document["id"] as?
                                 String, walletName: document["walletName"] as?
-                                String ?? "",balance: document["balance"] as? String ?? "", category: document["category"] as? String ?? "")
-            self.wallets.append(wallet)
+                                String ?? "",balance: document["balance"] as? String ?? "", category: document["category"] as? String ?? "", userID: document["userID"] as? String)
+            if wallet.userID == Auth.auth().currentUser?.uid {
+              self.wallets.append(wallet)
+            }
+            
           }
-          self.refreshControl.endRefreshing()
           self.tapleView.reloadData()
         }
       }
     }
   }
 }
+
+
 
 // MARK: - extension UITableView
 

@@ -18,7 +18,7 @@ class HomeVC: UIViewController {
   @IBOutlet weak var totalAmountTextField: UITextField!
   @IBOutlet weak var tableView: UITableView!
   @IBOutlet weak var addPurchaseButton: UIButton!
-
+  
   
   
   // MARK: - View lifecycle
@@ -26,7 +26,7 @@ class HomeVC: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     Utilities.styleFilledButton(addPurchaseButton)
-
+    
     
     tableView.dataSource = self
     tableView.delegate = self
@@ -57,6 +57,7 @@ class HomeVC: UIViewController {
   
   @IBAction func addNewPurchase(_ sender: UIButton) {
     
+    
     guard let amount = totalAmountTextField.text, !amount.isEmpty else {
       UIHelper.makeToast(text: "Please enter total amount first".localize())
       return
@@ -74,31 +75,34 @@ class HomeVC: UIViewController {
     self.navigationController?.pushViewController(viewController, animated: true)
   }
   
-  
+  // MARK: - Method getdata()
   @objc func getdata() {
-    db.collection("purchases").order(by: "timestamp",
-                                     descending: true)
-      .getDocuments { (snapshot, error) in
-        if error != nil {
-          print("Error")
-        }
-        else {
-          if let snapshot = snapshot {
-            self.purchases.removeAll()
-            for document in snapshot.documents {
-              let purchase = PurchaseAmount(id: document["id"] as? String, amount:document["amount"] as? String ?? "", description: document["purchaseDescription"] as? String ?? "")
+    db.collection("purchases").order(by: "timestamp", descending: true).getDocuments { (snapshot, error) in
+      if error != nil {
+        print("Error")
+      } else {
+        if let snapshot = snapshot {
+          self.purchases.removeAll()
+          for document in snapshot.documents {
+            let purchase = PurchaseAmount(id: document["id"] as? String, amount:document["amount"] as? String ?? "", description: document["purchaseDescription"] as? String ?? "", userID: document["userID"] as? String)
+            
+            if purchase.userID == Auth.auth().currentUser!.uid {
               self.purchases.append(purchase)
             }
-            self.refreshControl.endRefreshing()
-            self.tableView.reloadData()
+            
           }
+          self.refreshControl.endRefreshing()
+          self.tableView.reloadData()
         }
       }
+    }
   }
   
   override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
     view.endEditing(true)
   }
+  
+  // MARK: - Method getTotalAmounts()
   
   func getTotalAmounts() {
     guard let userID = Auth.auth().currentUser?.uid else {return}
@@ -112,6 +116,9 @@ class HomeVC: UIViewController {
     }
   }
   
+  
+  // MARK: - Method updateTotalAmount()
+  
   func updateTotalAmount(total: Int) {
     guard let userID = Auth.auth().currentUser?.uid else {return}
     db.collection("totalAmount").document(userID).setData(["total":total])
@@ -119,6 +126,7 @@ class HomeVC: UIViewController {
 }
 
 
+// MARK: - extension UITableView
 extension HomeVC: UITableViewDataSource, UITableViewDelegate {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return purchases.count
@@ -127,26 +135,33 @@ extension HomeVC: UITableViewDataSource, UITableViewDelegate {
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     
-    let Cell = tableView.dequeueReusableCell(withIdentifier: "PurchaseTVC" , for: indexPath) as! PurchaseTVC
+    let Cell = tableView.dequeueReusableCell(withIdentifier: "PurchaseTVC") as! PurchaseTVC
     
     Cell.configureCell(purchase: purchases[indexPath.row])
+    
     return Cell
   }
-
+  
+  func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+    return true
+  }
+  
+  
+  func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+    purchases.swapAt(sourceIndexPath.row, destinationIndexPath.row)
+    
+  }
+  
+  
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     print(purchases[indexPath.row])
   }
   
   func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
     if editingStyle == .delete {
-      
-//      if let purchase = purchases[indexPath.row].id {
-        
-        guard let userID = Auth.auth().currentUser?.uid else {return}
-        
-        db.collection("purchases").document(userID).delete { error in
+      if let purchase = purchases[indexPath.row].id {
+        db.collection("purchases").document(purchase).delete { error in
           if error == nil {
-//            self.purchases.removeAll()
             self.purchases.remove(at: indexPath.row)
             tableView.beginUpdates()
             tableView.deleteRows(at: [indexPath], with: .top)
@@ -158,7 +173,10 @@ extension HomeVC: UITableViewDataSource, UITableViewDelegate {
       }
     }
   }
+  
+}
 
+// MARK: - extension UITextFieldDelegate
 
 extension HomeVC: UITextFieldDelegate {
   func textFieldDidEndEditing(_ textField: UITextField) {
@@ -169,5 +187,7 @@ extension HomeVC: UITextFieldDelegate {
     }
   }
 }
+
+
 
 

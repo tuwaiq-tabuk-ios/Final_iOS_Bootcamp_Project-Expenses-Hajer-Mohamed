@@ -20,7 +20,9 @@ class ProfileViewController: UIViewController,
   @IBOutlet weak var emailLabel: UILabel!
   @IBOutlet weak var signoutButton: UIButton!
   
-  // MARK: -  viewDidLoad
+  
+  // MARK: - View lifecycle
+
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -29,7 +31,7 @@ class ProfileViewController: UIViewController,
     emailLabel.transform = CGAffineTransform(scaleX: 0, y: 0)
     
     Utilities.styleFilledButton(signoutButton)
-    signoutButton.backgroundColor = #colorLiteral(red: 0.2466930747, green: 0.5560029149, blue: 0.4963359237, alpha: 1)
+    signoutButton.backgroundColor = #colorLiteral(red: 0.1585913897, green: 0.3615210354, blue: 0.3202966154, alpha: 1)
     
     nameLabel.layer.cornerRadius = 25
     emailLabel.layer.cornerRadius = 25
@@ -39,7 +41,8 @@ class ProfileViewController: UIViewController,
     getUserProfile()
   }
   
-  // MARK: -  getUserProfile
+  
+  // MARK: - Method getUserProfile
   func getUserProfile() {
     guard let userID = Auth.auth().currentUser?.uid else {return}
     
@@ -60,6 +63,7 @@ class ProfileViewController: UIViewController,
       }
     }
   }
+  
   // MARK: - @IBAction
   
   @IBAction func signoutAction(_ sender: UIButton) {
@@ -108,6 +112,8 @@ class ProfileViewController: UIViewController,
   }
   
   
+  // MARK: - Method
+
   func configureMailComposer() -> MFMailComposeViewController{
     let mailComposeVC = MFMailComposeViewController()
     mailComposeVC.mailComposeDelegate = self

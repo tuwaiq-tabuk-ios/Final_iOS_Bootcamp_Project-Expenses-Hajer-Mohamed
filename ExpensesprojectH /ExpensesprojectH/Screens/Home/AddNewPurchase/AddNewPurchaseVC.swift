@@ -20,14 +20,14 @@ class AddNewPurchaseVC: UIViewController {
   @IBOutlet weak var addNewPurchaseButton: UIButton!
   
   // MARK: - View lifecycle
-
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     setupUI()
   }
   
-  // MARK: - setupUI
-
+// MARK: -Method setupUI
+  
   func setupUI() {
     descriptionTextView.layer.borderWidth = 1
     descriptionTextView.layer.borderColor = UIColor.gray.cgColor
@@ -47,29 +47,33 @@ class AddNewPurchaseVC: UIViewController {
   
   @IBAction func addNewPurchase(_ sender: UIButton) {
     
-    guard let amount = amountTextField.text, !amount.isEmpty else {
+    guard let amount = amountTextField.text,
+          !amount.isEmpty else {
       UIHelper.makeToast(text: "Please Enter Purchase Amount".localize())
       return
     }
     
-    guard let description = descriptionTextView.text, !description.isEmpty else {
+    guard let description = descriptionTextView.text,
+          !description.isEmpty else {
       UIHelper.makeToast(text: "Please Enter Purchase Description".localize())
       return
     }
     self.addNewItem(amount: amount, purchaseDescription: description)
   }
   
-  
+  // MARK: -Method addNewItem
+    
   func addNewItem(amount: String, purchaseDescription: String) {
     let purchaseID = UUID().uuidString
     db.collection("purchases").document(purchaseID).setData([
       "amount":amount,
       "purchaseDescription":purchaseDescription,
       "timestamp" : Date().timeIntervalSince1970,
-      "id" : purchaseID
-    ])
-    { error in
+      "id" : purchaseID,
+      "userID" : Auth.auth().currentUser?.uid
+    ]) { error in
       if error != nil {
+        // Show error message
         print(error?.localizedDescription ?? "")
       } else {
         
@@ -78,8 +82,9 @@ class AddNewPurchaseVC: UIViewController {
     }
   }
   
-  // MARK: - updateTotalAmount
-
+  
+  // MARK: -  Method updateTotalAmount
+  
   
   func updateTotalAmount(total: Int) {
     guard let userID = Auth.auth().currentUser?.uid else {return}

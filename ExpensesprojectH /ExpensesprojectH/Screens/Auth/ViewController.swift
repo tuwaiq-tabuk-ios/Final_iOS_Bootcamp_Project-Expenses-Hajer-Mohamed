@@ -8,7 +8,8 @@
 import UIKit
 
 class ViewController: UIViewController{
-  
+  //  MARK: -Properties
+
   var timer : Timer?
   var currentCellIndex = 0
   var Photos = [UIImage(named: "Photo1")!,
@@ -18,8 +19,8 @@ class ViewController: UIViewController{
   
   // MARK: - @IBOutlet
   
-  @IBOutlet weak var signUpButton: UIButton!
-  @IBOutlet weak var loginButton: UIButton!
+  
+  @IBOutlet weak var registrationButton: UIButton!
   @IBOutlet weak var collectionView: UICollectionView!
   @IBOutlet weak var pageControl: UIPageControl!
   
@@ -71,8 +72,8 @@ class ViewController: UIViewController{
   
   
   func setUpElements() {
-    Utilities.styleFilledButton(signUpButton)
-    Utilities.styleFilledButton(loginButton)
+   
+    Utilities.styleFilledButton(registrationButton)
   }
 }
 

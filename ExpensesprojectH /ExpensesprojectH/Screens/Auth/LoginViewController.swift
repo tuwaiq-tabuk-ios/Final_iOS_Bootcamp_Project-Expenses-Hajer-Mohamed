@@ -10,6 +10,10 @@ import FirebaseAuth
 
 class LoginViewController: UIViewController {
   
+ 
+  var emailCheck = false
+  var passwordCheck = false
+  
   // MARK: - @IBOutlet
   
   @IBOutlet weak var emailTextField: UITextField!
@@ -17,6 +21,8 @@ class LoginViewController: UIViewController {
   @IBOutlet weak var loginButton: UIButton!
   @IBOutlet weak var errorLabel: UILabel!
   @IBOutlet weak var showPasswordButton: UIButton!
+  
+  // MARK: - View lifecycle
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -48,45 +54,40 @@ class LoginViewController: UIViewController {
     passworsIsAppear.toggle()
   }
   
-  var emailCheck = false
-  var passwordCheck = false
+
   
   @IBAction func loginPressed(_ sender: Any) {
-
-    if let email = emailTextField.text, email.isEmpty == false {
-        emailCheck = true
+    
+    // Create cleaned versions of the text field
+    
+    if let email = emailTextField.text,
+       email.isEmpty == false {
+      emailCheck = true
     } else {
-        emailCheck = false
-        emailTextField.animateView()
+      emailCheck = false
+      emailTextField.animateView()
     }
     
-    if let password = passwordTextField.text, password.isEmpty == false {
-        passwordCheck = true
+    if let password = passwordTextField.text,
+       password.isEmpty == false {
+      passwordCheck = true
     } else {
-        passwordCheck = false
-        passwordTextField.animateView()
+      passwordCheck = false
+      passwordTextField.animateView()
     }
     
     if emailCheck == true, passwordCheck == true {
-        Auth.auth().signIn(withEmail: emailTextField.text!,
-                           password: passwordTextField.text!)
-      { (result, error) in
-            
-            if error != nil {
-                self.errorLabel.text = error!.localizedDescription
-                self.errorLabel.alpha = 1
-            }
-            else {
-                
-                let homeViewController = self.storyboard?.instantiateViewController(identifier: K.Storyboard.homeViewController)
-                
-                self.view.window?.rootViewController = homeViewController
-                self.view.window?.makeKeyAndVisible()
-            }
-        }
+      // Signing in the user
+      FSUserManager.shared.signInUser(email: emailTextField.text!,
+                                      password: passwordTextField.text!,
+                                      messageLabel: errorLabel) {
+        
+        let homeViewController = self.storyboard?.instantiateViewController(identifier: K.Storyboard.homeViewController)
+        self.view.window?.rootViewController = homeViewController
+        self.view.window?.makeKeyAndVisible()
+      }
     }
+  }
 }
-}
-
 
 

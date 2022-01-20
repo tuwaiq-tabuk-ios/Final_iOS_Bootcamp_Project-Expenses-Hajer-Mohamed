@@ -11,6 +11,8 @@ import Firebase
 
 class CheckUserLoginViewController: UIViewController {
   
+  
+  // MARK: - View lifecycle
   override func viewDidLoad() {
     super.viewDidLoad()
     
@@ -30,6 +32,7 @@ class CheckUserLoginViewController: UIViewController {
       let vc = self.storyboard?.instantiateViewController(withIdentifier: "HomeVC")
       vc?.modalPresentationStyle = .fullScreen
       vc?.modalTransitionStyle = .crossDissolve
+
       DispatchQueue.main.async {
         self.present(vc!, animated: true, completion: nil)
       }

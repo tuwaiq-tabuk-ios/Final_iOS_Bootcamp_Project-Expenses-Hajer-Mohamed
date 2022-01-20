@@ -12,8 +12,8 @@ protocol CommitmentDetailCellDelegate {
 }
 
 class CommitmentDetailCell: UITableViewCell {
+    var delegate : CommitmentDetailCellDelegate!
   
-  var delegate : CommitmentDetailCellDelegate!
   
   // MARK: - @IBOutlet
   @IBOutlet weak var paymentButton: UIButton!
@@ -24,7 +24,8 @@ class CommitmentDetailCell: UITableViewCell {
     paymentButton.layer.cornerRadius = 15
   }
   
-  // MARK: - @IBAction 
+  // MARK: - @IBAction
+  
   @IBAction func paymentButtonAction(_ sender: UIButton) {
     delegate.paymentButtonTapped(index: sender.tag)
   }

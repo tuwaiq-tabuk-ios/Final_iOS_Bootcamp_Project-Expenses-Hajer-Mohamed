@@ -22,6 +22,8 @@ class PurchaseTVC: UITableViewCell {
   }
   
   
+  // MARK: - Method configureCell
+
   func configureCell(purchase: PurchaseAmount) {
     descriptionLabel.text = purchase.description
     amountLabel.text = purchase.amount ?? "0" + " SR".localize()

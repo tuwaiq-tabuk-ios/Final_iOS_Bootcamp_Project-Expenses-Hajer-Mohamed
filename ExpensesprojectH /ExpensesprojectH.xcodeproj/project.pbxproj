@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		070DA62C277FA18400BD2440 /* CommitmentsTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 070DA62B277FA18400BD2440 /* CommitmentsTVC.swift */; };
-		070DA62E277FA3DF00BD2440 /* MycommitmentsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 070DA62D277FA3DF00BD2440 /* MycommitmentsVC.swift */; };
+		070DA62E277FA3DF00BD2440 /* CommitmentsTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 070DA62D277FA3DF00BD2440 /* CommitmentsTableVC.swift */; };
 		070DA630277FA65400BD2440 /* CommitmentsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 070DA62F277FA65400BD2440 /* CommitmentsModel.swift */; };
 		0718F2292778986200DB67A3 /* CreateNewWalletVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0718F2282778986200DB67A3 /* CreateNewWalletVC.swift */; };
 		0718F22B2778D6C700DB67A3 /* UIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0718F22A2778D6C700DB67A3 /* UIHelper.swift */; };
@@ -19,6 +19,7 @@
 		073157262774644C002627B7 /* AddNewPurchaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073157252774644C002627B7 /* AddNewPurchaseVC.swift */; };
 		0731573B27763C00002627B7 /* CollectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0731573A27763C00002627B7 /* CollectionVC.swift */; };
 		0731574327788088002627B7 /* WalletVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0731574227788088002627B7 /* WalletVC.swift */; };
+		0733B5C127972F08008B8210 /* FSUserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0733B5C027972F08008B8210 /* FSUserManager.swift */; };
 		075B1C332786315100F11583 /* PaymentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075B1C322786315100F11583 /* PaymentModel.swift */; };
 		075B1C3E27869BE100F11583 /* Localization.strings in Resources */ = {isa = PBXBuildFile; fileRef = 075B1C4027869BE100F11583 /* Localization.strings */; };
 		075B1C452786A94400F11583 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075B1C442786A94400F11583 /* Extensions.swift */; };
@@ -33,7 +34,6 @@
 		07AD24BC277060510015076B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07AD24BB277060510015076B /* SceneDelegate.swift */; };
 		07AD24BE277060510015076B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07AD24BD277060510015076B /* ViewController.swift */; };
 		07AD24C1277060510015076B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07AD24BF277060510015076B /* Main.storyboard */; };
-		07AD24C3277060560015076B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 07AD24C2277060560015076B /* Assets.xcassets */; };
 		07AD24C6277060560015076B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07AD24C4277060560015076B /* LaunchScreen.storyboard */; };
 		07C6BD5827707A0F00E8BEFA /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C6BD5727707A0F00E8BEFA /* Utilities.swift */; };
 		07C6BD5A27707C1F00E8BEFA /* SingUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C6BD5927707C1F00E8BEFA /* SingUpViewController.swift */; };
@@ -44,12 +44,13 @@
 		07CC76C8277B0276004A6117 /* WalletTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CC76C7277B0276004A6117 /* WalletTVC.swift */; };
 		07E2EAAD2784DD130066869B /* CheckUserLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E2EAAC2784DD130066869B /* CheckUserLoginViewController.swift */; };
 		07E2EAAF27856E550066869B /* CommitmentDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E2EAAE27856E550066869B /* CommitmentDetailVC.swift */; };
+		07E81DDF27987A5700F1214B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 07E81DDE27987A5600F1214B /* Assets.xcassets */; };
 		DCB61E69DF8D8AA505D42800 /* Pods_ExpensesprojectH.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DB91D1C592B2EDDD06049A0 /* Pods_ExpensesprojectH.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		070DA62B277FA18400BD2440 /* CommitmentsTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommitmentsTVC.swift; sourceTree = "<group>"; };
-		070DA62D277FA3DF00BD2440 /* MycommitmentsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MycommitmentsVC.swift; sourceTree = "<group>"; };
+		070DA62D277FA3DF00BD2440 /* CommitmentsTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommitmentsTableVC.swift; sourceTree = "<group>"; };
 		070DA62F277FA65400BD2440 /* CommitmentsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommitmentsModel.swift; sourceTree = "<group>"; };
 		0718F2282778986200DB67A3 /* CreateNewWalletVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewWalletVC.swift; sourceTree = "<group>"; };
 		0718F22A2778D6C700DB67A3 /* UIHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIHelper.swift; sourceTree = "<group>"; };
@@ -60,6 +61,7 @@
 		073157252774644C002627B7 /* AddNewPurchaseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewPurchaseVC.swift; sourceTree = "<group>"; };
 		0731573A27763C00002627B7 /* CollectionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionVC.swift; sourceTree = "<group>"; };
 		0731574227788088002627B7 /* WalletVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletVC.swift; sourceTree = "<group>"; };
+		0733B5C027972F08008B8210 /* FSUserManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FSUserManager.swift; sourceTree = "<group>"; };
 		075B1C322786315100F11583 /* PaymentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentModel.swift; sourceTree = "<group>"; };
 		075B1C3B27869B8500F11583 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Main.strings; sourceTree = "<group>"; };
 		075B1C3F27869BE100F11583 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localization.strings; sourceTree = "<group>"; };
@@ -78,7 +80,6 @@
 		07AD24BB277060510015076B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		07AD24BD277060510015076B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		07AD24C0277060510015076B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		07AD24C2277060560015076B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		07AD24C5277060560015076B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		07AD24C7277060560015076B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		07C6BD5727707A0F00E8BEFA /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
@@ -90,6 +91,7 @@
 		07CC76C7277B0276004A6117 /* WalletTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletTVC.swift; sourceTree = "<group>"; };
 		07E2EAAC2784DD130066869B /* CheckUserLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckUserLoginViewController.swift; sourceTree = "<group>"; };
 		07E2EAAE27856E550066869B /* CommitmentDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommitmentDetailVC.swift; sourceTree = "<group>"; };
+		07E81DDE27987A5600F1214B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		470612B9D1C6242A21DE25BA /* Pods-ExpensesprojectH.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExpensesprojectH.debug.xcconfig"; path = "Target Support Files/Pods-ExpensesprojectH/Pods-ExpensesprojectH.debug.xcconfig"; sourceTree = "<group>"; };
 		5EE16EF8D9A6F2E1E9D178CB /* Pods-ExpensesprojectH.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExpensesprojectH.release.xcconfig"; path = "Target Support Files/Pods-ExpensesprojectH/Pods-ExpensesprojectH.release.xcconfig"; sourceTree = "<group>"; };
 		9DB91D1C592B2EDDD06049A0 /* Pods_ExpensesprojectH.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ExpensesprojectH.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -182,9 +184,9 @@
 		0731573C2776582A002627B7 /* Support */ = {
 			isa = PBXGroup;
 			children = (
+				07E81DDE27987A5600F1214B /* Assets.xcassets */,
 				07AD24B9277060510015076B /* AppDelegate.swift */,
 				07AD24BB277060510015076B /* SceneDelegate.swift */,
-				07AD24C2277060560015076B /* Assets.xcassets */,
 				075B1C4027869BE100F11583 /* Localization.strings */,
 				07AD24C4277060560015076B /* LaunchScreen.storyboard */,
 			);
@@ -226,7 +228,7 @@
 			isa = PBXGroup;
 			children = (
 				07803F20277D874C001CAC3D /* CommitmentsVC.swift */,
-				070DA62D277FA3DF00BD2440 /* MycommitmentsVC.swift */,
+				070DA62D277FA3DF00BD2440 /* CommitmentsTableVC.swift */,
 				07E2EAAE27856E550066869B /* CommitmentDetailVC.swift */,
 				07A23B5E278584AF00E649F0 /* CommitmentDetailCell.swift */,
 				070DA6312781819F00BD2440 /* Cell */,
@@ -258,6 +260,7 @@
 			children = (
 				0718F23C2779D22500DB67A3 /* Extension */,
 				0731573C2776582A002627B7 /* Support */,
+				07E81DDD27986B3900F1214B /* Manager */,
 				07C6BD622770903400E8BEFA /* Helpers */,
 				07C6BD6127708FFD00E8BEFA /* Screens */,
 				0731573F27765BC4002627B7 /* View */,
@@ -304,6 +307,14 @@
 				07CC76C7277B0276004A6117 /* WalletTVC.swift */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		07E81DDD27986B3900F1214B /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				0733B5C027972F08008B8210 /* FSUserManager.swift */,
+			);
+			path = Manager;
 			sourceTree = "<group>";
 		};
 		4DAD363771480916B8184421 /* Frameworks */ = {
@@ -390,7 +401,7 @@
 				07AD24C6277060560015076B /* LaunchScreen.storyboard in Resources */,
 				076CAB602770656F008FEFD2 /* GoogleService-Info.plist in Resources */,
 				075B1C3E27869BE100F11583 /* Localization.strings in Resources */,
-				07AD24C3277060560015076B /* Assets.xcassets in Resources */,
+				07E81DDF27987A5700F1214B /* Assets.xcassets in Resources */,
 				07AD24C1277060510015076B /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -462,7 +473,8 @@
 				07C6BD6027708F4400E8BEFA /* HomeVC.swift in Sources */,
 				07C6BD5A27707C1F00E8BEFA /* SingUpViewController.swift in Sources */,
 				07A23B5F278584AF00E649F0 /* CommitmentDetailCell.swift in Sources */,
-				070DA62E277FA3DF00BD2440 /* MycommitmentsVC.swift in Sources */,
+				070DA62E277FA3DF00BD2440 /* CommitmentsTableVC.swift in Sources */,
+				0733B5C127972F08008B8210 /* FSUserManager.swift in Sources */,
 				07E2EAAF27856E550066869B /* CommitmentDetailVC.swift in Sources */,
 				07C6BD5E27708EA000E8BEFA /* K.swift in Sources */,
 				0718F2292778986200DB67A3 /* CreateNewWalletVC.swift in Sources */,

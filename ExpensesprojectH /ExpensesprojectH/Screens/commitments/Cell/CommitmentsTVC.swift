@@ -9,7 +9,8 @@ import UIKit
 
 class CommitmentsTVC: UITableViewCell {
   
-  
+  //  MARK: -IBOutlet
+
   @IBOutlet weak var containerView: UIView!
   @IBOutlet weak var amountLabel: UILabel!
   @IBOutlet weak var repeatTypeLabel: UILabel!
@@ -24,7 +25,8 @@ class CommitmentsTVC: UITableViewCell {
     containerView.clipsToBounds = true
   }
   
-  
+  // MARK: - Method configureCell
+
   func configureCell(commitments:CommitmentsModel) {
     nameLabel.text = commitments.commitmentName
     amountLabel.text = commitments.amount! + " " + "SR".localize()
