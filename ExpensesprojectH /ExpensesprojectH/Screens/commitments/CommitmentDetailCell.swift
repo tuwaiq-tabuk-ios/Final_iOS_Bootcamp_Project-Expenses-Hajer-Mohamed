@@ -24,6 +24,7 @@ class CommitmentDetailCell: UITableViewCell {
     paymentButton.layer.cornerRadius = 15
   }
   
+  
   // MARK: - @IBAction
   
   @IBAction func paymentButtonAction(_ sender: UIButton) {

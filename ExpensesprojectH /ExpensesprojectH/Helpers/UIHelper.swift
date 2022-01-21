@@ -8,7 +8,7 @@
 import Toast_Swift
 
 class UIHelper {
-    
+  
   class func makeToast(text: String, showInCenter: Bool = false) {
     DispatchQueue.main.async {
       if let window = UIApplication
@@ -16,8 +16,8 @@ class UIHelper {
         if showInCenter {
           window.makeToast(text, point: CGPoint(x: K.screenWidth / 2,
                                                 y: K.screenHeight / 2),
-                                                title: nil,
-                                                image: nil, completion: nil)
+                           title: nil,
+                           image: nil, completion: nil)
         } else {
           window.makeToast(text)
         }

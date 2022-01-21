@@ -25,6 +25,7 @@ class CommitmentsTVC: UITableViewCell {
     containerView.clipsToBounds = true
   }
   
+  
   // MARK: - Method configureCell
 
   func configureCell(commitments:CommitmentsModel) {

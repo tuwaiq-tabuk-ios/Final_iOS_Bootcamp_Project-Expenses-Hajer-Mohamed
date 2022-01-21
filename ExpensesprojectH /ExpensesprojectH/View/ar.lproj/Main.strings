@@ -21,13 +21,13 @@
 "6Py-tL-OeZ.normalTitle" = "انشاء محفظة";
 
 /* Class = "UILabel"; text = "Amount"; ObjectID = "6wq-Ap-Oru"; */
-"6wq-Ap-Oru.text" = "المبلغ";
+"TdZ-Fa-21e.text" = "المبلغ";
 
 /* Class = "UIButton"; normalTitle = "Travel"; ObjectID = "7n9-EI-Ihl"; */
 "7n9-EI-Ihl.normalTitle" = "سفر";
 
 /* Class = "UITextField"; placeholder = "Email"; ObjectID = "81q-Jb-UAI"; */
-"81q-Jb-UAI.placeholder" = "البريد الالكتروني";
+"BmC-0G-rhG.placeholder" = "البريد الالكتروني";
 
 /* Class = "UITabBarItem"; title = "Home"; ObjectID = "8Lk-9k-A93"; */
 "8Lk-9k-A93.title" = "الرئيسية";
@@ -39,10 +39,10 @@
 "9YJ-Mv-rer.normalTitle" = "التعليم";
 
 /* Class = "UITextField"; placeholder = "Password"; ObjectID = "ASB-5W-G6X"; */
-"ASB-5W-G6X.placeholder" = "كلمة المرور";
+"cJa-GK-vpz.placeholder" = "كلمة المرور";
 
-/* Class = "UITextField"; placeholder = "end Data"; ObjectID = "BrW-9N-3Z7"; */
-"BrW-9N-3Z7.placeholder" = "تاريخ الانتهاء";
+///* Class = "UITextField"; placeholder = "end Data"; ObjectID = "BrW-9N-3Z7"; */
+//"uFt-Q8-5sc.placeholder" = "الفترة الزمنية";
 
 /* Class = "UILabel"; text = "Create wallet"; ObjectID = "E56-kd-98s"; */
 "E56-kd-98s.text" = "انشاء محفظة";
@@ -99,13 +99,13 @@
 "Q8R-3T-ROI.normalTitle" = "اضف مشتريات";
 
 /* Class = "UIButton"; normalTitle = "Create New Commitment"; ObjectID = "QJD-Vb-pqX"; */
-"QJD-Vb-pqX.normalTitle" = "التزام جديد";
+"PzE-ci-X3d.normalTitle" = "التزام جديد";
 
 /* Class = "UITextField"; placeholder = "month payment day"; ObjectID = "QiK-Lk-bz3"; */
 "QiK-Lk-bz3.placeholder" = "يوم السداد من كل شهر";
 
 /* Class = "UITextField"; placeholder = "Email"; ObjectID = "SWp-RT-UkL"; */
-"SWp-RT-UkL.placeholder" = "البريد الالكتروني";
+"Ih8-zV-P7u.placeholder" = "البريد الالكتروني";
 
 /* Class = "UIButton"; normalTitle = "Sign Up"; ObjectID = "TUF-p4-7i9"; */
 "TUF-p4-7i9.normalTitle" = "تسجيل جديد";
@@ -120,37 +120,36 @@
 "VvY-VH-gLM.text" = "Label";
 
 /* Class = "UILabel"; text = "Create a new commitments"; ObjectID = "W40-5X-XwC"; */
-"W40-5X-XwC.text" = "التزام جديد";
+"eK5-tS-VNh.text" = "التزام جديد";
 
 /* Class = "UILabel"; text = "Select Category"; ObjectID = "Wdz-yM-WxF"; */
 "Wdz-yM-WxF.text" = "اختر تصنيف";
 
 /* Class = "UITextField"; placeholder = "Last Name"; ObjectID = "WyP-We-yU9"; */
-"WyP-We-yU9.placeholder" = "الاسم الاخير";
+"G3m-bN-CJC.placeholder" = "الاسم الاخير";
 
 /* Class = "UILabel"; text = "Beauty"; ObjectID = "Ye7-sO-XmY"; */
 "Ye7-sO-XmY.text" = "جمال";
 
 /* Class = "UITextField"; placeholder = "Name"; ObjectID = "Yja-bE-CyY"; */
-"Yja-bE-CyY.placeholder" = "الاسم";
+"5hV-ja-lSb.placeholder" = "الاسم";
 
 /* Class = "UILabel"; text = "Payment Will done at 1st Day Of Month"; ObjectID = "Z3s-CO-kTI"; */
-"Z3s-CO-kTI.text" = "موعد السداد في اليوم الاول من كل شهر";
 
 /* Class = "UITextField"; placeholder = "Amount of money"; ObjectID = "aaU-cp-fsx"; */
-"aaU-cp-fsx.placeholder" = "المبلغ";
+"2xe-87-3OQ.placeholder" = "المبلغ";
 
 /* Class = "UITextField"; placeholder = "First Name"; ObjectID = "ads-vC-zGn"; */
-"ads-vC-zGn.placeholder" = "الاسم الاول";
+"Eck-oZ-saW.placeholder" = "الاسم الاول";
 
 /* Class = "UIButton"; normalTitle = "Add Amount"; ObjectID = "agk-Wd-Zbu"; */
-"agk-Wd-Zbu.normalTitle" = "اضافة مبلغ";
+"fZP-11-gGp.normalTitle" = "اضافة مبلغ";
 
 /* Class = "UILabel"; text = "note"; ObjectID = "bNu-zU-Mq2"; */
-"bNu-zU-Mq2.text" = "ملاحظات";
+"6Se-ql-nCz.text" = "ملاحظات";
 
 /* Class = "UITextField"; placeholder = "Password"; ObjectID = "ba6-nz-baP"; */
-"ba6-nz-baP.placeholder" = "كلمة المرور";
+"Ppm-r4-oCT.placeholder" = "كلمة المرور";
 
 /* Class = "UIBarButtonItem"; title = "  "; ObjectID = "boF-BR-hnQ"; */
 "boF-BR-hnQ.title" = "  ";
@@ -162,7 +161,7 @@
 "fNp-it-gdb.normalTitle" = "المنزل";
 
 /* Class = "UIButton"; normalTitle = "Login"; ObjectID = "fjp-M3-CWH"; */
-"fjp-M3-CWH.normalTitle" = "تسجيل الدخول";
+"0p1-hR-Igv.normalTitle" = "تسجيل الدخول";
 
 /* Class = "UILabel"; text = "Education"; ObjectID = "fxZ-Na-gvx"; */
 "fxZ-Na-gvx.text" = "التعليم";
@@ -171,7 +170,7 @@
 "gwf-Dw-U7Q.text" = "Label";
 
 /* Class = "UIButton"; normalTitle = "Login"; ObjectID = "h4i-qn-zrW"; */
-"h4i-qn-zrW.normalTitle" = "تسجيل الدخول";
+"P7C-m6-4cx.normalTitle" = " ابدأ الان";
 
 /* Class = "UILabel"; text = "amount"; ObjectID = "hBf-Gq-dMk"; */
 "hBf-Gq-dMk.text" = "المبلغ";
@@ -183,7 +182,7 @@
 "iOt-on-NvN.text" = "Label";
 
 /* Class = "UITextField"; placeholder = "enter"; ObjectID = "iWR-7K-wyb"; */
-"iWR-7K-wyb.placeholder" = "ادخل";
+"5mO-Nd-bJE.placeholder" = "ادخل";
 
 /* Class = "UILabel"; text = "Total Amount of money"; ObjectID = "iYa-Lb-xxG"; */
 "iYa-Lb-xxG.text" = "المبلغ الاجمالي";
@@ -195,7 +194,7 @@
 "jaF-R2-lSf.text" = "Label";
 
 /* Class = "UIButton"; normalTitle = "Sign Up"; ObjectID = "lsE-84-41M"; */
-"lsE-84-41M.normalTitle" = "تسجيل جديد";
+"5Zg-uV-1xp.normalTitle" = "تسجيل جديد";
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "m5k-C3-yx4"; */
 "m5k-C3-yx4.text" = "Label";
@@ -225,7 +224,7 @@
 "wD0-HW-y4H.text" = "خطآ";
 
 /* Class = "UITextField"; placeholder = "Time Period"; ObjectID = "wE1-4E-aET"; */
-"wE1-4E-aET.placeholder" = "مدة الالتزام";
+"uFt-Q8-5sc.placeholder" = "مدة الالتزام";
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "wQb-Yb-68b"; */
 "wQb-Yb-68b.text" = "Label";
@@ -234,7 +233,7 @@
 "wa5-yP-bnd.title" = "الملف الشخصي";
 
 /* Class = "UIButton"; configuration.title = "Sign Out"; ObjectID = "xAV-o3-tbk"; */
-"xAV-o3-tbk.configuration.title" = "تسجيل الخروج";
+"WzD-RD-hBj.configuration.title" = "تسجيل الخروج";
 
 /* Class = "UIButton"; normalTitle = "Button"; ObjectID = "xAV-o3-tbk"; */
 "xAV-o3-tbk.normalTitle" = "Button";
@@ -244,3 +243,14 @@
 
 /* Class = "UITextField"; placeholder = "Category"; ObjectID = "zga-xP-Qd1"; */
 "zga-xP-Qd1.placeholder" = "تصنيف";
+
+"zv3-xw-VDZ.title" = " ";
+
+"rzd-tD-Cft.placeholder" = "اعد كلمة المرور";
+
+"Irf-of-oLg.text" = "تسجيل جديد";
+"v3w-p6-1LH.text" = " تسجيل الدخول";
+
+"mCU-lK-ftT.normalTitle" = "ليس لديك حساب ؟ سجل الان";
+
+"TtG-hQ-n68.normalTitle" = "عرض جميع الالتزامات ";

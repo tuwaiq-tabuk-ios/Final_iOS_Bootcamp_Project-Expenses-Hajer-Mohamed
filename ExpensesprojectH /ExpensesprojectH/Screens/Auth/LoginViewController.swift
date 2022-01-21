@@ -10,7 +10,8 @@ import FirebaseAuth
 
 class LoginViewController: UIViewController {
   
- 
+  // MARK: -Properties
+  
   var emailCheck = false
   var passwordCheck = false
   
@@ -54,7 +55,6 @@ class LoginViewController: UIViewController {
     passworsIsAppear.toggle()
   }
   
-
   
   @IBAction func loginPressed(_ sender: Any) {
     

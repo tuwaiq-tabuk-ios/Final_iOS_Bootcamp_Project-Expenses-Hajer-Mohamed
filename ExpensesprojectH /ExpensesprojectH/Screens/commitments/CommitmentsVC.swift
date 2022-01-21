@@ -9,6 +9,7 @@ import UIKit
 import Firebase
 
 class CommitmentsVC: UIViewController {
+  
   //  MARK: -Properties
 
   let db = Firestore.firestore()
@@ -44,7 +45,6 @@ class CommitmentsVC: UIViewController {
   // MARK: - @IBAction
   
   @IBAction func createNewCommitment(_ sender: Any) {
-    
     view.endEditing(true)
     
     guard let commitmentName = nameTextField.text , !commitmentName.isEmpty else {
@@ -61,6 +61,8 @@ class CommitmentsVC: UIViewController {
       UIHelper.makeToast(text: "Please Select repeat type".localize())
       return
     }
+    
+    
     // MARK: - DateFormatter()
 
     let formatter = DateFormatter()
@@ -71,7 +73,7 @@ class CommitmentsVC: UIViewController {
     if let user = Auth.auth().currentUser {
       let commitmentID = UUID().uuidString
       
-      db.collection("commitments").document(commitmentID).setData(["uid" : user.uid, "commitmentName":commitmentName, "amount":amount, "period":timePreiod, "timestamp": Date().timeIntervalSince1970, "commitmentDate" : commitmentDate, "commitmentID" : commitmentID]) { (error) in
+      db.collection(FSCollectionReference.commitments.rawValue).document(commitmentID).setData(["uid" : user.uid, "commitmentName":commitmentName, "amount":amount, "period":timePreiod, "timestamp": Date().timeIntervalSince1970, "commitmentDate" : commitmentDate, "commitmentID" : commitmentID]) { (error) in
         
         if error != nil {
           // Show error message
@@ -80,16 +82,17 @@ class CommitmentsVC: UIViewController {
           
           
           for i in 1...self.timePreiod {
-            
-            Firestore.firestore().collection("Payments").document(commitmentID).collection("months").document(UUID().uuidString).setData([
-              "status" : "pinding",
-              "id" : UUID().uuidString,
-              "timestamp" : Date().timeIntervalSince1970,
-              "monthNumber" : i
+              
+              Firestore.firestore().collection(FSCollectionReference.Payments.rawValue).document(commitmentID).collection(FSCollectionReference.months.rawValue).document(UUID().uuidString).setData([
+                  "status" : "pinding",
+                  "id" : UUID().uuidString,
+                  "timestamp" : Date().timeIntervalSince1970,
+                  "monthNumber" : i
               
             ]) { err in
               if err == nil {
-                self.showAlert123(alertTitle: "Success", message: "Commitment added successfully", buttonTitle: "OK")
+                self.showAlert(alertTitle: "Success",
+                               message: "Commitment added successfully", buttonTitle: "OK")
               }
             }
           }
@@ -108,13 +111,16 @@ extension CommitmentsVC: UIPickerViewDataSource,
     return 1
   }
   
+  
   func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
     return months.count
   }
   
+  
   func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
     return "\(months[row])" + " Months".localize()
   }
+  
   
   func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
     timePreiod = months[row]
@@ -122,13 +128,14 @@ extension CommitmentsVC: UIPickerViewDataSource,
     self.typePickerView.isHidden = true
     
     if let amount = amountOfMoneyTextField.text, amount.isEmpty == false {
-      totalAmountLabel.text = "your total amount = \(Int(amount)! * timePreiod)"
+      totalAmountLabel.text = "your total amount = \(Int(amount)! * timePreiod)".localize()
     }
   }
 }
 
 
 // MARK: - UITextFieldDelegate
+
 extension CommitmentsVC: UITextFieldDelegate {
   func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
     if textField == timePeriodTextField {
@@ -141,7 +148,7 @@ extension CommitmentsVC: UITextFieldDelegate {
   
   func textFieldDidEndEditing(_ textField: UITextField) {
     if let amount = amountOfMoneyTextField.text, amount.isEmpty == false, let period = timePeriodTextField.text, period.isEmpty == false {
-      totalAmountLabel.text = "your total amount = \(Int(amount)! * timePreiod)"
+      totalAmountLabel.text = "your total amount = \(Int(amount)! * timePreiod)".localize()
     }
   }
 }

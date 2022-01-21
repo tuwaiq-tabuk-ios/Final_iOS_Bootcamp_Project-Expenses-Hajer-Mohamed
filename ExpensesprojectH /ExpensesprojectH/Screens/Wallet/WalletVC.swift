@@ -44,7 +44,9 @@ class WalletVC: UIViewController {
     startTimer()
     
     refreshControl.tintColor = .gray
-    refreshControl.addTarget(self, action: #selector(getData), for: .valueChanged)
+    refreshControl.addTarget(self,
+                             action: #selector(getData),
+                             for: .valueChanged)
     
     tapleView.addSubview(refreshControl)
     let nip = UINib(nibName: "WalletTVC",
@@ -89,7 +91,7 @@ class WalletVC: UIViewController {
   // MARK: -  Method getData
 
     @objc func getData() {
-    db.collection("wallets").order(by: "timestamp", descending: true).getDocuments { ( snapshot, error) in
+    db.collection(FSCollectionReference.wallets.rawValue).order(by: "timestamp", descending: true).getDocuments { ( snapshot, error) in
       if error != nil {
         print("Error")
       } else {
@@ -116,7 +118,8 @@ class WalletVC: UIViewController {
 // MARK: - extension UITableView
 
 
-extension WalletVC : UITableViewDelegate, UITableViewDataSource {
+extension WalletVC : UITableViewDelegate,
+                     UITableViewDataSource {
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return wallets.count
@@ -126,7 +129,7 @@ extension WalletVC : UITableViewDelegate, UITableViewDataSource {
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) ->
   UITableViewCell {
     
-    let Cell = tableView.dequeueReusableCell(withIdentifier: "WalletTVC" , for: indexPath) as! WalletTVC
+    let Cell = tableView.dequeueReusableCell(withIdentifier: "WalletTVC", for: indexPath) as! WalletTVC
     
     
     Cell.configureCell(wallet: wallets [indexPath.row])
@@ -144,7 +147,7 @@ extension WalletVC : UITableViewDelegate, UITableViewDataSource {
       
       if let walletID = wallets[indexPath.row].id {
         
-        db.collection("wallets").document(walletID).delete { error in
+        db.collection(FSCollectionReference.wallets.rawValue).document(walletID).delete { error in
           if error == nil {
             self.wallets.remove(at: indexPath.row)
             tableView.beginUpdates()
@@ -187,6 +190,7 @@ extension WalletVC: UICollectionViewDelegate,
   
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
     return 0
+    
   }
 }
 

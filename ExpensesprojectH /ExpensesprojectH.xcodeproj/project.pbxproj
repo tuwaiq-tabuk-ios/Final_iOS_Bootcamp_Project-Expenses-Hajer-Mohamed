@@ -16,7 +16,7 @@
 		0718F22F2778E77800DB67A3 /* PurchaseAmount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0718F22E2778E77800DB67A3 /* PurchaseAmount.swift */; };
 		0728E52D278194FC00AE117B /* SelectCategoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0728E52C278194FC00AE117B /* SelectCategoryVC.swift */; };
 		0728E52F2782D4DC00AE117B /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0728E52E2782D4DC00AE117B /* ProfileViewController.swift */; };
-		073157262774644C002627B7 /* AddNewPurchaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073157252774644C002627B7 /* AddNewPurchaseVC.swift */; };
+		073157262774644C002627B7 /* AddNewPurchaseVC .swift in Sources */ = {isa = PBXBuildFile; fileRef = 073157252774644C002627B7 /* AddNewPurchaseVC .swift */; };
 		0731573B27763C00002627B7 /* CollectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0731573A27763C00002627B7 /* CollectionVC.swift */; };
 		0731574327788088002627B7 /* WalletVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0731574227788088002627B7 /* WalletVC.swift */; };
 		0733B5C127972F08008B8210 /* FSUserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0733B5C027972F08008B8210 /* FSUserManager.swift */; };
@@ -40,6 +40,7 @@
 		07C6BD5C27708DB800E8BEFA /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C6BD5B27708DB800E8BEFA /* LoginViewController.swift */; };
 		07C6BD5E27708EA000E8BEFA /* K.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C6BD5D27708EA000E8BEFA /* K.swift */; };
 		07C6BD6027708F4400E8BEFA /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C6BD5F27708F4400E8BEFA /* HomeVC.swift */; };
+		07CAED142798C21600392BC5 /* FSCollectionReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CAED132798C21600392BC5 /* FSCollectionReference.swift */; };
 		07CC76C5277B005B004A6117 /* Wallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CC76C4277B005B004A6117 /* Wallet.swift */; };
 		07CC76C8277B0276004A6117 /* WalletTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07CC76C7277B0276004A6117 /* WalletTVC.swift */; };
 		07E2EAAD2784DD130066869B /* CheckUserLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E2EAAC2784DD130066869B /* CheckUserLoginViewController.swift */; };
@@ -58,7 +59,7 @@
 		0718F22E2778E77800DB67A3 /* PurchaseAmount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseAmount.swift; sourceTree = "<group>"; };
 		0728E52C278194FC00AE117B /* SelectCategoryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCategoryVC.swift; sourceTree = "<group>"; };
 		0728E52E2782D4DC00AE117B /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
-		073157252774644C002627B7 /* AddNewPurchaseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewPurchaseVC.swift; sourceTree = "<group>"; };
+		073157252774644C002627B7 /* AddNewPurchaseVC .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AddNewPurchaseVC .swift"; sourceTree = "<group>"; };
 		0731573A27763C00002627B7 /* CollectionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionVC.swift; sourceTree = "<group>"; };
 		0731574227788088002627B7 /* WalletVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletVC.swift; sourceTree = "<group>"; };
 		0733B5C027972F08008B8210 /* FSUserManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FSUserManager.swift; sourceTree = "<group>"; };
@@ -87,6 +88,7 @@
 		07C6BD5B27708DB800E8BEFA /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		07C6BD5D27708EA000E8BEFA /* K.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K.swift; sourceTree = "<group>"; };
 		07C6BD5F27708F4400E8BEFA /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
+		07CAED132798C21600392BC5 /* FSCollectionReference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSCollectionReference.swift; sourceTree = "<group>"; };
 		07CC76C4277B005B004A6117 /* Wallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wallet.swift; sourceTree = "<group>"; };
 		07CC76C7277B0276004A6117 /* WalletTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletTVC.swift; sourceTree = "<group>"; };
 		07E2EAAC2784DD130066869B /* CheckUserLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckUserLoginViewController.swift; sourceTree = "<group>"; };
@@ -143,7 +145,7 @@
 		0718F2302778EFBA00DB67A3 /* AddNewPurchase */ = {
 			isa = PBXGroup;
 			children = (
-				073157252774644C002627B7 /* AddNewPurchaseVC.swift */,
+				073157252774644C002627B7 /* AddNewPurchaseVC .swift */,
 			);
 			path = AddNewPurchase;
 			sourceTree = "<group>";
@@ -260,7 +262,7 @@
 			children = (
 				0718F23C2779D22500DB67A3 /* Extension */,
 				0731573C2776582A002627B7 /* Support */,
-				07E81DDD27986B3900F1214B /* Manager */,
+				07CAED122798C18700392BC5 /* Managers */,
 				07C6BD622770903400E8BEFA /* Helpers */,
 				07C6BD6127708FFD00E8BEFA /* Screens */,
 				0731573F27765BC4002627B7 /* View */,
@@ -292,6 +294,15 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
+		07CAED122798C18700392BC5 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				0733B5C027972F08008B8210 /* FSUserManager.swift */,
+				07E81DDD27986B3900F1214B /* Helper_Manager */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
 		07CC76C6277B00B3004A6117 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -309,12 +320,12 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
-		07E81DDD27986B3900F1214B /* Manager */ = {
+		07E81DDD27986B3900F1214B /* Helper_Manager */ = {
 			isa = PBXGroup;
 			children = (
-				0733B5C027972F08008B8210 /* FSUserManager.swift */,
+				07CAED132798C21600392BC5 /* FSCollectionReference.swift */,
 			);
-			path = Manager;
+			path = Helper_Manager;
 			sourceTree = "<group>";
 		};
 		4DAD363771480916B8184421 /* Frameworks */ = {
@@ -458,7 +469,7 @@
 				0718F22B2778D6C700DB67A3 /* UIHelper.swift in Sources */,
 				07803F21277D874C001CAC3D /* CommitmentsVC.swift in Sources */,
 				07C6BD5C27708DB800E8BEFA /* LoginViewController.swift in Sources */,
-				073157262774644C002627B7 /* AddNewPurchaseVC.swift in Sources */,
+				073157262774644C002627B7 /* AddNewPurchaseVC .swift in Sources */,
 				075B1C332786315100F11583 /* PaymentModel.swift in Sources */,
 				07AD24BE277060510015076B /* ViewController.swift in Sources */,
 				0718F22D2778E53D00DB67A3 /* PurchaseTVC.swift in Sources */,
@@ -481,6 +492,7 @@
 				0718F22F2778E77800DB67A3 /* PurchaseAmount.swift in Sources */,
 				0728E52D278194FC00AE117B /* SelectCategoryVC.swift in Sources */,
 				070DA62C277FA18400BD2440 /* CommitmentsTVC.swift in Sources */,
+				07CAED142798C21600392BC5 /* FSCollectionReference.swift in Sources */,
 				07C6BD5827707A0F00E8BEFA /* Utilities.swift in Sources */,
 				07AD24BC277060510015076B /* SceneDelegate.swift in Sources */,
 				07CC76C8277B0276004A6117 /* WalletTVC.swift in Sources */,

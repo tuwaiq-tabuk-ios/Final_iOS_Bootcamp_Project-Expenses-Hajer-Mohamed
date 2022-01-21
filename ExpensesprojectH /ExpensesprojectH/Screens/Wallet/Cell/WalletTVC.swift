@@ -23,6 +23,8 @@ class WalletTVC: UITableViewCell {
     
   }
   
+  // MARK: - configureCell
+  
   func configureCell(wallet:Wallet) {
     walletNameLabel.text = wallet.walletName
     categoryLabel.text = wallet.category
