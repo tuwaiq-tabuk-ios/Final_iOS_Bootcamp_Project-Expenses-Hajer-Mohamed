@@ -11,7 +11,7 @@ import Firebase
 class WalletVC: UIViewController {
   
   //  MARK: -Properties
-
+  
   let db = Firestore.firestore()
   var wallets: [Wallet] = []
   var arrWallets = [UIImage(named: "Imagewallet-2")!,
@@ -20,6 +20,8 @@ class WalletVC: UIViewController {
   var currentCellIndex = 0
   let refreshControl = UIRefreshControl()
   
+  let descriptionView = UIView()
+  let descriptionLabel = UILabel()
   
   
   // MARK: - @IBOutlet
@@ -53,6 +55,40 @@ class WalletVC: UIViewController {
                     bundle: nil)
     
     tapleView.register(nip, forCellReuseIdentifier: "WalletTVC")
+    
+    setUpDescriptionView()
+  }
+  
+  func setUpDescriptionView() {
+    descriptionView.translatesAutoresizingMaskIntoConstraints = false
+    descriptionView.backgroundColor = .white
+    descriptionView.alpha = 0
+    descriptionView.layer.shadowColor = UIColor.gray.cgColor
+    descriptionView.layer.shadowOpacity = 1
+    descriptionView.layer.shadowOffset = .zero
+    descriptionView.layer.shadowRadius = 10
+    descriptionView.layer.cornerRadius = 15
+    tapleView.addSubview(descriptionView)
+    
+    descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
+    descriptionLabel.text = "We made it easier to start saving money by using this wallet".localize()
+    descriptionLabel.textAlignment = .center
+    descriptionLabel.textColor = .gray
+    descriptionLabel.numberOfLines = 0
+    descriptionLabel.font = UIFont.systemFont(ofSize: 18, weight: .medium)
+    descriptionView.addSubview(descriptionLabel)
+    
+    NSLayoutConstraint.activate([
+      descriptionView.centerXAnchor.constraint(equalTo: tapleView.centerXAnchor),
+      descriptionView.centerYAnchor.constraint(equalTo: tapleView.centerYAnchor),
+      descriptionView.widthAnchor.constraint(equalTo: tapleView.widthAnchor, constant: -60),
+      
+      descriptionLabel.topAnchor.constraint(equalTo: descriptionView.topAnchor, constant: 10),
+      descriptionLabel.bottomAnchor.constraint(equalTo: descriptionView.bottomAnchor, constant: -10),
+      descriptionLabel.leftAnchor.constraint(equalTo: descriptionView.leftAnchor, constant: 10),
+      descriptionLabel.rightAnchor.constraint(equalTo: descriptionView.rightAnchor, constant: -10),
+      
+    ])
   }
   
   override func viewWillAppear(_ animated: Bool) {
@@ -74,7 +110,7 @@ class WalletVC: UIViewController {
   }
   
   // MARK: -Method moveToNextIndex
-
+  
   @objc func moveToNextIndex(){
     if currentCellIndex < arrWallets.count - 1{
       currentCellIndex += 1
@@ -89,8 +125,8 @@ class WalletVC: UIViewController {
   }
   
   // MARK: -  Method getData
-
-    @objc func getData() {
+  
+  @objc func getData() {
     db.collection(FSCollectionReference.wallets.rawValue).order(by: "timestamp", descending: true).getDocuments { ( snapshot, error) in
       if error != nil {
         print("Error")
@@ -107,12 +143,19 @@ class WalletVC: UIViewController {
             
           }
           self.tapleView.reloadData()
-        }
+          
+          if self.wallets.isEmpty {
+              self.descriptionView.alpha = 1
+              self.descriptionView.isHidden = false
+          } else {
+              self.descriptionView.isHidden = true
+          }
+          
       }
     }
   }
+  }
 }
-
 
 
 // MARK: - extension UITableView
