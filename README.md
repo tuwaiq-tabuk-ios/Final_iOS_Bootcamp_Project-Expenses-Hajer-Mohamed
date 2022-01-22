@@ -27,3 +27,9 @@ People who want to organize their money and start saving
 ● The user can add payments from invoices automatically by adding the amount of your purchases and the amount will be deducted from the total balance.
 
 ●  A general wallet in which the user put all the money and can divide the wallet categories according to the needs.
+
+## photo
+
+
+https://user-images.githubusercontent.com/91871708/150628499-640991fc-9a90-431b-929e-22c7133c1315.MP4
+
