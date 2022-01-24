@@ -96,7 +96,7 @@
 "Ppp-Hy-4dt.title" = "   ";
 
 /* Class = "UIButton"; normalTitle = "Add purchases"; ObjectID = "Q8R-3T-ROI"; */
-"Q8R-3T-ROI.normalTitle" = "اضف مشتريات";
+"mgq-AR-tEi.normalTitle" = "اضف مشتريات";
 
 /* Class = "UIButton"; normalTitle = "Create New Commitment"; ObjectID = "QJD-Vb-pqX"; */
 "PzE-ci-X3d.normalTitle" = "التزام جديد";
@@ -182,10 +182,10 @@
 "iOt-on-NvN.text" = "Label";
 
 /* Class = "UITextField"; placeholder = "enter"; ObjectID = "iWR-7K-wyb"; */
-"5mO-Nd-bJE.placeholder" = "ادخل";
+"13u-LS-hLW.placeholder" = "ادخل";
 
 /* Class = "UILabel"; text = "Total Amount of money"; ObjectID = "iYa-Lb-xxG"; */
-"iYa-Lb-xxG.text" = "المبلغ الاجمالي";
+"3xM-HX-Ifh.text" = "المبلغ الاجمالي";
 
 /* Class = "UIButton"; normalTitle = "Button"; ObjectID = "jJV-Lc-29t"; */
 "jJV-Lc-29t.normalTitle" = "Button";

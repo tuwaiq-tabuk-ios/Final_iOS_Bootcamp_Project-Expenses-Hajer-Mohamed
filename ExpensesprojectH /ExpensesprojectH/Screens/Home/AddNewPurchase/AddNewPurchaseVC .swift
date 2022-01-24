@@ -49,13 +49,13 @@ class AddNewPurchaseVC: UIViewController {
     
     guard let amount = amountTextField.text,
           !amount.isEmpty else {
-      UIHelper.makeToast(text: "Please Enter Purchase Amount".localize())
+      UIHelper.showMessage(text: "Please Enter Purchase Amount".localize())
       return
     }
     
     guard let description = descriptionTextView.text,
           !description.isEmpty else {
-      UIHelper.makeToast(text: "Please Enter Purchase Description".localize())
+      UIHelper.showMessage(text: "Please Enter Purchase Description".localize())
       return
     }
     self.addNewItem(amount: amount, purchaseDescription: description)

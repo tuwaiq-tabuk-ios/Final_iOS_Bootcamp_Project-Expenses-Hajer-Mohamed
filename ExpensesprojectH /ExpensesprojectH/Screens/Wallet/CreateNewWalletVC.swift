@@ -50,25 +50,25 @@ class CreateNewWalletVC: UIViewController {
   @IBAction func createNewWallet(_ sender: UIButton) {
     
     guard let walletName = walletNameTextField.text, !walletName.isEmpty
-    else { UIHelper.makeToast(text: "Please enter wallet name".localize())
+    else { UIHelper.showMessage(text: "Please enter wallet name".localize())
       return
     }
     guard let balance = balanceTextField.text, !balance.isEmpty
-    else { UIHelper.makeToast(text: "Please enter balance".localize())
+    else { UIHelper.showMessage(text: "Please enter balance".localize())
       return
     }
     
     var categoryName = String()
     
     guard let Category = categoryTextField.text, !Category.isEmpty
-    else { UIHelper.makeToast(text: "Please select Category ".localize())
+    else { UIHelper.showMessage(text: "Please select Category ".localize())
       return
     }
     categoryName = Category
     
     if categoryTextField.text == "other".localize() {
       guard let userNewCategory = otherCategoryTextField.text, !userNewCategory.isEmpty else {
-        UIHelper.makeToast(text: "Please write your Category ".localize())
+        UIHelper.showMessage(text: "Please write your Category ".localize())
         return
       }
       categoryName = userNewCategory

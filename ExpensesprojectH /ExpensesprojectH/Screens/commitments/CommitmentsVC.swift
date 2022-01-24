@@ -48,17 +48,17 @@ class CommitmentsVC: UIViewController {
     view.endEditing(true)
     
     guard let commitmentName = nameTextField.text , !commitmentName.isEmpty else {
-      UIHelper.makeToast(text: "Please enter commitment name".localize())
+      UIHelper.showMessage(text: "Please enter commitment name".localize())
       return
     }
     
     guard let amount = amountOfMoneyTextField.text , !amount.isEmpty else {
-      UIHelper.makeToast(text: "Please enter amounts".localize())
+      UIHelper.showMessage(text: "Please enter amounts".localize())
       return
     }
     
     guard let period = timePeriodTextField.text , !period.isEmpty else {
-      UIHelper.makeToast(text: "Please Select repeat type".localize())
+      UIHelper.showMessage(text: "Please Select repeat type".localize())
       return
     }
     

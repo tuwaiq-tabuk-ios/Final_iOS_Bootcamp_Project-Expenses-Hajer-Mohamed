@@ -9,7 +9,7 @@ import Toast_Swift
 
 class UIHelper {
   
-  class func makeToast(text: String, showInCenter: Bool = false) {
+  class func showMessage(text: String, showInCenter: Bool = false) {
     DispatchQueue.main.async {
       if let window = UIApplication
           .shared.keyWindow {

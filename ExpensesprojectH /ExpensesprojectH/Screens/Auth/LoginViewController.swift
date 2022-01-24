@@ -86,7 +86,12 @@ class LoginViewController: UIViewController {
         self.view.window?.rootViewController = homeViewController
         self.view.window?.makeKeyAndVisible()
       }
+   
     }
+   
+  }
+  override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    self.view.endEditing(true)
   }
 }
 

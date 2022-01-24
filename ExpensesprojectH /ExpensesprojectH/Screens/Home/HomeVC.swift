@@ -16,6 +16,10 @@ class HomeVC: UIViewController {
   var purchases: [PurchaseAmount] = []
   let refreshControl = UIRefreshControl()
   
+  let descriptionView = UIView()
+  let descriptionLabel = UILabel()
+
+  
   // MARK: - @IBOutlet
   
   @IBOutlet weak var totalAmountTextField: UITextField!
@@ -45,7 +49,44 @@ class HomeVC: UIViewController {
     refreshControl.addTarget(self,
                              action: #selector(getdata),
                              for: .valueChanged)
+    setUpDescriptionView()
   }
+  
+  func setUpDescriptionView() {
+      descriptionView.translatesAutoresizingMaskIntoConstraints = false
+      descriptionView.backgroundColor = .white
+      descriptionView.alpha = 0
+      descriptionView.layer.shadowColor = UIColor.gray.cgColor
+      descriptionView.layer.shadowOpacity = 1
+      descriptionView.layer.shadowOffset = .zero
+      descriptionView.layer.shadowRadius = 10
+      descriptionView.layer.cornerRadius = 15
+      tableView.addSubview(descriptionView)
+      
+      descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
+    
+    descriptionLabel.text = " First step for saving is to study the budget. Define the total income, also the full expenses like bills,You can now add and track you purchases easily by adding it here .".localize()
+    
+    
+      descriptionLabel.textAlignment = .center
+      descriptionLabel.textColor = .gray
+      descriptionLabel.numberOfLines = 0
+      descriptionLabel.font = UIFont.systemFont(ofSize: 18, weight: .medium)
+      descriptionView.addSubview(descriptionLabel)
+      
+      NSLayoutConstraint.activate([
+        descriptionView.centerXAnchor.constraint(equalTo: tableView.centerXAnchor),
+        descriptionView.centerYAnchor.constraint(equalTo: tableView.centerYAnchor),
+        descriptionView.widthAnchor.constraint(equalTo: tableView.widthAnchor, constant: -60),
+        
+        descriptionLabel.topAnchor.constraint(equalTo: descriptionView.topAnchor, constant: 10),
+        descriptionLabel.bottomAnchor.constraint(equalTo: descriptionView.bottomAnchor, constant: -10),
+        descriptionLabel.leftAnchor.constraint(equalTo: descriptionView.leftAnchor, constant: 10),
+        descriptionLabel.rightAnchor.constraint(equalTo: descriptionView.rightAnchor, constant: -10),
+        
+      ])
+  }
+
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
@@ -63,12 +104,12 @@ class HomeVC: UIViewController {
     
     
     guard let amount = totalAmountTextField.text, !amount.isEmpty else {
-      UIHelper.makeToast(text: "Please enter total amount first".localize())
+      UIHelper.showMessage(text: "Please enter total amount first".localize())
       return
     }
     
     guard let _ = Int(amount) else {
-      UIHelper.makeToast(text: "Please enter valid amount".localize())
+      UIHelper.showMessage(text: "Please enter valid amount".localize())
       return
     }
     
@@ -99,6 +140,12 @@ class HomeVC: UIViewController {
           }
           self.refreshControl.endRefreshing()
           self.tableView.reloadData()
+          if self.purchases.isEmpty {
+              self.descriptionView.alpha = 1
+              self.descriptionView.isHidden = false
+          } else {
+              self.descriptionView.isHidden = true
+          }
         }
       }
     }
